@@ -1,54 +1,49 @@
-MODE                 = 'test'
-GETHATTACHPOINT      = 'ipc:./testchain/geth.ipc'
-PASSWORD             = 'testtest'
-CONTRACTSDIR              = '../../contracts'
-BANCORCONTRACTSDIR        = '../bancor-contracts'
-OWNABLESOL                = 'Ownable.sol'
-OWNABLETEMPSOL            = 'Ownable.sol'
-SAFERMATHSOL              = 'SaferMath.sol'
-SAFERMATHTEMPSOL          = 'SaferMath.sol'
-STOXSMARTTOKENSOL         = 'StoxSmartToken.sol'
-STOXSMARTTOKENTEMPSOL     = 'StoxSmartToken.sol'
-STOXSMARTTOKENSALESOL     = 'StoxSmartTokenSale.sol'
-STOXSMARTTOKENSALETEMPSOL = 'StoxSmartTokenSale.sol'
-STOXSMARTTOKENSALEJS      = 'StoxSmartTokenSale.js'
-TRUSTEESOL                = 'Trustee.sol'
-TRUSTEETEMPSOL            = 'Trustee.sol'
+MODE                       = 'test'
+GETHATTACHPOINT            = 'ipc:./testchain/geth.ipc'
+PASSWORD                   = 'testtest'
+CONTRACTSDIR               = '../../contracts'
+CONTRACTSBASEDIR           = '../../contracts/base'
+CONTRACTSINTERFACEDIR      = '../../contracts/interface'
+CONTRACTSLIBDIR            = '../../contracts/lib'
+CONTRACTSSALESDIR          = '../../contracts/sales'
+ARITHMETICSOL              = 'Arithmetic.sol'
+ARITHMETICTEMPSOL          = 'Arithmetic.sol'
+ARITHMETICJS               = 'Arithmetic.js'
+ROCKETPOOLTOKENSOL         = 'RocketPoolToken.sol'
+ROCKETPOOLTOKENTEMPSOL     = 'RocketPoolToken.sol'
+ROCKETPOOLTOKENJS          = 'RocketPoolToken.js'
+ROCKETPOOLCROWDSALESOL     = 'RocketPoolCrowdsale.sol'
+ROCKETPOOLCROWDSALETEMPSOL = 'RocketPoolCrowdsale.sol'
+ROCKETPOOLCROWDSALEJS      = 'RocketPoolCrowdsale.js'
+ROCKETPOOLPRESALESOL       = 'RocketPoolPresale.sol'
+ROCKETPOOLPRESALETEMPSOL   = 'RocketPoolPresale.sol'
+ROCKETPOOLPRESALEJS        = 'RocketPoolPresale.js'
 DEPLOYMENTDATA            = 'deploymentData.txt'
 INCLUDEJS                 = './include.js'
 TEST1OUTPUT               = 'test1output.txt'
 TEST1RESULTS              = 'test1results.txt'
-CURRENTTIME               = '1501681560' 'Wed  2 Aug 2017 13:46:00 UTC'
-STARTTIME                 = '1501681620' 'Wed  2 Aug 2017 13:47:00 UTC'
-ENDTIME                   = '1501681680' 'Wed  2 Aug 2017 13:48:00 UTC'
---- Differences ../../contracts/Ownable.sol Ownable.sol ---
-
---- Differences ../../contracts/SaferMath.sol SaferMath.sol ---
-
---- Differences ../../contracts/StoxSmartToken.sol StoxSmartToken.sol ---
-3c3
-< import 'bancor-contracts/solidity/contracts/SmartToken.sol';
+CURRENTTIME               = '1502034757' 'Sun  6 Aug 2017 15:52:37 UTC'
+STARTTIME                 = '1502034817' 'Sun  6 Aug 2017 15:53:37 UTC'
+ENDTIME                   = '1502034877' 'Sun  6 Aug 2017 15:54:37 UTC'
+--- Differences ../../contracts/RocketPoolToken.sol RocketPoolToken.sol ---
+2,6c2,6
+< import "./base/Owned.sol";
+< import "./base/StandardToken.sol";
+< import "./interface/SalesAgentInterface.sol";
+< import "./lib/Arithmetic.sol";
+< import "./lib/SafeMath.sol";
 ---
-> import 'bancor-contracts/SmartToken.sol';
---- Differences ../../contracts/StoxSmartTokenSale.sol StoxSmartTokenSale.sol ---
-12c12
-<     uint256 public constant DURATION = 14 days;
----
->     uint256 public constant DURATION = 4 minutes;
-111,112c111,112
-<         trustee.grant(0xb54c6a870d4aD65e23d471Fb7941aD271D323f5E, unsoldTokens.mul(25).div(100), now, now,
-<             now.add(1 years), true);
----
->         trustee.grant(0xa99A0Ae3354c06B1459fd441a32a3F71005D7Da0, unsoldTokens.mul(25).div(100), now, now,
->             now.add(5 minutes), true);
---- Differences ../../contracts/Trustee.sol Trustee.sol ---
-
+> import "Owned.sol";
+> import "StandardToken.sol";
+> import "SalesAgentInterface.sol";
+> import "Arithmetic.sol";
+> import "SafeMath.sol";
 Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.6.7-stable-ab5646c5/darwin-amd64/go1.8.3
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 904 (Wed, 02 Aug 2017 23:45:45 AEST)
- datadir: /Users/bok/Projects/StoxTokenContractAudit/audit/test/testchain
+at block: 722 (Mon, 07 Aug 2017 01:52:30 AEST)
+ datadir: /Users/bok/Projects/RocketpoolCrowdsaleAudit/audit/test/testchain
  modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
 > 
@@ -56,6 +51,17 @@ true
 > 
 true
 > 
+true
+> 
+true
+> 
+true
+> 
+> 
+undefined
+> 
+undefined
+> 
 > 
 undefined
 > 
@@ -72,17 +78,22 @@ undefined
 undefined
 > 
 > 
-DATA: tokenAbi=[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_disable","type":"bool"}],"name":"disableTransfers","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"standard","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_token","type":"address"},{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"withdrawTokens","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"issue","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_amount","type":"uint256"}],"name":"destroy","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"transfersEnabled","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"payable":false,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_token","type":"address"}],"name":"NewSmartToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Issuance","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_amount","type":"uint256"}],"name":"Destruction","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_prevOwner","type":"address"},{"indexed":false,"name":"_newOwner","type":"address"}],"name":"OwnerUpdate","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}]
+DATA: arithmeticAbi=[{"constant":true,"inputs":[{"name":"a","type":"uint256"},{"name":"b","type":"uint256"}],"name":"mul256By256","outputs":[{"name":"ab32","type":"uint256"},{"name":"ab1","type":"uint256"},{"name":"ab0","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"a","type":"uint256"},{"name":"b","type":"uint256"},{"name":"divisor","type":"uint256"}],"name":"overflowResistantFraction","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"a21","type":"uint256"},{"name":"a0","type":"uint256"},{"name":"b","type":"uint256"}],"name":"div256_128By256","outputs":[{"name":"q","type":"uint256"},{"name":"r","type":"uint256"}],"payable":false,"type":"function"}]
 undefined
 > 
 undefined
 > 
-DATA: saleAbi=[{"constant":true,"inputs":[],"name":"EXCHANGE_RATE","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"fundingRecipient","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"DURATION","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"stox","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"endTime","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwnerCandidate","type":"address"}],"name":"transferTrusteeOwnership","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"finalize","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"tokensSold","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptTrusteeOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"startTime","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptSmartTokenOwnership","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwnerCandidate","type":"address"}],"name":"transferSmartTokenOwnership","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"distributePartnerTokens","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"isFinalized","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"TOKEN_SALE_CAP","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"ETH_CAP","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_recipient","type":"address"}],"name":"create","outputs":[],"payable":true,"type":"function"},{"constant":true,"inputs":[],"name":"newOwnerCandidate","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwnerCandidate","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"isDistributed","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"trustee","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"inputs":[{"name":"_stox","type":"address"},{"name":"_fundingRecipient","type":"address"},{"name":"_startTime","type":"uint256"}],"payable":false,"type":"constructor"},{"payable":true,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_tokens","type":"uint256"}],"name":"TokensIssued","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_by","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipRequested","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"}]
+DATA: tokenAbi=[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_verifyAddress","type":"address"}],"name":"setSaleContractDepositAddressVerified","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractStartBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"mint","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"validateClaimTokens","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"setSaleContractFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensMinted","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"exponent","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddress","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"validateContribution","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_saleAddress","type":"address"},{"name":"_saleContractType","type":"string"},{"name":"_targetEthMin","type":"uint256"},{"name":"_targetEthMax","type":"uint256"},{"name":"_tokensLimit","type":"uint256"},{"name":"_minDeposit","type":"uint256"},{"name":"_maxDeposit","type":"uint256"},{"name":"_startBlock","type":"uint256"},{"name":"_endBlock","type":"uint256"},{"name":"_depositAddress","type":"address"}],"name":"setSaleAgentContract","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getRemainingTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupplyCap","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddressVerified","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractEndBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractIsFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensLimit","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"mintToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"saleFinalised","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"uint256"}],"name":"FlagUint","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"address"}],"name":"FlagAddress","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}]
 undefined
 > 
 undefined
 > 
-DATA: trusteeAbi=[{"constant":true,"inputs":[{"name":"_holder","type":"address"},{"name":"_time","type":"uint256"}],"name":"vestedTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"stox","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"},{"name":"_start","type":"uint256"},{"name":"_cliff","type":"uint256"},{"name":"_end","type":"uint256"},{"name":"_revokable","type":"bool"}],"name":"grant","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_holder","type":"address"}],"name":"revoke","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalVesting","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"unlockVestedTokens","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"grants","outputs":[{"name":"value","type":"uint256"},{"name":"start","type":"uint256"},{"name":"cliff","type":"uint256"},{"name":"end","type":"uint256"},{"name":"transferred","type":"uint256"},{"name":"revokable","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"newOwnerCandidate","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwnerCandidate","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_stox","type":"address"}],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"NewGrant","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_holder","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"UnlockGrant","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_holder","type":"address"},{"indexed":false,"name":"_refund","type":"uint256"}],"name":"RevokeGrant","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_by","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipRequested","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"}]
+DATA: presaleAbi=[{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"contributions","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"contributedTotal","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"setDepositAddressVerify","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_address","type":"address"}],"name":"getPresaleAllocation","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalReservedEther","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_address","type":"address"},{"name":"_amount","type":"uint256"}],"name":"addPresaleAllocation","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"getContributionOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"finaliseFunding","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_tokenContractAddress","type":"address"}],"payable":false,"type":"constructor"},{"payable":true,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Contribute","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"FinaliseSale","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Refund","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"ClaimTokens","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"int256"}],"name":"FlagInt","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"uint256"}],"name":"FlagUint","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"address"}],"name":"FlagAddress","type":"event"}]
+undefined
+> 
+undefined
+> 
+DATA: crowdsaleAbi=[{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"contributions","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"contributedTotal","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"setDepositAddressVerify","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"claimTokensAndRefund","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"getContributionOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"finaliseFunding","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_tokenContractAddress","type":"address"}],"payable":false,"type":"constructor"},{"payable":true,"type":"fallback"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Contribute","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"FinaliseSale","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Refund","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_sender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"ClaimTokens","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"int256"}],"name":"FlagInt","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"uint256"}],"name":"FlagUint","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"address"}],"name":"FlagAddress","type":"event"}]
 undefined
 > 
 undefined
@@ -92,7 +103,7 @@ undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       20.000000000000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.000000000000000000           0.000000000000000000 Account #0 - Miner
 RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
@@ -101,10 +112,6 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000           0.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -115,13 +122,95 @@ RESULT:
 undefined
 > 
 > 
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+RESULT: Deploy Arithmetic Library
 undefined
 > 
 undefined
 > 
 undefined
 > 
-RESULT: Deploy StoxSmartToken
+undefined
+> 
+... 
+...... 
+......... 
+............ 
+............ 
+............ 
+............ 
+............ 
+............ 
+......... 
+...... 
+... 
+undefined
+> 
+... 
+undefined
+> 
+RESULT: arithmeticAddress=0x1029670471248c1046263e47c431a061a7fa34ab gas=4000000 gasUsed=282366 costETH=0.005082588 costUSD=1.344563077284 @ ETH/USD=264.543 gasPrice=18000000000 block=731 txId=0xd5572e00b39d8a52fe23e04a746971b6d53fa8ed0c62e0e34425cf57aed3e872
+RESULT:  # Account                                             EtherBalanceChange                          Token Name
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       45.005082588000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005082588000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
+RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+RESULT:  9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT:                                                                                     0.000000000000000000 Total Token Balances
+RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+RESULT: 
+undefined
+> 
+RESULT: PASS Deploy Arithmetic Library
+1
+> 
+undefined
+> 
+RESULT: 
+undefined
+> 
+> 
+> 
+undefined
+> 
+(anonymous): Line 1:22 Unexpected token ILLEGAL
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+> 
+> 
+undefined
+> 
+undefined
+> 
+undefined
+> 
+RESULT: Deploy RocketPoolToken
 undefined
 > 
 undefined
@@ -148,11 +237,11 @@ undefined
 ... 
 undefined
 > 
-RESULT: tokenAddress=0x8244333e424f27d9992f55be2ab362de4203ef61 gas=4000000 gasUsed=1433152 costETH=0.025796736 costUSD=5.299991004672 @ ETH/USD=205.452 gasPrice=18000000000 block=910 txId=0x943b92fd52c336ea8d4c5bd93324018ca5b79cd3ef96cbf1c07cc920770247a8
+RESULT: tokenAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8 gas=4000000 gasUsed=2138290 costETH=0.03848922 costUSD=10.18205372646 @ ETH/USD=264.543 gasPrice=18000000000 block=733 txId=0x45c070248c90e7ecf55c82bb673208413a6d9005d5c90411c42640b96a3dd8be
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       30.025796736000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.025796736000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       55.043571808000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.043571808000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -160,30 +249,23 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000           0.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
+RESULT:  9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
+RESULT: 10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT: 
 undefined
 > 
-RESULT: PASS Deploy StoxSmartToken
+RESULT: PASS Deploy RocketPoolToken
 1
 > 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
+RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=0
-RESULT: token.transfersEnabled=false
-RESULT: NewSmartToken 0 #910: {"_token":"0x8244333e424f27d9992f55be2ab362de4203ef61"}
-undefined
+TypeError: 'newOwner' is not a function
+    at printTokenContractDetails (functions.js:245:45)
+    at <anonymous>:1:1
+
 > 
 RESULT: 
 undefined
@@ -196,7 +278,7 @@ undefined
 > 
 undefined
 > 
-RESULT: Deploy StoxSmartTokenSale
+RESULT: Deploy RocketPoolPresale
 undefined
 > 
 undefined
@@ -223,11 +305,11 @@ undefined
 ... 
 undefined
 > 
-RESULT: saleAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b gas=4000000 gasUsed=2068157 costETH=0.037226826 costUSD=7.648325855352 @ ETH/USD=205.452 gasPrice=18000000000 block=912 txId=0xbc26221d64ccf3a433a46951614d7313dac596dcf320ddd01e35ab5814375aa5
+RESULT: presaleAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6 gas=4000000 gasUsed=1018231 costETH=0.018328158 costUSD=4.848585901794 @ ETH/USD=264.543 gasPrice=18000000000 block=735 txId=0x116544280bef990d07bc452dedaa397bec41e93a35f97d7e00263edb51b693c7
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       40.063023562000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.063023562000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.061899966000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.061899966000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -235,44 +317,26 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000           0.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
+RESULT:  9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
+RESULT: 10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+RESULT: 11 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT: 
 undefined
 > 
-RESULT: PASS Deploy StoxSmartTokenSale
+RESULT: PASS Deploy RocketPoolPresale
 1
 > 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=false
-RESULT: crowdsale.isDistributed=false
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0x0000000000000000000000000000000000000000
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=0
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
 undefined
 > 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
+RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=0
-RESULT: token.transfersEnabled=false
-undefined
+TypeError: 'newOwner' is not a function
+    at printTokenContractDetails (functions.js:245:45)
+    at <anonymous>:1:1
+
 > 
 RESULT: 
 undefined
@@ -285,21 +349,38 @@ undefined
 > 
 undefined
 > 
-RESULT: Transfer Ownership For Token To TokenSale
+RESULT: Deploy RocketPoolCrowdsale (Should be after Presale completed)
+undefined
+> 
+undefined
+> 
 undefined
 > 
 undefined
 > 
 ... 
+...... 
+......... 
+............ 
+............ 
+............ 
+............ 
+............ 
+............ 
+............ 
+......... 
+...... 
+... 
 undefined
 > 
-RESULT: transferOwnershipTx gas=4000000 gasUsed=43613 costETH=0.000785034 costUSD=0.161286805368 @ ETH/USD=205.452 gasPrice=18000000000 block=915 txId=0xe8eead4ca8fe2d064a34da3bbf05a6eebea9a0873c5a6a7d393a0b729d8d28c0
+... 
 undefined
 > 
+RESULT: crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b gas=4000000 gasUsed=811640 costETH=0.01460952 costUSD=3.86484624936 @ ETH/USD=264.543 gasPrice=18000000000 block=737 txId=0xdda2a8e552962f28d01b6d1834f3e8daa1557e0b26e738a3bebe9bc760b20493
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       55.063808596000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.063808596000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.076509486000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.076509486000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -307,1427 +388,31 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000           0.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
+RESULT:  9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
+RESULT: 10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+RESULT: 11 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
+RESULT: 12 0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT: 
 undefined
 > 
-RESULT: PASS Transfer Ownership For Token To TokenSale
+RESULT: PASS Deploy RocketPoolCrowdsale (Should be after Presale completed)
 1
 > 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=false
-RESULT: crowdsale.isDistributed=false
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0x0000000000000000000000000000000000000000
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=0
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
+RESULT: crowdsaleContractAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b
+TypeError: 'isFinalized' is not a function
+    at printCrowdsaleContractDetails (functions.js:194:52)
+    at <anonymous>:1:1
+
 > 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
+RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=0
-RESULT: token.transfersEnabled=false
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Accept Transfer Ownership For Token To TokenSale
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: acceptTransferOwnershipTx gas=4000000 gasUsed=19081 costETH=0.000343458 costUSD=0.070564133016 @ ETH/USD=205.452 gasPrice=18000000000 block=917 txId=0xebd109895e4d46502ef399e5b3b542b9d74fce9aed83bd11772e7c61b84cdd2f
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.064152054000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.064152054000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000           0.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                                     0.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Accept Transfer Ownership For Token To TokenSale
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=false
-RESULT: crowdsale.isDistributed=false
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0x0000000000000000000000000000000000000000
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=0
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=0
-RESULT: token.transfersEnabled=false
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Distribute Partner Tokens
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: distributeTx gas=4000000 gasUsed=108968 costETH=0.001961424 costUSD=0.402978483648 @ ETH/USD=205.452 gasPrice=18000000000 block=919 txId=0xd6653f416499e795b52d4be4fa3acb02c7d4ee92fce571797e3de1148d29e747
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.066113478000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.066113478000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              14800000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Distribute Partner Tokens
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=false
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0x0000000000000000000000000000000000000000
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=14800000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-RESULT: TokensIssued 0 #919: {"_to":"0x9065260ef6830f6372f1bde408dec57fe3150530","_tokens":"1.48e+25"}
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=14800000
-RESULT: token.transfersEnabled=false
-RESULT: Issuance 0 #919: _amount=14800000
-RESULT: Transfer 0 #919: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0x9065260ef6830f6372f1bde408dec57fe3150530 _value=14800000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-... 
-RESULT: Waiting until startTime at 1501681620 Wed, 02 Aug 2017 23:47:00 AEST currentDate=Wed, 02 Aug 2017 23:47:40 AEST
-undefined
-> 
-... 
-undefined
-> 
-... 
-RESULT: Waited until startTime at 1501681620 Wed, 02 Aug 2017 23:47:00 AEST currentDate=Wed, 02 Aug 2017 23:47:40 AEST
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Send Valid Contribution
-undefined
-> 
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: validContribution1Tx gas=400000 gasUsed=72397 costETH=0.001303146 costUSD=0.267733951992 @ ETH/USD=205.452 gasPrice=18000000000 block=921 txId=0x608e4ce579820b0b1c70d9c4f39dd596171f4aa08b0122f7b9bd9402ec428a8b
-undefined
-> 
-RESULT: validContribution2Tx gas=400000 gasUsed=65527 costETH=0.001179486 costUSD=0.242327757672 @ ETH/USD=205.452 gasPrice=18000000000 block=921 txId=0x1238694daf6fbc13fcd1ceadb7284e0307b5f7c0b1036341c1458557890189b4
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       85.068596110000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.066113478000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.877846356876543211     4799975.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.124636275123456789    10000024.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000           0.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              29600000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Send Valid Contribution ac3 30,000.333333333333333333 ETH ~ 6,000,000 STX
-1
-> 
-RESULT: PASS Send Valid Contribution ac4 50,000.123456789123456789 ETH ~ 10,000,000 STX
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=false
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0x0000000000000000000000000000000000000000
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-RESULT: TokensIssued 0 #921: {"_to":"0xa44a08d3f6933c69212114bb66e2df1813651844","_tokens":"1.00000246913578246913578e+25"}
-RESULT: TokensIssued 1 #921: {"_to":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","_tokens":"4.7999753086421753086422e+24"}
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=29600000
-RESULT: token.transfersEnabled=false
-RESULT: Issuance 0 #921: _amount=10000024.6913578246913578
-RESULT: Issuance 1 #921: _amount=4799975.3086421753086422
-RESULT: Transfer 0 #921: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0xa44a08d3f6933c69212114bb66e2df1813651844 _value=10000024.6913578246913578
-RESULT: Transfer 1 #921: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 _value=4799975.3086421753086422
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-... 
-RESULT: Waiting until endTime at 1501681860 Wed, 02 Aug 2017 23:51:00 AEST currentDate=Wed, 02 Aug 2017 23:47:56 AEST
-undefined
-> 
-... 
-undefined
-> 
-... 
-RESULT: Waited until endTime at 1501681860 Wed, 02 Aug 2017 23:51:00 AEST currentDate=Wed, 02 Aug 2017 23:51:00 AEST
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Finalise Crowdsale
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: finaliseTx gas=4000000 gasUsed=1001122 costETH=0.018020196 costUSD=3.702285308592 @ ETH/USD=205.452 gasPrice=18000000000 block=946 txId=0x57425d4145fd2f0012c1072773d3d7ff5385f1851fefcfdb7a94cdf34c62069f
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      210.086616306000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.084133674000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.877846356876543211     4799975.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.124636275123456789    10000024.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Finalise Crowdsale
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=true
-RESULT: Issuance 0 #946: _amount=16280000
-RESULT: Issuance 1 #946: _amount=13320000
-RESULT: Transfer 0 #946: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0xbc14105ccddeaadb96ba8dce18b40c45b6bacf58 _value=16280000
-RESULT: Transfer 1 #946: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5 _value=13320000
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-RESULT: NewGrant 0 #946: {"_from":"0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b","_to":"0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","_value":"7.4e+24"}
-RESULT: NewGrant 1 #946: {"_from":"0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b","_to":"0x4eb4cd1d125d9d281709ff38d65b99a6927b46c1","_value":"5.92e+24"}
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Can Move Tokens
-undefined
-> 
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: canTransfer1Tx gas=100000 gasUsed=51643 costETH=0.000929574 costUSD=0.190982837448 @ ETH/USD=205.452 gasPrice=18000000000 block=948 txId=0x3ab65d207582dbaaa1d84251df6c7257d2e2dae0b1a6c6cdeac9f54de867bc60
-undefined
-> 
-RESULT: canTransfer2Tx gas=100000 gasUsed=45808 costETH=0.000824544 costUSD=0.169404213888 @ ETH/USD=205.452 gasPrice=18000000000 block=948 txId=0x08b9acc100fee70263b61614e2635a447afd42cf894485684ae929015f6f713e
-undefined
-> 
-RESULT: canTransfer3Tx gas=100000 gasUsed=43374 costETH=0.000780732 costUSD=0.160402950864 @ ETH/USD=205.452 gasPrice=18000000000 block=950 txId=0x606c3dce21d37b06b47a1af32d9f03c459a60f7d12f016d806af393efc9a536c
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      230.089151156000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.084133674000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.878775930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.125460819123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000780732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Can Move Tokens - transfer 1 STX ac3 -> ac5. CHECK for movement
-1
-> 
-RESULT: PASS Can Move Tokens - ac4 approve 3 STX ac6
-1
-> 
-RESULT: PASS Can Move Tokens - ac6 transferFrom 3 STX ac4 -> ac7. CHECK for movement
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=true
-RESULT: Approval 0 #948 _owner=0xa44a08d3f6933c69212114bb66e2df1813651844 _spender=0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9 _value=3
-RESULT: Transfer 0 #948: _from=0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0 _to=0xa55a151eb00fded1634d27d1127b4be4627079ea _value=1
-RESULT: Transfer 1 #950: _from=0xa44a08d3f6933c69212114bb66e2df1813651844 _to=0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec _value=3
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Transfer Ownership For Token To ContractOwner
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: transferOwnership2Tx gas=4000000 gasUsed=43613 costETH=0.000785034 costUSD=0.161286805368 @ ETH/USD=205.452 gasPrice=18000000000 block=915 txId=0xe8eead4ca8fe2d064a34da3bbf05a6eebea9a0873c5a6a7d393a0b729d8d28c0
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      240.089952318000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.084934836000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.878775930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.125460819123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000780732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Transfer Ownership For Token To ContractOwner
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: token.newOwner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=true
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Accept Transfer Ownership For Token To ContractOwner
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: acceptTransferOwnership2Tx gas=4000000 gasUsed=18297 costETH=0.000329346 costUSD=0.067664794392 @ ETH/USD=205.452 gasPrice=18000000000 block=955 txId=0xf3e8cba6aa404f1c374cf0f543853fbd37e3bbf478cb46ca126633716caae65a
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      255.090281664000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.085264182000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.878775930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.125460819123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000780732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Accept Transfer Ownership For Token To ContractOwner
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=true
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Disable Token Transfers
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: disableTransferTx gas=4000000 gasUsed=13421 costETH=0.000241578 costUSD=0.049632683256 @ ETH/USD=205.452 gasPrice=18000000000 block=958 txId=0xd25b0303dc8c4d8780de4034b2ab2a2d7c7dd654651390ac1fc9c4ba4a44d7cd
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      270.090523242000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.085505760000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.878775930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.125460819123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.000780732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Disable Token Transfers
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=false
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Cannot Move Tokens
-undefined
-> 
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: cannotTransfer1Tx gas=100000 gasUsed=100000 costETH=0.0018 costUSD=0.3698136 @ ETH/USD=205.452 gasPrice=18000000000 block=960 txId=0x000554422efa35f619004092f98c995c446b58e373db662897ca744c31adfc5b
-undefined
-> 
-RESULT: cannotTransfer2Tx gas=100000 gasUsed=45872 costETH=0.000825696 costUSD=0.169640894592 @ ETH/USD=205.452 gasPrice=18000000000 block=960 txId=0xebd736a018029d348d349200cfdc20f3e271d20068d9f81cad6cd1930c9448a0
-undefined
-> 
-RESULT: cannotTransfer3Tx gas=100000 gasUsed=100000 costETH=0.0018 costUSD=0.3698136 @ ETH/USD=205.452 gasPrice=18000000000 block=962 txId=0x6b7f5a397b9db2893352c670b4e2439b5e6f84543fb35761e817425c3c4c81a7
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      290.094948938000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.085505760000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                              59200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Cannot Move Tokens - transfer 10 STX ac3 -> ac5. CHECK for NO movement
-1
-> 
-RESULT: PASS Cannot Move Tokens - ac4 approve 30 STX ac6
-1
-> 
-RESULT: PASS Cannot Move Tokens - ac6 transferFrom 30 STX ac4 -> ac7. CHECK for NO movement
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=59200000
-RESULT: token.transfersEnabled=false
-RESULT: Approval 0 #960 _owner=0xa44a08d3f6933c69212114bb66e2df1813651844 _spender=0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9 _value=30
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Mint Tokens
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: mintTokensTx gas=4000000 gasUsed=52551 costETH=0.000945918 costUSD=0.194340744936 @ ETH/USD=205.452 gasPrice=18000000000 block=965 txId=0x11bcf3a5a706e8e1a461d15227c55e1b8783a82cbd695c67893018880cf5beea
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      305.095894856000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.086451678000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000 77700000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                           77759200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Mint Tokens
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=77759200000
-RESULT: token.transfersEnabled=false
-RESULT: Issuance 0 #965: _amount=77700000000
-RESULT: Transfer 0 #965: _from=0x8244333e424f27d9992f55be2ab362de4203ef61 _to=0xa88a05d2b88283ce84c8325760b72a64591279a2 _value=77700000000
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Burn Anyone's Tokens
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: burnAnyonesTokensTx gas=4000000 gasUsed=37446 costETH=0.000674028 costUSD=0.138480400656 @ ETH/USD=205.452 gasPrice=18000000000 block=968 txId=0xd3a9f687dd0463916af88cec272bea0f5d43071c1bbf28827395dfa9a57d5a94
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      320.096568884000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.087125706000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Burn Anyone's Tokens
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=false
-RESULT: Destruction 0 #968: _amount=77010000000
-RESULT: Transfer 0 #968: _from=0xa88a05d2b88283ce84c8325760b72a64591279a2 _to=0x8244333e424f27d9992f55be2ab362de4203ef61 _value=77010000000
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Transfer Ownership For Trustee To ContractOwner
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: transferOwnership3Tx gas=4000000 gasUsed=45657 costETH=0.000821826 costUSD=0.168845795352 @ ETH/USD=205.452 gasPrice=18000000000 block=971 txId=0xb3eaeef6bb5c3063399f15b380a0047f60e6119867fd24f4fe083afdbbbf8ff2
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      335.097390710000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.087947532000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Transfer Ownership For Trustee To ContractOwner
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=false
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: trustee.newOwnerCandidate=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Accept Transfer Ownership For Trustee To ContractOwner
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: acceptTransferOwnership3Tx gas=4000000 gasUsed=18336 costETH=0.000330048 costUSD=0.067809021696 @ ETH/USD=205.452 gasPrice=18000000000 block=975 txId=0xb52f2657159dbd90acc9c59358524a143dec793f0189adf2bea29c356ad90ede
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      355.097720758000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.088277580000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Accept Transfer Ownership For Trustee To ContractOwner
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=false
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Enable Token Transfers
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: enableTransferTx gas=4000000 gasUsed=41778 costETH=0.000752004 costUSD=0.154500725808 @ ETH/USD=205.452 gasPrice=18000000000 block=978 txId=0x2f4cca9861bba44a56c0bd5d49232a4edd865f8ffdfd84120a4c1c360940eda7
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      370.098472762000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.089029584000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0        0.000000000000000000           0.000000000000000000 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000    13320000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Enable Token Transfers
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=true
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=13320000
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Unlock Trustee Grant
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: unlockTrusteeGrantTx gas=4000000 gasUsed=78614 costETH=0.001415052 costUSD=0.290725263504 @ ETH/USD=205.452 gasPrice=18000000000 block=980 txId=0xdc8a586c8c6aa55cc9c75164d5822e940769abefd4baa4f153ce887c1d515139
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      380.099887814000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.089029584000000000           0.000000000000000000 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0       -0.001415052000000000     7301333.333333333333333333 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000     6018666.666666666666666667 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Unlock Trustee Grant
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=true
-RESULT: Transfer 0 #980: _from=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5 _to=0xa99a0ae3354c06b1459fd441a32a3f71005d7da0 _value=7301333.333333333333333333
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=6018666.666666666666666667
-RESULT: UnlockGrant 0 #980: {"_holder":"0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","_value":"7.301333333333333333333333e+24"}
-undefined
-> 
-RESULT: 
-undefined
-> 
-> 
-> 
-undefined
-> 
-undefined
-> 
-undefined
-> 
-RESULT: Revoke Trustee Grant
-undefined
-> 
-undefined
-> 
-... 
-undefined
-> 
-RESULT: revokeTrusteeGrantTx gas=4000000 gasUsed=44540 costETH=0.00080172 costUSD=0.16471497744 @ ETH/USD=205.452 gasPrice=18000000000 block=982 txId=0x259b797cbb0a8ef09da6f60dbaa7956d288529b1cf760c3b262dad1bb26cf78a
-undefined
-> 
-RESULT:  # Account                                             EtherBalanceChange                          Token Name
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e      390.100689534000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.089831304000000000       98666.666666666666666667 Account #1 - Contract Owner
-RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976    74000.000000000000000000           0.000000000000000000 Account #2 - Multisig
-RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0   -23999.880575930876543211     4799974.308642175308642200 Account #3
-RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844   -50000.126286515123456789    10000021.691357824691357800 Account #4
-RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           1.000000000000000000 Account #5
-RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9       -0.002580732000000000           0.000000000000000000 Account #6
-RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           3.000000000000000000 Account #7
-RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000   690000000.000000000000000000 Account #8
-RESULT:  9 0xa99a0ae3354c06b1459fd441a32a3f71005d7da0       -0.001415052000000000     7301333.333333333333333333 Account #9 - Invest.com 12.5% - Locked 1y
-RESULT: 10 0x9065260ef6830f6372F1Bde408DeC57Fe3150530        0.000000000000000000    14800000.000000000000000000 Strategic Partnership #1
-RESULT: 11 0xbC14105ccDdeAadB96Ba8dCE18b40C45b6bACf58        0.000000000000000000    16280000.000000000000000000 Strategic Partnership #2
-RESULT: 12 0x4eB4Cd1D125d9d281709Ff38d65b99a6927b46c1        0.000000000000000000           0.000000000000000000 Stox 10% - Locked 2y
-RESULT: 13 0x8244333e424f27d9992f55be2ab362de4203ef61        0.000000000000000000           0.000000000000000000 Token 'STX' 'Stox'
-RESULT: 14 0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b        0.000000000000000000           0.000000000000000000 StoxSmartTokenSale
-RESULT: 15 0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5        0.000000000000000000     5920000.000000000000000000 Trustee
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:                                                                             749200000.000000000000000000 Total Token Balances
-RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT: 
-undefined
-> 
-RESULT: PASS Revoke Trustee Grant
-1
-> 
-RESULT: crowdsaleContractAddress=0x60c8e00dafb889136ebd2dc558d0d00a69b7a84b
-RESULT: crowdsale.isFinalized=true
-RESULT: crowdsale.isDistributed=true
-RESULT: crowdsale.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: crowdsale.trustee=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: crowdsale.startTime=1501681620 Wed, 02 Aug 2017 13:47:00 UTC
-RESULT: crowdsale.endTime=1501681860 Wed, 02 Aug 2017 13:51:00 UTC
-RESULT: crowdsale.fundingRecipient=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
-RESULT: crowdsale.tokensSold=29600000
-RESULT: crowdsale.ETH_CAP=148000
-RESULT: crowdsale.EXCHANGE_RATE=200
-RESULT: crowdsale.TOKEN_SALE_CAP=29600000
-undefined
-> 
-RESULT: tokenContractAddress=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: token.newOwner=0x0000000000000000000000000000000000000000
-RESULT: token.symbol=STX
-RESULT: token.name=Stox
-RESULT: token.decimals=18
-RESULT: token.totalSupply=749200000
-RESULT: token.transfersEnabled=true
-RESULT: Transfer 0 #982: _from=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5 _to=0xa11aae29840fbb5c86e6fd4cf809eba183aef433 _value=98666.666666666666666667
-undefined
-> 
-RESULT: trusteeContractAddress=0xbbf257363f6803bfeae6728a76e7ed0ca3a460c5
-RESULT: trustee.stox=0x8244333e424f27d9992f55be2ab362de4203ef61
-RESULT: trustee.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
-RESULT: trustee.newOwnerCandidate=0x0000000000000000000000000000000000000000
-RESULT: trustee.totalVesting=5920000
-RESULT: RevokeGrant 0 #982: {"_holder":"0xa99a0ae3354c06b1459fd441a32a3f71005d7da0","_refund":"9.8666666666666666666667e+22"}
-undefined
+TypeError: 'newOwner' is not a function
+    at printTokenContractDetails (functions.js:245:45)
+    at <anonymous>:1:1
+
 > 
 RESULT: 
 undefined

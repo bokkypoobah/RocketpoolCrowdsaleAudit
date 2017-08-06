@@ -2,23 +2,26 @@ IPCFILE=ipc:./testchain/geth.ipc
 PASSWORD=testtest
 
 CONTRACTSDIR=../../contracts
-BANCORCONTRACTSDIR=../bancor-contracts
+CONTRACTSBASEDIR=../../contracts/base
+CONTRACTSINTERFACEDIR=../../contracts/interface
+CONTRACTSLIBDIR=../../contracts/lib
+CONTRACTSSALESDIR=../../contracts/sales
 
-OWNABLESOL=Ownable.sol
-OWNABLETEMPSOL=Ownable.sol
+ARITHMETICSOL=Arithmetic.sol
+ARITHMETICTEMPSOL=Arithmetic.sol
+ARITHMETICJS=Arithmetic.js
 
-SAFERMATHSOL=SaferMath.sol
-SAFERMATHTEMPSOL=SaferMath.sol
+ROCKETPOOLTOKENSOL=RocketPoolToken.sol
+ROCKETPOOLTOKENTEMPSOL=RocketPoolToken.sol
+ROCKETPOOLTOKENJS=RocketPoolToken.js
 
-STOXSMARTTOKENSOL=StoxSmartToken.sol
-STOXSMARTTOKENTEMPSOL=StoxSmartToken.sol
+ROCKETPOOLCROWDSALESOL=RocketPoolCrowdsale.sol
+ROCKETPOOLCROWDSALETEMPSOL=RocketPoolCrowdsale.sol
+ROCKETPOOLCROWDSALEJS=RocketPoolCrowdsale.js
 
-STOXSMARTTOKENSALESOL=StoxSmartTokenSale.sol
-STOXSMARTTOKENSALETEMPSOL=StoxSmartTokenSale.sol
-STOXSMARTTOKENSALEJS=StoxSmartTokenSale.js
-
-TRUSTEESOL=Trustee.sol
-TRUSTEETEMPSOL=Trustee.sol
+ROCKETPOOLPRESALESOL=RocketPoolPresale.sol
+ROCKETPOOLPRESALETEMPSOL=RocketPoolPresale.sol
+ROCKETPOOLPRESALEJS=RocketPoolPresale.js
 
 DEPLOYMENTDATA=deploymentData.txt
 

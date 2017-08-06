@@ -11,25 +11,26 @@ GETHATTACHPOINT=`grep ^IPCFILE= settings.txt | sed "s/^.*=//"`
 PASSWORD=`grep ^PASSWORD= settings.txt | sed "s/^.*=//"`
 
 CONTRACTSDIR=`grep ^CONTRACTSDIR= settings.txt | sed "s/^.*=//"`
-BANCORCONTRACTSDIR=`grep ^BANCORCONTRACTSDIR= settings.txt | sed "s/^.*=//"`
+CONTRACTSBASEDIR=`grep ^CONTRACTSBASEDIR= settings.txt | sed "s/^.*=//"`
+CONTRACTSINTERFACEDIR=`grep ^CONTRACTSINTERFACEDIR= settings.txt | sed "s/^.*=//"`
+CONTRACTSLIBDIR=`grep ^CONTRACTSLIBDIR= settings.txt | sed "s/^.*=//"`
+CONTRACTSSALESDIR=`grep ^CONTRACTSSALESDIR= settings.txt | sed "s/^.*=//"`
 
-OWNABLESOL=`grep ^OWNABLESOL= settings.txt | sed "s/^.*=//"`
-OWNABLETEMPSOL=`grep ^OWNABLETEMPSOL= settings.txt | sed "s/^.*=//"`
+ARITHMETICSOL=`grep ^ARITHMETICSOL= settings.txt | sed "s/^.*=//"`
+ARITHMETICTEMPSOL=`grep ^ARITHMETICTEMPSOL= settings.txt | sed "s/^.*=//"`
+ARITHMETICJS=`grep ^ARITHMETICJS= settings.txt | sed "s/^.*=//"`
 
-SAFERMATHSOL=`grep ^SAFERMATHSOL= settings.txt | sed "s/^.*=//"`
-SAFERMATHTEMPSOL=`grep ^SAFERMATHTEMPSOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLTOKENSOL=`grep ^ROCKETPOOLTOKENSOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLTOKENTEMPSOL=`grep ^ROCKETPOOLTOKENTEMPSOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLTOKENJS=`grep ^ROCKETPOOLTOKENJS= settings.txt | sed "s/^.*=//"`
 
-STOXSMARTTOKENSOL=`grep ^STOXSMARTTOKENSOL= settings.txt | sed "s/^.*=//"`
-STOXSMARTTOKENTEMPSOL=`grep ^STOXSMARTTOKENTEMPSOL= settings.txt | sed "s/^.*=//"`
-STOXSMARTTOKENJS=`grep ^STOXSMARTTOKENJS= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLCROWDSALESOL=`grep ^ROCKETPOOLCROWDSALESOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLCROWDSALETEMPSOL=`grep ^ROCKETPOOLCROWDSALETEMPSOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLCROWDSALEJS=`grep ^ROCKETPOOLCROWDSALEJS= settings.txt | sed "s/^.*=//"`
 
-STOXSMARTTOKENSALESOL=`grep ^STOXSMARTTOKENSALESOL= settings.txt | sed "s/^.*=//"`
-STOXSMARTTOKENSALETEMPSOL=`grep ^STOXSMARTTOKENSALETEMPSOL= settings.txt | sed "s/^.*=//"`
-STOXSMARTTOKENSALEJS=`grep ^STOXSMARTTOKENSALEJS= settings.txt | sed "s/^.*=//"`
-
-TRUSTEESOL=`grep ^TRUSTEESOL= settings.txt | sed "s/^.*=//"`
-TRUSTEETEMPSOL=`grep ^TRUSTEETEMPSOL= settings.txt | sed "s/^.*=//"`
-TRUSTEEJS=`grep ^TRUSTEEJS= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLPRESALESOL=`grep ^ROCKETPOOLPRESALESOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLPRESALETEMPSOL=`grep ^ROCKETPOOLPRESALETEMPSOL= settings.txt | sed "s/^.*=//"`
+ROCKETPOOLPRESALEJS=`grep ^ROCKETPOOLPRESALEJS= settings.txt | sed "s/^.*=//"`
 
 DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
 
@@ -54,28 +55,31 @@ STARTTIME_S=`date -r $STARTTIME -u`
 ENDTIME=`echo "$CURRENTTIME+60*2" | bc`
 ENDTIME_S=`date -r $ENDTIME -u`
 
-printf "MODE                 = '$MODE'\n" | tee $TEST1OUTPUT
-printf "GETHATTACHPOINT      = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
-printf "PASSWORD             = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
+printf "MODE                       = '$MODE'\n" | tee $TEST1OUTPUT
+printf "GETHATTACHPOINT            = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
+printf "PASSWORD                   = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
 
-printf "CONTRACTSDIR              = '$CONTRACTSDIR'\n" | tee -a $TEST1OUTPUT
-printf "BANCORCONTRACTSDIR        = '$BANCORCONTRACTSDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSDIR               = '$CONTRACTSDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSBASEDIR           = '$CONTRACTSBASEDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSINTERFACEDIR      = '$CONTRACTSINTERFACEDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSLIBDIR            = '$CONTRACTSLIBDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSSALESDIR          = '$CONTRACTSSALESDIR'\n" | tee -a $TEST1OUTPUT
 
-printf "OWNABLESOL                = '$OWNABLESOL'\n" | tee -a $TEST1OUTPUT
-printf "OWNABLETEMPSOL            = '$OWNABLETEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ARITHMETICSOL              = '$ARITHMETICSOL'\n" | tee -a $TEST1OUTPUT
+printf "ARITHMETICTEMPSOL          = '$ARITHMETICTEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ARITHMETICJS               = '$ARITHMETICJS'\n" | tee -a $TEST1OUTPUT
 
-printf "SAFERMATHSOL              = '$SAFERMATHSOL'\n" | tee -a $TEST1OUTPUT
-printf "SAFERMATHTEMPSOL          = '$SAFERMATHTEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLTOKENSOL         = '$ROCKETPOOLTOKENSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLTOKENTEMPSOL     = '$ROCKETPOOLTOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLTOKENJS          = '$ROCKETPOOLTOKENJS'\n" | tee -a $TEST1OUTPUT
 
-printf "STOXSMARTTOKENSOL         = '$STOXSMARTTOKENSOL'\n" | tee -a $TEST1OUTPUT
-printf "STOXSMARTTOKENTEMPSOL     = '$STOXSMARTTOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLCROWDSALESOL     = '$ROCKETPOOLCROWDSALESOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLCROWDSALETEMPSOL = '$ROCKETPOOLCROWDSALETEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLCROWDSALEJS      = '$ROCKETPOOLCROWDSALEJS'\n" | tee -a $TEST1OUTPUT
 
-printf "STOXSMARTTOKENSALESOL     = '$STOXSMARTTOKENSALESOL'\n" | tee -a $TEST1OUTPUT
-printf "STOXSMARTTOKENSALETEMPSOL = '$STOXSMARTTOKENSALETEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "STOXSMARTTOKENSALEJS      = '$STOXSMARTTOKENSALEJS'\n" | tee -a $TEST1OUTPUT
-
-printf "TRUSTEESOL                = '$TRUSTEESOL'\n" | tee -a $TEST1OUTPUT
-printf "TRUSTEETEMPSOL            = '$TRUSTEETEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLPRESALESOL       = '$ROCKETPOOLPRESALESOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLPRESALETEMPSOL   = '$ROCKETPOOLPRESALETEMPSOL'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLPRESALEJS        = '$ROCKETPOOLPRESALEJS'\n" | tee -a $TEST1OUTPUT
 
 printf "DEPLOYMENTDATA            = '$DEPLOYMENTDATA'\n" | tee -a $TEST1OUTPUT
 printf "INCLUDEJS                 = '$INCLUDEJS'\n" | tee -a $TEST1OUTPUT
@@ -86,18 +90,21 @@ printf "STARTTIME                 = '$STARTTIME' '$STARTTIME_S'\n" | tee -a $TES
 printf "ENDTIME                   = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
-`cp -rp $BANCORCONTRACTSDIR .`
-`cp $CONTRACTSDIR/$OWNABLESOL $OWNABLETEMPSOL`
-`cp $CONTRACTSDIR/$SAFERMATHSOL $SAFERMATHTEMPSOL`
-`cp $CONTRACTSDIR/$STOXSMARTTOKENSOL $STOXSMARTTOKENTEMPSOL`
-`cp $CONTRACTSDIR/$STOXSMARTTOKENSALESOL $STOXSMARTTOKENSALETEMPSOL`
-`cp $CONTRACTSDIR/$TRUSTEESOL $TRUSTEETEMPSOL`
+`cp -rp $CONTRACTSBASEDIR/* .`
+`cp -rp $CONTRACTSINTERFACEDIR/* .`
+`cp -rp $CONTRACTSLIBDIR/* .`
+`cp -rp $CONTRACTSSALESDIR/* .`
+`cp $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
 
 # --- Modify parameters ---
-`perl -pi -e "s/bancor-contracts\/solidity\/contracts/bancor-contracts/" $STOXSMARTTOKENTEMPSOL`
-`perl -pi -e "s/DURATION \= 14 days/DURATION \= 4 minutes/" $STOXSMARTTOKENSALETEMPSOL`
-`perl -pi -e "s/now\.add\(1 years\)/now\.add\(5 minutes\)/" $STOXSMARTTOKENSALETEMPSOL`
-`perl -pi -e "s/0xb54c6a870d4aD65e23d471Fb7941aD271D323f5E/0xa99A0Ae3354c06B1459fd441a32a3F71005D7Da0/" $STOXSMARTTOKENSALETEMPSOL`
+`perl -pi -e "s/\.+\/base\///" *.sol`
+`perl -pi -e "s/\.+\/interface\///" *.sol`
+`perl -pi -e "s/\.+\/lib\///" *.sol`
+`perl -pi -e "s/\.+\/sales\///" *.sol`
+`perl -pi -e "s/\.\.\///" *.sol`
+#`perl -pi -e "s/DURATION \= 14 days/DURATION \= 4 minutes/" $STOXSMARTTOKENSALETEMPSOL`
+#`perl -pi -e "s/now\.add\(1 years\)/now\.add\(5 minutes\)/" $STOXSMARTTOKENSALETEMPSOL`
+#`perl -pi -e "s/0xb54c6a870d4aD65e23d471Fb7941aD271D323f5E/0xa99A0Ae3354c06B1459fd441a32a3F71005D7Da0/" $STOXSMARTTOKENSALETEMPSOL`
 #`perl -pi -e "s/0x0010230123012010312300102301230120103123/0xacca534c9f62ab495bd986e002ddf0f054caae4f/" $STOXSMARTTOKENTEMPSOL`
 #`perl -pi -e "s/0x0010230123012010312300102301230120103124/0xadda9b762a00ff12711113bfdc36958b73d7f915/" $STOXSMARTTOKENTEMPSOL`
 #`perl -pi -e "s/0x0010230123012010312300102301230120103125/0xaeea63b5479b50f79583ec49dacdcf86ddeff392/" $STOXSMARTTOKENTEMPSOL`
@@ -106,54 +113,89 @@ printf "ENDTIME                   = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OU
 #`perl -pi -e "s/\/\/\/ \@return total amount of tokens.*$/function overloadedTotalSupply() constant returns (uint256) \{ return totalSupply; \}/" $DAOCASINOICOTEMPSOL`
 #`perl -pi -e "s/BLOCKS_IN_DAY \= 5256;*$/BLOCKS_IN_DAY \= $BLOCKSINDAY;/" $DAOCASINOICOTEMPSOL`
 
-DIFFS1=`diff $CONTRACTSDIR/$OWNABLESOL $OWNABLETEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$OWNABLESOL $OWNABLETEMPSOL ---" | tee -a $TEST1OUTPUT
+DIFFS1=`diff $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
+echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-DIFFS1=`diff $CONTRACTSDIR/$SAFERMATHSOL $SAFERMATHTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$SAFERMATHSOL $SAFERMATHTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/$STOXSMARTTOKENSOL $STOXSMARTTOKENTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$STOXSMARTTOKENSOL $STOXSMARTTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/$STOXSMARTTOKENSALESOL $STOXSMARTTOKENSALETEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$STOXSMARTTOKENSALESOL $STOXSMARTTOKENSALETEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-DIFFS1=`diff $CONTRACTSDIR/$TRUSTEESOL $TRUSTEETEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$TRUSTEESOL $TRUSTEETEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
-
-echo "var saleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $STOXSMARTTOKENSALETEMPSOL`;" > $STOXSMARTTOKENSALEJS
+echo "var arithmeticOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ARITHMETICTEMPSOL`;" > $ARITHMETICJS
+echo "var tokenOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
+echo "var presaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
+echo "var crowdsaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
-loadScript("$STOXSMARTTOKENSALEJS");
+loadScript("$ARITHMETICJS");
+loadScript("$ROCKETPOOLTOKENJS");
+loadScript("$ROCKETPOOLPRESALEJS");
+loadScript("$ROCKETPOOLCROWDSALEJS");
 loadScript("functions.js");
 
-var tokenAbi = JSON.parse(saleOutput.contracts["$STOXSMARTTOKENTEMPSOL:StoxSmartToken"].abi);
-var tokenBin = "0x" + saleOutput.contracts["$STOXSMARTTOKENTEMPSOL:StoxSmartToken"].bin;
+var arithmeticAbi = JSON.parse(arithmeticOutput.contracts["$ARITHMETICTEMPSOL:Arithmetic"].abi);
+var arithmeticBin = "0x" + arithmeticOutput.contracts["$ARITHMETICTEMPSOL:Arithmetic"].bin;
 
-var saleAbi = JSON.parse(saleOutput.contracts["$STOXSMARTTOKENSALETEMPSOL:StoxSmartTokenSale"].abi);
-var saleBin = "0x" + saleOutput.contracts["$STOXSMARTTOKENSALETEMPSOL:StoxSmartTokenSale"].bin;
+var tokenAbi = JSON.parse(tokenOutput.contracts["$ROCKETPOOLTOKENTEMPSOL:RocketPoolToken"].abi);
+var tokenBin = "0x" + tokenOutput.contracts["$ROCKETPOOLTOKENTEMPSOL:RocketPoolToken"].bin;
 
-var trusteeAbi = JSON.parse(saleOutput.contracts["$TRUSTEETEMPSOL:Trustee"].abi);
-var trusteeBin = "0x" + saleOutput.contracts["$TRUSTEETEMPSOL:Trustee"].bin;
+var presaleAbi = JSON.parse(presaleOutput.contracts["$ROCKETPOOLPRESALETEMPSOL:RocketPoolPresale"].abi);
+var presaleBin = "0x" + presaleOutput.contracts["$ROCKETPOOLPRESALETEMPSOL:RocketPoolPresale"].bin;
 
+var crowdsaleAbi = JSON.parse(crowdsaleOutput.contracts["$ROCKETPOOLCROWDSALETEMPSOL:RocketPoolCrowdsale"].abi);
+var crowdsaleBin = "0x" + crowdsaleOutput.contracts["$ROCKETPOOLCROWDSALETEMPSOL:RocketPoolCrowdsale"].bin;
+
+console.log("DATA: arithmeticAbi=" + JSON.stringify(arithmeticAbi));
+// console.log("DATA: arithmeticBin=" + arithmeticBin);
 console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
 // console.log("DATA: tokenBin=" + tokenBin);
-console.log("DATA: saleAbi=" + JSON.stringify(saleAbi));
-// console.log("DATA: saleBin=" + saleBin);
-console.log("DATA: trusteeAbi=" + JSON.stringify(trusteeAbi));
-// console.log("DATA: trusteeBin=" + trusteeBin);
+console.log("DATA: presaleAbi=" + JSON.stringify(presaleAbi));
+// console.log("DATA: presaleBin=" + presaleBin);
+console.log("DATA: crowdsaleAbi=" + JSON.stringify(crowdsaleAbi));
+// console.log("DATA: crowdsaleBin=" + crowdsaleBin);
 
 unlockAccounts("$PASSWORD");
 printBalances();
 console.log("RESULT: ");
 
+
 // -----------------------------------------------------------------------------
-var tokenMessage = "Deploy StoxSmartToken";
+var arithmeticMessage = "Deploy Arithmetic Library";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + arithmeticMessage);
+var arithmeticContract = web3.eth.contract(arithmeticAbi);
+var arithmeticTx = null;
+var arithmeticAddress = null;
+var arithmetic = arithmeticContract.new({from: contractOwnerAccount, data: arithmeticBin, gas: 4000000},
+  function(e, contract) {
+    if (!e) {
+      if (!contract.address) {
+        arithmeticTx = contract.transactionHash;
+      } else {
+        arithmeticAddress = contract.address;
+        addAccount(arithmeticAddress, "Arithmetic Library");
+        printTxData("arithmeticAddress=" + arithmeticAddress, arithmeticTx);
+      }
+    }
+  }
+);
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfGasEqualsGasUsed(arithmeticTx, arithmeticMessage);
+// printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var replaceMessage = "Replace Library Placeholder With Deployed Address
+// -----------------------------------------------------------------------------
+var linkedPresaleBin = presaleBin.replace(/_+Arithmetic.sol:Arithmetic_+/g, arithmeticAddress.replace("0x", ""));
+var linkedCrowdsaleBin = crowdsaleBin.replace(/_+Arithmetic.sol:Arithmetic_+/g, arithmeticAddress.replace("0x", ""));
+// console.log("DATA: presaleBin=" + presaleBin);
+// console.log("DATA: linkedPresaleBin=" + linkedPresaleBin);
+// console.log("DATA: crowdsaleBin=" + crowdsaleBin);
+// console.log("DATA: linkedCrowdsaleBin=" + linkedCrowdsaleBin);
+
+
+// -----------------------------------------------------------------------------
+var tokenMessage = "Deploy RocketPoolToken";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + tokenMessage);
 var tokenContract = web3.eth.contract(tokenAbi);
@@ -182,22 +224,22 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var saleMessage = "Deploy StoxSmartTokenSale";
+var presaleMessage = "Deploy RocketPoolPresale";
 // -----------------------------------------------------------------------------
-console.log("RESULT: " + saleMessage);
-var saleContract = web3.eth.contract(saleAbi);
-var saleTx = null;
-var saleAddress = null;
-var sale = saleContract.new(tokenAddress, multisig, $STARTTIME, {from: contractOwnerAccount, data: saleBin, gas: 4000000},
+console.log("RESULT: " + presaleMessage);
+var presaleContract = web3.eth.contract(presaleAbi);
+var presaleTx = null;
+var presaleAddress = null;
+var presale = presaleContract.new(tokenAddress, {from: contractOwnerAccount, data: linkedPresaleBin, gas: 4000000},
   function(e, contract) {
     if (!e) {
       if (!contract.address) {
-        saleTx = contract.transactionHash;
+        presaleTx = contract.transactionHash;
       } else {
-        saleAddress = contract.address;
-        addAccount(saleAddress, "StoxSmartTokenSale");
-        addCrowdsaleContractAddressAndAbi(saleAddress, saleAbi);
-        printTxData("saleAddress=" + saleAddress, saleTx);
+        presaleAddress = contract.address;
+        addAccount(presaleAddress, "RocketPoolPresale");
+        // addCrowdsaleContractAddressAndAbi(presaleAddress, presaleAbi);
+        printTxData("presaleAddress=" + presaleAddress, presaleTx);
       }
     }
   }
@@ -205,11 +247,43 @@ var sale = saleContract.new(tokenAddress, multisig, $STARTTIME, {from: contractO
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfGasEqualsGasUsed(saleTx, saleMessage);
+failIfGasEqualsGasUsed(presaleTx, presaleMessage);
+// printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var crowdsaleMessage = "Deploy RocketPoolCrowdsale (Should be after Presale completed)";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + crowdsaleMessage);
+var crowdsaleContract = web3.eth.contract(crowdsaleAbi);
+var crowdsaleTx = null;
+var crowdsaleAddress = null;
+var crowdsale = crowdsaleContract.new(tokenAddress, {from: contractOwnerAccount, data: linkedCrowdsaleBin, gas: 4000000},
+  function(e, contract) {
+    if (!e) {
+      if (!contract.address) {
+        crowdsaleTx = contract.transactionHash;
+      } else {
+        crowdsaleAddress = contract.address;
+        addAccount(crowdsaleAddress, "RocketPoolCrowdsale");
+        addCrowdsaleContractAddressAndAbi(crowdsaleAddress, crowdsaleAbi);
+        printTxData("crowdsaleAddress=" + crowdsaleAddress, crowdsaleTx);
+      }
+    }
+  }
+);
+while (txpool.status.pending > 0) {
+}
+printBalances();
+failIfGasEqualsGasUsed(crowdsaleTx, crowdsaleMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
 
+
+exit;
 
 // -----------------------------------------------------------------------------
 var transferOwnershipMessage = "Transfer Ownership For Token To TokenSale";

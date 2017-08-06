@@ -1,5 +1,24 @@
+# RocketPool Presale And Crowdsale Contracts Audit
 
+Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6).
 
+<br />
+
+<hr />
+
+## Recommendations
+
+* **MEDIUM IMPORTANCE** Upgrade minimum compiler version from `pragma solidity ^0.4.2;` to `pragma solidity ^0.4.13;` or `pragma solidity ^0.4.11;`.
+  You may have to replace your `throw` code with `require(...)` or `assert(...)` if you upgrade to 0.4.13.
+* **LOW IMPORTANCE** Use the `acceptOwnership(...)` pattern in the *Owned* contracts for a much safer transfer of ownership.
+  See the [example](https://github.com/openanx/OpenANXToken/blob/master/contracts/Owned.sol#L51-L55).
+* **LOW IMPORTANCE** Replace `uint256 public constant decimals = 18;` with `uint8 public constant decimals = 18;` in **RocketPoolToken** as `uint8`
+  is meant to be the standard, although some token contracts use `uint256` and no side effects have been reported. If you use `uint8`, you will
+  have to replace `10**decimals;` with `10**uint256(decimals);` in the following statement.
+
+<br />
+
+<hr />
 
 ## Code Review
 
