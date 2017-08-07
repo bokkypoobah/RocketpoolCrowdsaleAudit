@@ -1,13 +1,13 @@
 # SafeMath
 
-Source file [../../../contracts/lib//SafeMath.sol](../../../contracts/lib//SafeMath.sol).
+Source file [../../../contracts/lib/SafeMath.sol](../../../contracts/lib/SafeMath.sol).
 
 <br />
 
 <hr />
 
 ```javascript
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.11;
 
 
 /**

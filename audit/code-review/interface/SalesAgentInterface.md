@@ -7,7 +7,7 @@ Source file [../../../contracts/interface/SalesAgentInterface.sol](../../../cont
 <hr />
 
 ```javascript
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.11;
 
 
 /// @title An interface for token sales agent contracts (ie crowdsale, presale, quarterly sale etc)

@@ -7,7 +7,7 @@ Source file [../../../contracts/base/SalesAgent.sol](../../../contracts/base/Sal
 <hr />
 
 ```javascript
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.11;
 
 import "../RocketPoolToken.sol";
 

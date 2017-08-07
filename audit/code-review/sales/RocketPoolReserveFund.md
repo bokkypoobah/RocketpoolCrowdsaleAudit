@@ -1,13 +1,13 @@
 # RocketPoolReserveFund
 
-Source file [../../../contracts/sales//RocketPoolReserveFund.sol](../../../contracts/sales//RocketPoolReserveFund.sol).
+Source file [../../../contracts/sales/RocketPoolReserveFund.sol](../../../contracts/sales/RocketPoolReserveFund.sol).
 
 <br />
 
 <hr />
 
 ```javascript
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.11;
 import "../RocketPoolToken.sol";
 import "../base/SalesAgent.sol";
 

@@ -1,6 +1,6 @@
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       35.000000000000000000           0.000000000000000000 Account #0 - Miner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e        0.000000000000000000           0.000000000000000000 Account #0 - Miner
  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
@@ -15,11 +15,11 @@
 
 
 Deploy Arithmetic Library
-arithmeticAddress=0x1029670471248c1046263e47c431a061a7fa34ab gas=4000000 gasUsed=282366 costETH=0.005082588 costUSD=1.344563077284 @ ETH/USD=264.543 gasPrice=18000000000 block=731 txId=0xd5572e00b39d8a52fe23e04a746971b6d53fa8ed0c62e0e34425cf57aed3e872
+arithmeticAddress=0x90d8927407c79c4a28ee879b821c76fc9bcc2688 gas=4000000 gasUsed=282430 costETH=0.00508374 costUSD=1.34486783082 @ ETH/USD=264.543 gasPrice=18000000000 block=2 txId=0x7dfc02b934c4400d2c25861cab578531d542ff45fe39ce19ca29efb7825120ba
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       45.005082588000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005082588000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       10.005083740000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.005083740000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -27,7 +27,7 @@ arithmeticAddress=0x1029670471248c1046263e47c431a061a7fa34ab gas=4000000 gasUsed
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
- 9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
+ 9 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Arithmetic Library
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -35,11 +35,11 @@ arithmeticAddress=0x1029670471248c1046263e47c431a061a7fa34ab gas=4000000 gasUsed
 PASS Deploy Arithmetic Library
 
 Deploy RocketPoolToken
-tokenAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8 gas=4000000 gasUsed=2138290 costETH=0.03848922 costUSD=10.18205372646 @ ETH/USD=264.543 gasPrice=18000000000 block=733 txId=0x45c070248c90e7ecf55c82bb673208413a6d9005d5c90411c42640b96a3dd8be
+tokenAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d gas=4000000 gasUsed=2198166 costETH=0.039566988 costUSD=10.467169706484 @ ETH/USD=264.543 gasPrice=18000000000 block=5 txId=0xc3c402f0be473864ff2d71c5c7dc4b62bd2a485d94d8c38520842f76635a2030
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       55.043571808000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.043571808000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       25.044650728000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.044650728000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -47,22 +47,27 @@ tokenAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8 gas=4000000 gasUsed=2138
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
- 9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
-10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+ 9 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Arithmetic Library
+10 0x0e946b999033257976aa5cbe0e3530618ca1582d        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy RocketPoolToken
-tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+tokenContractAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
 
 Deploy RocketPoolPresale
-presaleAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6 gas=4000000 gasUsed=1018231 costETH=0.018328158 costUSD=4.848585901794 @ ETH/USD=264.543 gasPrice=18000000000 block=735 txId=0x116544280bef990d07bc452dedaa397bec41e93a35f97d7e00263edb51b693c7
+presaleAddress=0xdf9f36fd5654d92e0844c78d2d2dd562404cd1ff gas=4000000 gasUsed=1082935 costETH=0.01949283 costUSD=5.15669172669 @ ETH/USD=264.543 gasPrice=18000000000 block=8 txId=0xc7d834774f2190bbde636213436bf583d8329337b4c44233ee502d315779f1f9
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       65.061899966000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.061899966000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       40.064143558000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.064143558000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -70,23 +75,28 @@ presaleAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6 gas=4000000 gasUsed=10
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
- 9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
-10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
-11 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
+ 9 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Arithmetic Library
+10 0x0e946b999033257976aa5cbe0e3530618ca1582d        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+11 0xdf9f36fd5654d92e0844c78d2d2dd562404cd1ff        0.000000000000000000           0.000000000000000000 RocketPoolPresale
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy RocketPoolPresale
-tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+tokenContractAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
 
 Deploy RocketPoolCrowdsale (Should be after Presale completed)
-crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b gas=4000000 gasUsed=811640 costETH=0.01460952 costUSD=3.86484624936 @ ETH/USD=264.543 gasPrice=18000000000 block=737 txId=0xdda2a8e552962f28d01b6d1834f3e8daa1557e0b26e738a3bebe9bc760b20493
+crowdsaleAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3 gas=4000000 gasUsed=812024 costETH=0.014616432 costUSD=3.866674770576 @ ETH/USD=264.543 gasPrice=18000000000 block=10 txId=0xe609e20e40ab523e0d36fc109e341122db7814295d26ec80767b2e33715c1a15
  # Account                                             EtherBalanceChange                          Token Name
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
- 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       75.076509486000000000           0.000000000000000000 Account #0 - Miner
- 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.076509486000000000           0.000000000000000000 Account #1 - Contract Owner
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       50.078759990000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.078759990000000000           0.000000000000000000 Account #1 - Contract Owner
  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -94,16 +104,21 @@ crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b gas=4000000 gasUsed=
  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
- 9 0x1029670471248c1046263e47c431a061a7fa34ab        0.000000000000000000           0.000000000000000000 Arithmetic Library
-10 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
-11 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
-12 0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+ 9 0x90d8927407c79c4a28ee879b821c76fc9bcc2688        0.000000000000000000           0.000000000000000000 Arithmetic Library
+10 0x0e946b999033257976aa5cbe0e3530618ca1582d        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+11 0xdf9f36fd5654d92e0844c78d2d2dd562404cd1ff        0.000000000000000000           0.000000000000000000 RocketPoolPresale
+12 0xe6ada9beed6e24be4c0259383db61b52bfca85f3        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
                                                                                     0.000000000000000000 Total Token Balances
 -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 
 PASS Deploy RocketPoolCrowdsale (Should be after Presale completed)
-crowdsaleContractAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b
-tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+crowdsaleContractAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3
+tokenContractAddress=0x0e946b999033257976aa5cbe0e3530618ca1582d
 token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
 

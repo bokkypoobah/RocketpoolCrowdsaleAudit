@@ -1,13 +1,13 @@
 # Arithmetic
 
-Source file [../../../contracts/lib//Arithmetic.sol](../../../contracts/lib//Arithmetic.sol).
+Source file [../../../contracts/lib/Arithmetic.sol](../../../contracts/lib/Arithmetic.sol).
 
 <br />
 
 <hr />
 
 ```javascript
-pragma solidity ^0.4.8;
+pragma solidity ^0.4.11;
 
 // Arithmetic library borrowed from Gnosis, thanks guys!
 

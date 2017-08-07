@@ -7,7 +7,7 @@ Source file [../../../contracts/base/StandardToken.sol](../../../contracts/base/
 <hr />
 
 ```javascript
-pragma solidity ^0.4.10;
+pragma solidity ^0.4.11;
 
 contract Token {
     uint256 public totalSupply;

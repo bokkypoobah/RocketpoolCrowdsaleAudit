@@ -9,7 +9,7 @@ Source file [../../contracts/Migrations.sol](../../contracts/Migrations.sol).
 ```javascript
 // Note: For some reason Migrations.sol needs to be in the root or they run everytime
 
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.11;
 
 contract Migrations {
   address public owner;
