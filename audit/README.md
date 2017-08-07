@@ -1,6 +1,8 @@
 # RocketPool Presale And Crowdsale Contracts Audit
 
-Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6), [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377).
+Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
+[8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
+[19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269)
 
 <br />
 
@@ -18,6 +20,10 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
   is meant to be the standard, although some token contracts use `uint256` and no side effects have been reported. If you use `uint8`, you will
   have to replace `10**decimals;` with `10**uint256(decimals);` in the next statement.
   * [x] Completed in [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/commit/8147b2f2f4c535777ab5750240709748dfee0377)
+* **LOW IMPORTANCE** Consider using a neater way for calling the SafeMath library - see
+  [OpenANXToken.sol#L23](https://github.com/openanx/OpenANXToken/blob/master/contracts/OpenANXToken.sol#L23) and 
+  [OpenANXToken.sol#L76-L77](https://github.com/openanx/OpenANXToken/blob/master/contracts/OpenANXToken.sol#L76-L77).
+  * [x] Completed in [19372b87](https://github.com/darcius/rocketpool-crowdsale/commit/19372b8736371810ed0e5268281dc7563127a269)
 * **LOW IMPORTANCE** Consider replacing the custom Arithmetic.sol library with the standard `uint` maths as the use cases in 
   *RocketPoolPresale* and *RocketPoolCrowdsale*  seems suitable for the standard `uint` maths.
 
