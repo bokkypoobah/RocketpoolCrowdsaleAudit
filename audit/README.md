@@ -3,7 +3,8 @@
 Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
 [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
 [19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
-[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b).
+[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b),
+[4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1).
 
 <br />
 
@@ -172,7 +173,10 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 * **VERY LOW IMPORTANCE** Events are normally distinguished from functions by the first letter being capitalised (Upper Camel Case).
   For example `event mintToken(...);` -> `event MintToken(...);` and `event saleFinalised(...);` -> `event SaleFinalised(...);` in
   *RocketPoolToken*
+  * [x] Completed in [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/commit/4a3d45afaf53229ec62cd5003b843ab63d6dddc1)
 
+* **MEDIUM IMPORTANCE** Events with the same name are defined with different number of parameters in *SalesAgent* and *SalesAgentInterface* 
+  * [x] Completed in [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/commit/4a3d45afaf53229ec62cd5003b843ab63d6dddc1)
 
 <br />
 

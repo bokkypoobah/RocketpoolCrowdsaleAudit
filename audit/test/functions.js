@@ -205,26 +205,33 @@ function printCrowdsaleContractDetails() {
     var latestBlock = eth.blockNumber;
     var i;
 
-    var tokensIssuedEvents = contract.TokensIssued({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    var contributeEvents = contract.Contribute({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
     i = 0;
-    tokensIssuedEvents.watch(function (error, result) {
-      console.log("RESULT: TokensIssued " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    contributeEvents.watch(function (error, result) {
+      console.log("RESULT: Contribute " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
     });
-    tokensIssuedEvents.stopWatching();
+    contributeEvents.stopWatching();
 
-//    var initializedEvents = contract.Initialized({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-//    i = 0;
-//    initializedEvents.watch(function (error, result) {
-//      console.log("RESULT: Initialized " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-//    });
-//    initializedEvents.stopWatching();
-//
-//    var finalizedEvents = contract.Finalized({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
-//    i = 0;
-//    finalizedEvents.watch(function (error, result) {
-//      console.log("RESULT: Finalized " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-//    });
-//    finalizedEvents.stopWatching();
+    var finaliseSaleEvents = contract.FinaliseSale({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    finaliseSaleEvents.watch(function (error, result) {
+      console.log("RESULT: FinaliseSale " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    finaliseSaleEvents.stopWatching();
+
+    var refundEvents = contract.Refund({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    refundEvents.watch(function (error, result) {
+      console.log("RESULT: Refund " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    refundEvents.stopWatching();
+
+    var claimTokensEvents = contract.ClaimTokens({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    claimTokensEvents.watch(function (error, result) {
+      console.log("RESULT: ClaimTokens " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    claimTokensEvents.stopWatching();
 
     crowdsaleFromBlock = parseInt(latestBlock) + 1;
   }
@@ -252,18 +259,18 @@ function printTokenContractDetails() {
     var latestBlock = eth.blockNumber;
     var i;
 
-    var mintTokenEvents = contract.mintToken({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var mintTokenEvents = contract.MintToken({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     mintTokenEvents.watch(function (error, result) {
-      console.log("RESULT: mintToken " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
+      console.log("RESULT: MintToken " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
           " _address=" + result.args._address + " _value=" + result.args._value.shift(-decimals));
     });
     mintTokenEvents.stopWatching();
 
-    var saleFinalisedEvents = contract.saleFinalised({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    var saleFinalisedEvents = contract.SaleFinalised({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     saleFinalisedEvents.watch(function (error, result) {
-      console.log("RESULT: saleFinalised " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
+      console.log("RESULT: SaleFinalised " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
           " _address=" + result.args._address + " _value=" + result.args._value.shift(-decimals));
     });
     saleFinalisedEvents.stopWatching();

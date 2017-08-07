@@ -19,9 +19,9 @@ DEPLOYMENTDATA            = 'deploymentData.txt'
 INCLUDEJS                 = './include.js'
 TEST1OUTPUT               = 'test1output.txt'
 TEST1RESULTS              = 'test1results.txt'
-CURRENTTIME               = '1502087844' 'Mon  7 Aug 2017 06:37:24 UTC'
-STARTTIME                 = '1502087904' 'Mon  7 Aug 2017 06:38:24 UTC'
-ENDTIME                   = '1502087964' 'Mon  7 Aug 2017 06:39:24 UTC'
+CURRENTTIME               = '1502094040' 'Mon  7 Aug 2017 08:20:40 UTC'
+STARTTIME                 = '1502094100' 'Mon  7 Aug 2017 08:21:40 UTC'
+ENDTIME                   = '1502094160' 'Mon  7 Aug 2017 08:22:40 UTC'
 --- Differences ../../contracts/RocketPoolToken.sol RocketPoolToken.sol ---
 2,5c2,5
 < import "./base/Owned.sol";
@@ -37,7 +37,7 @@ Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.6.7-stable-ab5646c5/darwin-amd64/go1.8.3
 coinbase: 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e
-at block: 3410 (Mon, 07 Aug 2017 16:37:21 AEST)
+at block: 131 (Mon, 07 Aug 2017 18:20:38 AEST)
  datadir: /Users/bok/Projects/RocketpoolCrowdsaleAudit/audit/test/testchain
  modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
@@ -66,7 +66,7 @@ undefined
 undefined
 > 
 > 
-DATA: tokenAbi=[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_verifyAddress","type":"address"}],"name":"setSaleContractDepositAddressVerified","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractStartBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"mint","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"validateClaimTokens","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"setSaleContractFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensMinted","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"exponent","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddress","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"validateContribution","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_saleAddress","type":"address"},{"name":"_saleContractType","type":"string"},{"name":"_targetEthMin","type":"uint256"},{"name":"_targetEthMax","type":"uint256"},{"name":"_tokensLimit","type":"uint256"},{"name":"_minDeposit","type":"uint256"},{"name":"_maxDeposit","type":"uint256"},{"name":"_startBlock","type":"uint256"},{"name":"_endBlock","type":"uint256"},{"name":"_depositAddress","type":"address"}],"name":"setSaleAgentContract","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getRemainingTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupplyCap","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddressVerified","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractEndBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractIsFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensLimit","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"mintToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"saleFinalised","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"uint256"}],"name":"FlagUint","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"address"}],"name":"FlagAddress","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}]
+DATA: tokenAbi=[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_spender","type":"address"},{"name":"_value","type":"uint256"}],"name":"approve","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_verifyAddress","type":"address"}],"name":"setSaleContractDepositAddressVerified","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_from","type":"address"},{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractStartBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_amount","type":"uint256"}],"name":"mint","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"validateClaimTokens","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_sender","type":"address"}],"name":"setSaleContractFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensMinted","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"exponent","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"version","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddress","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_value","type":"uint256"}],"name":"validateContribution","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_saleAddress","type":"address"},{"name":"_saleContractType","type":"string"},{"name":"_targetEthMin","type":"uint256"},{"name":"_targetEthMax","type":"uint256"},{"name":"_tokensLimit","type":"uint256"},{"name":"_minDeposit","type":"uint256"},{"name":"_maxDeposit","type":"uint256"},{"name":"_startBlock","type":"uint256"},{"name":"_endBlock","type":"uint256"},{"name":"_depositAddress","type":"address"}],"name":"setSaleAgentContract","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"success","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"getRemainingTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"totalSupplyCap","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositEtherMin","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTargetEtherMax","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_owner","type":"address"},{"name":"_spender","type":"address"}],"name":"allowance","outputs":[{"name":"remaining","type":"uint256"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractDepositAddressVerified","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractEndBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractIsFinalised","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[{"name":"_salesAgentAddress","type":"address"}],"name":"getSaleContractTokensLimit","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"MintToken","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"_agent","type":"address"},{"indexed":false,"name":"_address","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"SaleFinalised","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"uint256"}],"name":"FlagUint","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"flag","type":"address"}],"name":"FlagAddress","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_from","type":"address"},{"indexed":true,"name":"_to","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_owner","type":"address"},{"indexed":true,"name":"_spender","type":"address"},{"indexed":false,"name":"_value","type":"uint256"}],"name":"Approval","type":"event"}]
 undefined
 > 
 undefined
@@ -86,7 +86,7 @@ undefined
 > 
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       10.000000000000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       30.000000000000000000           0.000000000000000000 Account #0 - Miner
 RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
@@ -139,11 +139,11 @@ undefined
 ... 
 undefined
 > 
-RESULT: tokenAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8 gas=4000000 gasUsed=2210712 costETH=0.039792816 costUSD=10.526910923088 @ ETH/USD=264.543 gasPrice=18000000000 block=3414 txId=0x700051ab87245b616bc2f8692ebe5c686519b7de0ac8e208c402882f4230a6aa
+RESULT: tokenAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3 gas=4000000 gasUsed=2210648 costETH=0.039791664 costUSD=10.526606169552 @ ETH/USD=264.543 gasPrice=18000000000 block=140 txId=0x2d61227dce44102b4322841938ae7011956f7219808b19ed5c2ea99c4af556b5
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       20.039792816000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.039792816000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       45.039791664000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.039791664000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -151,7 +151,7 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+RESULT:  9 0xe6ada9beed6e24be4c0259383db61b52bfca85f3        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -161,7 +161,7 @@ undefined
 RESULT: PASS Deploy RocketPoolToken
 1
 > 
-RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+RESULT: tokenContractAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.newOwner=0x0000000000000000000000000000000000000000
 RESULT: token.symbol=RPL
@@ -169,7 +169,7 @@ RESULT: token.name=Rocket Pool
 RESULT: token.decimals=18
 RESULT: token.totalSupply=0
 TypeError: 'transfersEnabled' is not a function
-    at printTokenContractDetails (functions.js:250:53)
+    at printTokenContractDetails (functions.js:257:53)
     at <anonymous>:1:1
 
 > 
@@ -211,11 +211,11 @@ undefined
 ... 
 undefined
 > 
-RESULT: presaleAddress=0x43ac93ca1533f31e82ae941b6f477096cf9a28e6 gas=4000000 gasUsed=1017943 costETH=0.018322974 costUSD=4.847214510882 @ ETH/USD=264.543 gasPrice=18000000000 block=3416 txId=0xd3cd6b8e76336e6406dc1a5fc4af822fd5947ffb0f6a3e7fac6913d9a9094442
+RESULT: presaleAddress=0xf4441f10804b35b13bad1e664e32237773276253 gas=4000000 gasUsed=1017943 costETH=0.018322974 costUSD=4.847214510882 @ ETH/USD=264.543 gasPrice=18000000000 block=142 txId=0x6e1ff55771384d2cf6f9e3055c32e7ba7251327f105ed4a2491702dcdf71d7ac
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       30.058115790000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.058115790000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       55.058114638000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.058114638000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -223,8 +223,8 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
-RESULT: 10 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
+RESULT:  9 0xe6ada9beed6e24be4c0259383db61b52bfca85f3        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+RESULT: 10 0xf4441f10804b35b13bad1e664e32237773276253        0.000000000000000000           0.000000000000000000 RocketPoolPresale
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -236,7 +236,7 @@ RESULT: PASS Deploy RocketPoolPresale
 > 
 undefined
 > 
-RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+RESULT: tokenContractAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.newOwner=0x0000000000000000000000000000000000000000
 RESULT: token.symbol=RPL
@@ -244,7 +244,7 @@ RESULT: token.name=Rocket Pool
 RESULT: token.decimals=18
 RESULT: token.totalSupply=0
 TypeError: 'transfersEnabled' is not a function
-    at printTokenContractDetails (functions.js:250:53)
+    at printTokenContractDetails (functions.js:257:53)
     at <anonymous>:1:1
 
 > 
@@ -286,11 +286,11 @@ undefined
 ... 
 undefined
 > 
-RESULT: crowdsaleAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b gas=4000000 gasUsed=703426 costETH=0.012661668 costUSD=3.349555637724 @ ETH/USD=264.543 gasPrice=18000000000 block=3418 txId=0x43d98223f27e37148f8c268687536f1708e7bc1e33d63f3614bf32b08383e566
+RESULT: crowdsaleAddress=0x57930444aa5c1e758c1407ded001a8f36aa80b1d gas=4000000 gasUsed=703426 costETH=0.012661668 costUSD=3.349555637724 @ ETH/USD=264.543 gasPrice=18000000000 block=145 txId=0x545f3ac87e112cdf2db7607b04ccc5e531fcac662ccd2b8f5f1907624c54ea38
 RESULT:  # Account                                             EtherBalanceChange                          Token Name
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
-RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       45.070777458000000000           0.000000000000000000 Account #0 - Miner
-RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.070777458000000000           0.000000000000000000 Account #1 - Contract Owner
+RESULT:  0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       70.070776306000000000           0.000000000000000000 Account #0 - Miner
+RESULT:  1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.070776306000000000           0.000000000000000000 Account #1 - Contract Owner
 RESULT:  2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
 RESULT:  3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
 RESULT:  4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
@@ -298,9 +298,9 @@ RESULT:  5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.00000000000000000
 RESULT:  6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
 RESULT:  7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
 RESULT:  8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
-RESULT:  9 0xa83b361b5b868fc289d586c3a1d3712d8075d8f8        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
-RESULT: 10 0x43ac93ca1533f31e82ae941b6f477096cf9a28e6        0.000000000000000000           0.000000000000000000 RocketPoolPresale
-RESULT: 11 0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+RESULT:  9 0xe6ada9beed6e24be4c0259383db61b52bfca85f3        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+RESULT: 10 0xf4441f10804b35b13bad1e664e32237773276253        0.000000000000000000           0.000000000000000000 RocketPoolPresale
+RESULT: 11 0x57930444aa5c1e758c1407ded001a8f36aa80b1d        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
 RESULT:                                                                                     0.000000000000000000 Total Token Balances
 RESULT: -- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
@@ -310,13 +310,13 @@ undefined
 RESULT: PASS Deploy RocketPoolCrowdsale (Should be after Presale completed)
 1
 > 
-RESULT: crowdsaleContractAddress=0x354059c8c025b0bb359d8a9a6afaf1e550b2ea4b
+RESULT: crowdsaleContractAddress=0x57930444aa5c1e758c1407ded001a8f36aa80b1d
 TypeError: 'isFinalized' is not a function
     at printCrowdsaleContractDetails (functions.js:194:52)
     at <anonymous>:1:1
 
 > 
-RESULT: tokenContractAddress=0xa83b361b5b868fc289d586c3a1d3712d8075d8f8
+RESULT: tokenContractAddress=0xe6ada9beed6e24be4c0259383db61b52bfca85f3
 RESULT: token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
 RESULT: token.newOwner=0x0000000000000000000000000000000000000000
 RESULT: token.symbol=RPL
@@ -324,7 +324,7 @@ RESULT: token.name=Rocket Pool
 RESULT: token.decimals=18
 RESULT: token.totalSupply=0
 TypeError: 'transfersEnabled' is not a function
-    at printTokenContractDetails (functions.js:250:53)
+    at printTokenContractDetails (functions.js:257:53)
     at <anonymous>:1:1
 
 > 
