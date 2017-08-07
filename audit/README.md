@@ -21,6 +21,43 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 * **LOW IMPORTANCE** Consider replacing the custom Arithmetic.sol library with the standard `uint` maths as the use cases in 
   *RocketPoolPresale* and *RocketPoolCrowdsale*  seems suitable for the standard `uint` maths.
 
+  Example from David:
+
+      User makes deposit of '1.3463233' ether when each token costs 0.00032 per ether.
+
+      Excel = 4,207.260312500000000000
+      Arithmetic Lib = 4207260312500000000000
+      SafeMath = 4207000000000000000000
+      calculated like this
+
+      FlagUint(Arithmetic.overflowResistantFraction(allocations[msg.sender].amount, exponent, tokenPrice));
+      FlagUint(SafeMath.div(allocations[msg.sender].amount, tokenPrice)*exponent);
+
+  My testing using `geth console`:
+  
+      > new BigNumber("1.3463233").shift(18).mul(100000).div(32).shift(-18)
+      4207.2603125
+      
+  My testing with further decimals using `geth console`:
+
+      new BigNumber("1.3463233123456789").shift(18).mul(100000).div(32).shift(-18)
+      4207.2603510802465625
+
+  Sample Solidity code to test David's example:
+  
+      pragma solidity ^0.4.11;
+
+      contract Test {
+          uint256 public result;
+
+          function Test() {
+              uint256 ethers = 1346323300000000000; // new BigNumber("1.3463233").shift(18)
+              result = ethers * 100000 / 32;
+              // Result is 4207260312500000000000
+              // new BigNumber("4207260312500000000000").shift(-18) => 4207.2603125
+          }
+      }
+
 <br />
 
 <hr />
