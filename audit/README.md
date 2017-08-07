@@ -169,6 +169,11 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
   Result for Native 382, Arithmetic 382
 
+* **VERY LOW IMPORTANCE** Events are normally distinguished from functions by the first letter being capitalised (Upper Camel Case).
+  For example `event mintToken(...);` -> `event MintToken(...);` and `event saleFinalised(...);` -> `event SaleFinalised(...);` in
+  *RocketPoolToken*
+
+
 <br />
 
 <hr />
@@ -194,11 +199,11 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 * [ ] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
 
 ### ./sales
-* [ ] [code-review/RocketPoolCrowdsale.md](code-review/RocketPoolCrowdsale.md)
+* [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
   * [ ] contract RocketPoolCrowdsale is SalesAgent
-* [ ] [code-review/RocketPoolPresale.md](code-review/RocketPoolPresale.md)
+* [ ] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
   * [ ] contract RocketPoolPresale is SalesAgent, Owned
-* [ ] [code-review/RocketPoolReserveFund.md](code-review/RocketPoolReserveFund.md)
+* [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
   * [ ] contract RocketPoolReserveFund is SalesAgent
 
 ### ./

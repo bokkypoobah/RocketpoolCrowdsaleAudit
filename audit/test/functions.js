@@ -252,31 +252,26 @@ function printTokenContractDetails() {
     var latestBlock = eth.blockNumber;
     var i;
 
-//    var newSmartTokenEvents = contract.NewSmartToken({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-//    i = 0;
-//    newSmartTokenEvents.watch(function (error, result) {
-//      console.log("RESULT: NewSmartToken " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-//    });
-//    newSmartTokenEvents.stopWatching();
-//
-//    var issuanceEvents = contract.Issuance({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-//    i = 0;
-//    issuanceEvents.watch(function (error, result) {
-//      console.log("RESULT: Issuance " + i++ + " #" + result.blockNumber + ": _amount=" + result.args._amount.shift(-decimals));
-//    });
-//    issuanceEvents.stopWatching();
-//
-//    var destructionEvents = contract.Destruction({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
-//    i = 0;
-//    destructionEvents.watch(function (error, result) {
-//      console.log("RESULT: Destruction " + i++ + " #" + result.blockNumber + ": _amount=" + result.args._amount.shift(-decimals));
-//    });
-//    destructionEvents.stopWatching();
+    var mintTokenEvents = contract.mintToken({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    mintTokenEvents.watch(function (error, result) {
+      console.log("RESULT: mintToken " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
+          " _address=" + result.args._address + " _value=" + result.args._value.shift(-decimals));
+    });
+    mintTokenEvents.stopWatching();
+
+    var saleFinalisedEvents = contract.saleFinalised({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
+    i = 0;
+    saleFinalisedEvents.watch(function (error, result) {
+      console.log("RESULT: saleFinalised " + i++ + " #" + result.blockNumber + ": _agent=" + result.args._agent +
+          " _address=" + result.args._address + " _value=" + result.args._value.shift(-decimals));
+    });
+    saleFinalisedEvents.stopWatching();
 
     var approvalEvents = contract.Approval({}, { fromBlock: tokenFromBlock, toBlock: latestBlock });
     i = 0;
     approvalEvents.watch(function (error, result) {
-      console.log("RESULT: Approval " + i++ + " #" + result.blockNumber + " _owner=" + result.args._owner + " _spender=" + result.args._spender + " _value=" +
+      console.log("RESULT: Approval " + i++ + " #" + result.blockNumber + ": _owner=" + result.args._owner + " _spender=" + result.args._spender + " _value=" +
         result.args._value.shift(-decimals));
     });
     approvalEvents.stopWatching();
