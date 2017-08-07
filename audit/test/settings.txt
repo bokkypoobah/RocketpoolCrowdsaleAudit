@@ -7,10 +7,6 @@ CONTRACTSINTERFACEDIR=../../contracts/interface
 CONTRACTSLIBDIR=../../contracts/lib
 CONTRACTSSALESDIR=../../contracts/sales
 
-ARITHMETICSOL=Arithmetic.sol
-ARITHMETICTEMPSOL=Arithmetic.sol
-ARITHMETICJS=Arithmetic.js
-
 ROCKETPOOLTOKENSOL=RocketPoolToken.sol
 ROCKETPOOLTOKENTEMPSOL=RocketPoolToken.sol
 ROCKETPOOLTOKENJS=RocketPoolToken.js

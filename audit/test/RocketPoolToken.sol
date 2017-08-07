@@ -2,7 +2,6 @@ pragma solidity ^0.4.11;
 import "Owned.sol";
 import "StandardToken.sol";
 import "SalesAgentInterface.sol";
-import "Arithmetic.sol";
 import "SafeMath.sol";
 
 /// @title The main Rocket Pool Token (RPL) contract

@@ -16,10 +16,6 @@ CONTRACTSINTERFACEDIR=`grep ^CONTRACTSINTERFACEDIR= settings.txt | sed "s/^.*=//
 CONTRACTSLIBDIR=`grep ^CONTRACTSLIBDIR= settings.txt | sed "s/^.*=//"`
 CONTRACTSSALESDIR=`grep ^CONTRACTSSALESDIR= settings.txt | sed "s/^.*=//"`
 
-ARITHMETICSOL=`grep ^ARITHMETICSOL= settings.txt | sed "s/^.*=//"`
-ARITHMETICTEMPSOL=`grep ^ARITHMETICTEMPSOL= settings.txt | sed "s/^.*=//"`
-ARITHMETICJS=`grep ^ARITHMETICJS= settings.txt | sed "s/^.*=//"`
-
 ROCKETPOOLTOKENSOL=`grep ^ROCKETPOOLTOKENSOL= settings.txt | sed "s/^.*=//"`
 ROCKETPOOLTOKENTEMPSOL=`grep ^ROCKETPOOLTOKENTEMPSOL= settings.txt | sed "s/^.*=//"`
 ROCKETPOOLTOKENJS=`grep ^ROCKETPOOLTOKENJS= settings.txt | sed "s/^.*=//"`
@@ -64,10 +60,6 @@ printf "CONTRACTSBASEDIR           = '$CONTRACTSBASEDIR'\n" | tee -a $TEST1OUTPU
 printf "CONTRACTSINTERFACEDIR      = '$CONTRACTSINTERFACEDIR'\n" | tee -a $TEST1OUTPUT
 printf "CONTRACTSLIBDIR            = '$CONTRACTSLIBDIR'\n" | tee -a $TEST1OUTPUT
 printf "CONTRACTSSALESDIR          = '$CONTRACTSSALESDIR'\n" | tee -a $TEST1OUTPUT
-
-printf "ARITHMETICSOL              = '$ARITHMETICSOL'\n" | tee -a $TEST1OUTPUT
-printf "ARITHMETICTEMPSOL          = '$ARITHMETICTEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "ARITHMETICJS               = '$ARITHMETICJS'\n" | tee -a $TEST1OUTPUT
 
 printf "ROCKETPOOLTOKENSOL         = '$ROCKETPOOLTOKENSOL'\n" | tee -a $TEST1OUTPUT
 printf "ROCKETPOOLTOKENTEMPSOL     = '$ROCKETPOOLTOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
@@ -117,20 +109,15 @@ DIFFS1=`diff $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
 echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-echo "var arithmeticOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ARITHMETICTEMPSOL`;" > $ARITHMETICJS
 echo "var tokenOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
 echo "var presaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
 echo "var crowdsaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
-loadScript("$ARITHMETICJS");
 loadScript("$ROCKETPOOLTOKENJS");
 loadScript("$ROCKETPOOLPRESALEJS");
 loadScript("$ROCKETPOOLCROWDSALEJS");
 loadScript("functions.js");
-
-var arithmeticAbi = JSON.parse(arithmeticOutput.contracts["$ARITHMETICTEMPSOL:Arithmetic"].abi);
-var arithmeticBin = "0x" + arithmeticOutput.contracts["$ARITHMETICTEMPSOL:Arithmetic"].bin;
 
 var tokenAbi = JSON.parse(tokenOutput.contracts["$ROCKETPOOLTOKENTEMPSOL:RocketPoolToken"].abi);
 var tokenBin = "0x" + tokenOutput.contracts["$ROCKETPOOLTOKENTEMPSOL:RocketPoolToken"].bin;
@@ -141,8 +128,6 @@ var presaleBin = "0x" + presaleOutput.contracts["$ROCKETPOOLPRESALETEMPSOL:Rocke
 var crowdsaleAbi = JSON.parse(crowdsaleOutput.contracts["$ROCKETPOOLCROWDSALETEMPSOL:RocketPoolCrowdsale"].abi);
 var crowdsaleBin = "0x" + crowdsaleOutput.contracts["$ROCKETPOOLCROWDSALETEMPSOL:RocketPoolCrowdsale"].bin;
 
-console.log("DATA: arithmeticAbi=" + JSON.stringify(arithmeticAbi));
-// console.log("DATA: arithmeticBin=" + arithmeticBin);
 console.log("DATA: tokenAbi=" + JSON.stringify(tokenAbi));
 // console.log("DATA: tokenBin=" + tokenBin);
 console.log("DATA: presaleAbi=" + JSON.stringify(presaleAbi));
@@ -153,45 +138,6 @@ console.log("DATA: crowdsaleAbi=" + JSON.stringify(crowdsaleAbi));
 unlockAccounts("$PASSWORD");
 printBalances();
 console.log("RESULT: ");
-
-
-// -----------------------------------------------------------------------------
-var arithmeticMessage = "Deploy Arithmetic Library";
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + arithmeticMessage);
-var arithmeticContract = web3.eth.contract(arithmeticAbi);
-var arithmeticTx = null;
-var arithmeticAddress = null;
-var arithmetic = arithmeticContract.new({from: contractOwnerAccount, data: arithmeticBin, gas: 4000000},
-  function(e, contract) {
-    if (!e) {
-      if (!contract.address) {
-        arithmeticTx = contract.transactionHash;
-      } else {
-        arithmeticAddress = contract.address;
-        addAccount(arithmeticAddress, "Arithmetic Library");
-        printTxData("arithmeticAddress=" + arithmeticAddress, arithmeticTx);
-      }
-    }
-  }
-);
-while (txpool.status.pending > 0) {
-}
-printBalances();
-failIfGasEqualsGasUsed(arithmeticTx, arithmeticMessage);
-// printTokenContractDetails();
-console.log("RESULT: ");
-
-
-// -----------------------------------------------------------------------------
-var replaceMessage = "Replace Library Placeholder With Deployed Address
-// -----------------------------------------------------------------------------
-var linkedPresaleBin = presaleBin.replace(/_+Arithmetic.sol:Arithmetic_+/g, arithmeticAddress.replace("0x", ""));
-var linkedCrowdsaleBin = crowdsaleBin.replace(/_+Arithmetic.sol:Arithmetic_+/g, arithmeticAddress.replace("0x", ""));
-// console.log("DATA: presaleBin=" + presaleBin);
-// console.log("DATA: linkedPresaleBin=" + linkedPresaleBin);
-// console.log("DATA: crowdsaleBin=" + crowdsaleBin);
-// console.log("DATA: linkedCrowdsaleBin=" + linkedCrowdsaleBin);
 
 
 // -----------------------------------------------------------------------------
@@ -230,7 +176,7 @@ console.log("RESULT: " + presaleMessage);
 var presaleContract = web3.eth.contract(presaleAbi);
 var presaleTx = null;
 var presaleAddress = null;
-var presale = presaleContract.new(tokenAddress, {from: contractOwnerAccount, data: linkedPresaleBin, gas: 4000000},
+var presale = presaleContract.new(tokenAddress, {from: contractOwnerAccount, data: presaleBin, gas: 4000000},
   function(e, contract) {
     if (!e) {
       if (!contract.address) {
@@ -260,7 +206,7 @@ console.log("RESULT: " + crowdsaleMessage);
 var crowdsaleContract = web3.eth.contract(crowdsaleAbi);
 var crowdsaleTx = null;
 var crowdsaleAddress = null;
-var crowdsale = crowdsaleContract.new(tokenAddress, {from: contractOwnerAccount, data: linkedCrowdsaleBin, gas: 4000000},
+var crowdsale = crowdsaleContract.new(tokenAddress, {from: contractOwnerAccount, data: crowdsaleBin, gas: 4000000},
   function(e, contract) {
     if (!e) {
       if (!contract.address) {

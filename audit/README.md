@@ -191,7 +191,6 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
 ### ./lib
 
-* [ ] [code-review/lib/Arithmetic.md](code-review/lib/Arithmetic.md)
 * [ ] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
 
 ### ./sales
