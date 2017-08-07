@@ -191,17 +191,17 @@ function printCrowdsaleContractDetails() {
   // console.log("RESULT: crowdsaleContractAbi=" + JSON.stringify(crowdsaleContractAbi));
   if (crowdsaleContractAddress != null && crowdsaleContractAbi != null) {
     var contract = eth.contract(crowdsaleContractAbi).at(crowdsaleContractAddress);
-    console.log("RESULT: crowdsale.isFinalized=" + contract.isFinalized());
-    console.log("RESULT: crowdsale.isDistributed=" + contract.isDistributed());
-    console.log("RESULT: crowdsale.stox=" + contract.stox());
-    console.log("RESULT: crowdsale.trustee=" + contract.trustee());
-    console.log("RESULT: crowdsale.startTime=" + contract.startTime() + " " + new Date(contract.startTime() * 1000).toUTCString());
-    console.log("RESULT: crowdsale.endTime=" + contract.endTime() + " " + new Date(contract.endTime() * 1000).toUTCString());
-    console.log("RESULT: crowdsale.fundingRecipient=" + contract.fundingRecipient());
-    console.log("RESULT: crowdsale.tokensSold=" + contract.tokensSold().shift(-18));
-    console.log("RESULT: crowdsale.ETH_CAP=" + contract.ETH_CAP());
-    console.log("RESULT: crowdsale.EXCHANGE_RATE=" + contract.EXCHANGE_RATE());
-    console.log("RESULT: crowdsale.TOKEN_SALE_CAP=" + contract.TOKEN_SALE_CAP().shift(-18));
+    console.log("RESULT: crowdsale.owner=" + contract.owner());
+    console.log("RESULT: crowdsale.newOwner=" + contract.newOwner());
+    // console.log("RESULT: crowdsale.tokenContractAddress=" + contract.tokenContractAddress());
+    console.log("RESULT: crowdsale.contributedTotal=" + contract.contributedTotal().shift(-18));
+//    console.log("RESULT: crowdsale.startTime=" + contract.startTime() + " " + new Date(contract.startTime() * 1000).toUTCString());
+//    console.log("RESULT: crowdsale.endTime=" + contract.endTime() + " " + new Date(contract.endTime() * 1000).toUTCString());
+//    console.log("RESULT: crowdsale.fundingRecipient=" + contract.fundingRecipient());
+//    console.log("RESULT: crowdsale.tokensSold=" + contract.tokensSold().shift(-18));
+//    console.log("RESULT: crowdsale.ETH_CAP=" + contract.ETH_CAP());
+//    console.log("RESULT: crowdsale.EXCHANGE_RATE=" + contract.EXCHANGE_RATE());
+//    console.log("RESULT: crowdsale.TOKEN_SALE_CAP=" + contract.TOKEN_SALE_CAP().shift(-18));
     var latestBlock = eth.blockNumber;
     var i;
 
@@ -254,7 +254,18 @@ function printTokenContractDetails() {
     console.log("RESULT: token.name=" + contract.name());
     console.log("RESULT: token.decimals=" + decimals);
     console.log("RESULT: token.totalSupply=" + contract.totalSupply().shift(-decimals));
-    console.log("RESULT: token.transfersEnabled=" + contract.transfersEnabled());
+    console.log("RESULT: token.totalSupplyCap=" + contract.totalSupplyCap().shift(-decimals));
+    console.log("RESULT: token.getSaleContractIsFinalised['sale']=" + contract.getSaleContractIsFinalised(crowdsaleContractAddress));
+    console.log("RESULT: token.getSaleContractTargetEtherMin['sale']=" + contract.getSaleContractTargetEtherMin(crowdsaleContractAddress).shift(-18));
+    console.log("RESULT: token.getSaleContractTargetEtherMax['sale']=" + contract.getSaleContractTargetEtherMax(crowdsaleContractAddress).shift(-18));
+    console.log("RESULT: token.getSaleContractDepositEtherMin['sale']=" + contract.getSaleContractDepositEtherMin(crowdsaleContractAddress).shift(-18));
+    console.log("RESULT: token.getSaleContractDepositEtherMax['sale']=" + contract.getSaleContractDepositEtherMax(crowdsaleContractAddress).shift(-18));
+    console.log("RESULT: token.getSaleContractDepositAddress['sale']=" + contract.getSaleContractDepositAddress(crowdsaleContractAddress));
+    console.log("RESULT: token.getSaleContractDepositAddressVerified['sale']=" + contract.getSaleContractDepositAddressVerified(crowdsaleContractAddress));
+    console.log("RESULT: token.getSaleContractStartBlock['sale']=" + contract.getSaleContractStartBlock(crowdsaleContractAddress));
+    console.log("RESULT: token.getSaleContractEndBlock['sale']=" + contract.getSaleContractEndBlock(crowdsaleContractAddress));
+    console.log("RESULT: token.getSaleContractTokensLimit['sale']=" + contract.getSaleContractTokensLimit(crowdsaleContractAddress).shift(-decimals));
+    console.log("RESULT: token.getSaleContractTokensMinted['sale']=" + contract.getSaleContractTokensMinted(crowdsaleContractAddress).shift(-decimals));
 
     var latestBlock = eth.blockNumber;
     var i;

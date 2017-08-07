@@ -170,13 +170,30 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
   Result for Native 382, Arithmetic 382
 
-* **VERY LOW IMPORTANCE** Events are normally distinguished from functions by the first letter being capitalised (Upper Camel Case).
+* **LOW IMPORTANCE** Events are normally distinguished from functions by the first letter being capitalised (Upper Camel Case).
   For example `event mintToken(...);` -> `event MintToken(...);` and `event saleFinalised(...);` -> `event SaleFinalised(...);` in
   *RocketPoolToken*
   * [x] Completed in [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/commit/4a3d45afaf53229ec62cd5003b843ab63d6dddc1)
 
 * **MEDIUM IMPORTANCE** Events with the same name are defined with different number of parameters in *SalesAgent* and *SalesAgentInterface* 
   * [x] Completed in [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/commit/4a3d45afaf53229ec62cd5003b843ab63d6dddc1)
+
+<br />
+
+<hr />
+
+## TODO
+
+* [ ] BK Work out a better way to use `modifier onlyTokenContract() {_;}` in *SalesAgentInterface*
+
+<br />
+
+<hr />
+
+## Testing
+
+* Testing script [test/01_test1.sh](test/01_test1.sh)
+* Testing results [test/test1results.txt](test/test1results.txt)
 
 <br />
 

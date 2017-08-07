@@ -184,7 +184,7 @@ var presale = presaleContract.new(tokenAddress, {from: contractOwnerAccount, dat
       } else {
         presaleAddress = contract.address;
         addAccount(presaleAddress, "RocketPoolPresale");
-        // addCrowdsaleContractAddressAndAbi(presaleAddress, presaleAbi);
+        addCrowdsaleContractAddressAndAbi(presaleAddress, presaleAbi);
         printTxData("presaleAddress=" + presaleAddress, presaleTx);
       }
     }
@@ -194,9 +194,126 @@ while (txpool.status.pending > 0) {
 }
 printBalances();
 failIfGasEqualsGasUsed(presaleTx, presaleMessage);
-// printCrowdsaleContractDetails();
+printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var configPresaleMessage = "Configurate Presale";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + configPresaleMessage);
+
+var targetEthMin = web3.toWei("100", "ether");
+var targetEthMax = web3.toWei("2000", "ether");
+var tokensLimit = new BigNumber("20000").shift(18);
+var minDeposit = web3.toWei("1", "ether");
+var maxDeposit = web3.toWei("20000", "ether");
+var startBlock = eth.blockNumber + 3;
+var endBlock = eth.blockNumber + 20;
+
+var configPresaleTx = token.setSaleAgentContract(presaleAddress, "Presale", targetEthMin, targetEthMax, tokensLimit,
+  minDeposit, maxDeposit, startBlock, endBlock, multisig, {from: contractOwnerAccount, gas: 4000000});
+while (txpool.status.pending > 0) {
+}
+printTxData("configPresaleTx", configPresaleTx);
+printBalances();
+failIfGasEqualsGasUsed(configPresaleTx, configPresaleMessage);
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var verifyPresaleDepositAddressMessage = "Verify Presale Deposit Address";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + verifyPresaleDepositAddressMessage);
+var verifyPresaleDepositAddressTx = presale.setDepositAddressVerify({from: multisig, gas: 4000000});
+while (txpool.status.pending > 0) {
+}
+printTxData("verifyPresaleDepositAddressTx", verifyPresaleDepositAddressTx);
+printBalances();
+failIfGasEqualsGasUsed(verifyPresaleDepositAddressTx, verifyPresaleDepositAddressMessage);
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+
+// -----------------------------------------------------------------------------
+var addPresaleAllocationsMessage = "Add Presale Allocations";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + addPresaleAllocationsMessage);
+var addPresaleAllocations1Tx = presale.addPresaleAllocation(account3, web3.toWei("300.333333333333333333", "ether"), {from: contractOwnerAccount, gas: 4000000});
+var addPresaleAllocations2Tx = presale.addPresaleAllocation(account4, web3.toWei("500.123456789123456789", "ether"), {from: contractOwnerAccount, gas: 4000000});
+while (txpool.status.pending > 0) {
+}
+printTxData("addPresaleAllocations1Tx", addPresaleAllocations1Tx);
+printTxData("addPresaleAllocations2Tx", addPresaleAllocations2Tx);
+printBalances();
+failIfGasEqualsGasUsed(addPresaleAllocations1Tx, addPresaleAllocationsMessage + " ac3 ~ 300 ETH");
+failIfGasEqualsGasUsed(addPresaleAllocations2Tx, addPresaleAllocationsMessage + " ac4 ~ 500 ETH");
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+// Wait until startBlock 
+// -----------------------------------------------------------------------------
+console.log("RESULT: Waiting until startBlock #" + startBlock + " currentBlock=" + eth.blockNumber);
+while (eth.blockNumber <= startBlock) {
+}
+console.log("RESULT: Waited until startBlock #" + startBlock + " currentBlock=" + eth.blockNumber);
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var validContribution1Message = "Send Valid Contribution";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + validContribution1Message);
+var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("300.333333333333333333", "ether")});
+var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("500.123456789123456789", "ether")});
+while (txpool.status.pending > 0) {
+}
+printTxData("validContribution1Tx", validContribution1Tx);
+printTxData("validContribution2Tx", validContribution2Tx);
+printBalances();
+failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 300.333333333333333333 ETH ~ 3,000 RPL");
+failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 500.123456789123456789 ETH ~ 10,000 RPL");
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+// Wait until endBlock 
+// -----------------------------------------------------------------------------
+console.log("RESULT: Waiting until endBlock #" + endBlock + " currentBlock=" + eth.blockNumber);
+while (eth.blockNumber <= endBlock) {
+}
+console.log("RESULT: Waited until startBlock #" + endBlock + " currentBlock=" + eth.blockNumber);
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var finalisePresaleMessage = "Finalise Presale";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + finalisePresaleMessage);
+var finalisePresaleTx = presale.finaliseFunding({from: multisig, gas: 4000000});
+while (txpool.status.pending > 0) {
+}
+printTxData("finalisePresaleTx", finalisePresaleTx);
+printBalances();
+failIfGasEqualsGasUsed(finalisePresaleTx, finalisePresaleMessage);
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+
+
+exit;
 
 
 // -----------------------------------------------------------------------------
