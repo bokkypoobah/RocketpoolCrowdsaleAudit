@@ -2,7 +2,8 @@
 
 Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
 [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
-[19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269)
+[19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
+[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b).
 
 <br />
 
@@ -26,6 +27,7 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
   * [x] Completed in [19372b87](https://github.com/darcius/rocketpool-crowdsale/commit/19372b8736371810ed0e5268281dc7563127a269)
 * **LOW IMPORTANCE** Consider replacing the custom Arithmetic.sol library with the standard `uint` maths as the use cases in 
   *RocketPoolPresale* and *RocketPoolCrowdsale*  seems suitable for the standard `uint` maths.
+  * [x] Completed in [270c5a09](https://github.com/darcius/rocketpool-crowdsale/commit/270c5a091444ed449d6dcf7cfffb85fabaaae64b)
 
   Example from David:
 
@@ -63,6 +65,109 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
               // new BigNumber("4207260312500000000000").shift(-18) => 4207.2603125
           }
       }
+
+  Comparison of gas between RocketPool's original Arithmetic.sol and Solidity native uint256 divs shows a similar gas usage:
+  
+      pragma solidity ^0.4.11;
+      
+      // Arithmetic library borrowed from Gnosis, thanks guys!
+      
+      library Arithmetic {
+      
+          function mul256By256(uint a, uint b)
+              constant
+              returns (uint ab32, uint ab1, uint ab0)
+          {
+              uint ahi = a >> 128;
+              uint alo = a & 2**128-1;
+              uint bhi = b >> 128;
+              uint blo = b & 2**128-1;
+              ab0 = alo * blo;
+              ab1 = (ab0 >> 128) + (ahi * blo & 2**128-1) + (alo * bhi & 2**128-1);
+              ab32 = (ab1 >> 128) + ahi * bhi + (ahi * blo >> 128) + (alo * bhi >> 128);
+              ab1 &= 2**128-1;
+              ab0 &= 2**128-1;
+          }
+      
+          // I adapted this from Fast Division of Large Integers by Karl Hasselström
+          // Algorithm 3.4: Divide-and-conquer division (3 by 2)
+          // Karl got it from Burnikel and Ziegler and the GMP lib implementation
+          function div256_128By256(uint a21, uint a0, uint b)
+              constant
+              returns (uint q, uint r)
+          {
+              uint qhi = (a21 / b) << 128;
+              a21 %= b;
+      
+              uint shift = 0;
+              while(b >> shift > 0) shift++;
+              shift = 256 - shift;
+              a21 = (a21 << shift) + (shift > 128 ? a0 << (shift - 128) : a0 >> (128 - shift));
+              a0 = (a0 << shift) & 2**128-1;
+              b <<= shift;
+              var (b1, b0) = (b >> 128, b & 2**128-1);
+      
+              uint rhi;
+              q = a21 / b1;
+              rhi = a21 % b1;
+      
+              uint rsub0 = (q & 2**128-1) * b0;
+              uint rsub21 = (q >> 128) * b0 + (rsub0 >> 128);
+              rsub0 &= 2**128-1;
+      
+              while(rsub21 > rhi || rsub21 == rhi && rsub0 > a0) {
+                  q--;
+                  a0 += b0;
+                  rhi += b1 + (a0 >> 128);
+                  a0 &= 2**128-1;
+              }
+      
+              q += qhi;
+              r = (((rhi - rsub21) << 128) + a0 - rsub0) >> shift;
+          }
+      
+          function overflowResistantFraction(uint a, uint b, uint divisor)
+              returns (uint)
+          {
+              uint ab32_q1; uint ab1_r1; uint ab0;
+              if(b <= 1 || b != 0 && a * b / b == a) {
+                  return a * b / divisor;
+              } else {
+                  (ab32_q1, ab1_r1, ab0) = mul256By256(a, b);
+                  (ab32_q1, ab1_r1) = div256_128By256(ab32_q1, ab1_r1, divisor);
+                  (a, b) = div256_128By256(ab1_r1, ab0, divisor);
+                  return (ab32_q1 << 128) + a;
+              }
+          }
+      }
+      
+      contract Test {
+          uint256 n1 = 123;
+          uint256 n2 = 345;
+          uint256 d1 = 111;
+      
+          uint256 public resultNative;
+          uint256 public resultArithmetic;
+      
+          function testNative() {
+              resultNative = n1 * n2 / d1;
+          }
+      
+          function testArithmetic() {
+              resultArithmetic = Arithmetic.overflowResistantFraction(n1, n2, d1);
+          }
+      }
+
+  Results using native:
+  
+    * Run 1 tx cost 42,066, exec cost 20,795
+    * Run 2 tx cost 27,066, exec cost 5,794
+    
+  Results using Arithmetic:
+    * Run 1 tx cost 44,014, exec cost 22,742
+    * Run 2 tx cost 29,014, exec cost 7,742
+
+  Result for Native 382, Arithmetic 382
 
 <br />
 
