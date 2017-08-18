@@ -202,8 +202,8 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 ## Code Review
 
 ### ./base
-* [ ] [code-review/base/Owned.md](code-review/base/Owned.md)
-  * [ ] contract Owned
+* [x] [code-review/base/Owned.md](code-review/base/Owned.md)
+  * [x] contract Owned
 * [ ] [code-review/base/SalesAgent.md](code-review/base/SalesAgent.md)
   * [ ] contract SalesAgent
 * [ ] [code-review/base/StandardToken.md](code-review/base/StandardToken.md)
@@ -217,13 +217,15 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
 ### ./lib
 
-* [ ] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
+* [x] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
 
 ### ./sales
 * [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
   * [ ] contract RocketPoolCrowdsale is SalesAgent
+    * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
   * [ ] contract RocketPoolPresale is SalesAgent, Owned
+    * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
   * [ ] contract RocketPoolReserveFund is SalesAgent
 
