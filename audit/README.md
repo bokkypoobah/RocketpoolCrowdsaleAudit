@@ -1,10 +1,79 @@
 # RocketPool Presale And Crowdsale Contracts Audit
 
-Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
+Status: Work in progress
+
+## Summary
+
+Bok Consulting Pty Ltd was commissioned to perform an audit on the crowdsale and token Ethereum smart contract for the upcoming
+RocketPool crowdsale.
+
+This audit has been conducted on the RocketPool source code in commits 
+[5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
 [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
 [19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
-[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b),
+[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b) and
 [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1).
+
+**TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
+
+<br />
+
+### Crowdsale Mainnet Addresses
+
+<br />
+
+### Crowdsale Statistics
+
+<br />
+
+### Presale Contract
+
+<br />
+
+### Crowdsale Contract
+
+<br />
+
+### Token Contract
+
+The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compliant with the following features:
+
+* `decimals` is correctly defined as `uint8` instead of `uint256`
+* `transfer(...)` and `transferFrom(...)` will return true/false instead of throwing an error
+* `transfer(...)` and `transferFrom(...)` have not been built with a check on the size of the data being passed. This check is
+  [no longer a recommended feature](https://blog.coinfabrik.com/smart-contract-short-address-attack-mitigation-failure/)
+* `approve(...)` does not have the [requirement that a non-zero approval limit be set to 0 before a new non-zero limit can be set](https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729)
+
+There is no overflow protection in the `transfer(...)` and `transferFrom(...)` functions, but the numeric range of
+the token amounts is restricted to a safe range as these amounts are determined by the amount of ethers contributed and
+is restricted by the maximum funding caps.
+
+<br />
+
+<hr />
+
+## Table Of Contents
+
+* [Summary](#summary)
+  * [Crowdsale Mainnet Addresses](#crowdsale-mainnet-addresses)
+  * [Crowdsale Statistics](#crowdsale-statistics)
+  * [Presale Contract](#presale-contract)
+  * [Crowdsale Contract](#crowdsale-contract)
+  * [Token Contract](#token-contract)
+* [Table Of Contents](#table-of-contents)
+* [Recommendations](#recommendations)
+* [Potential Vulnerabilities](#potential-vulnerabilities)
+* [Scope](#scope)
+* [Limitations](#limitations)
+* [Due Diligence](#due-diligence)
+* [Risks](#risks)
+* [Testing](#testing)
+* [Code Review](#code-review)
+* [References](#references)
+
+<br />
+
+<hr />
 
 <br />
 
@@ -182,9 +251,55 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
 <hr />
 
-## TODO
+## Potential Vulnerabilities
 
-* [ ] BK Work out a better way to use `modifier onlyTokenContract() {_;}` in *SalesAgentInterface*
+**TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
+
+<br />
+
+<hr />
+
+## Scope
+
+This audit is into the technical aspects of the crowdsale contracts. The primary aim of this audit is to ensure that funds contributed to
+these contracts are not easily attacked or stolen by third parties. The secondary aim of this audit is that ensure the coded algorithms work
+as expected. This audit does not guarantee that that the code is bugfree, but intends to highlight any areas of weaknesses.
+
+<br />
+
+<hr />
+
+## Limitations
+
+This audit makes no statements or warranties about the viability of the RocketPool's business proposition, the individuals involved in
+this business or the regulatory regime for the business model.
+
+<br />
+
+<hr />
+
+## Due Diligence
+
+As always, potential participants in any crowdsale are encouraged to perform their due diligence on the business proposition before funding
+any crowdsales.
+
+Potential participants are also encouraged to only send their funds to the official crowdsale Ethereum address, published on the
+crowdsale organiser's official communication channel.
+
+Scammers have been publishing phishing address in the forums, twitter and other communication channels, and some go as far as duplicating
+crowdsale websites. Potential participants should NOT just click on any links received through these messages. Scammers have also hacked
+the crowdsale website to replace the crowdsale contract address with their scam address.
+ 
+Potential participants should also confirm that the verified source code on EtherScan.io for the published crowdsale address matches the
+audited source code, and that the deployment parameters are correctly set, including the constant parameters.
+
+<br />
+
+<hr />
+
+## Risks
+
+**TODO**
 
 <br />
 
@@ -201,25 +316,18 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 
 ## Code Review
 
-### ./base
+* [x] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
 * [x] [code-review/base/Owned.md](code-review/base/Owned.md)
   * [x] contract Owned
-* [ ] [code-review/base/SalesAgent.md](code-review/base/SalesAgent.md)
-  * [ ] contract SalesAgent
-* [ ] [code-review/base/StandardToken.md](code-review/base/StandardToken.md)
-  * [ ] contract Token
-  * [ ] contract StandardToken is Token
-
-### ./interface
-
-* [ ] [code-review/interface/SalesAgentInterface.md](code-review/interface/SalesAgentInterface.md)
-  * [ ] contract SalesAgentInterface
-
-### ./lib
-
-* [x] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
-
-### ./sales
+* [x] [code-review/interface/SalesAgentInterface.md](code-review/interface/SalesAgentInterface.md)
+  * [x] contract SalesAgentInterface
+* [x] [code-review/base/SalesAgent.md](code-review/base/SalesAgent.md)
+  * [x] contract SalesAgent
+* [x] [code-review/base/StandardToken.md](code-review/base/StandardToken.md)
+  * [x] contract Token
+  * [x] contract StandardToken is Token
+* [ ] [code-review/RocketPoolToken.md](code-review/RocketPoolToken.md)
+  * [ ] contract RocketPoolToken is StandardToken, Owned
 * [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
   * [ ] contract RocketPoolCrowdsale is SalesAgent
     * [x] using SafeMath for uint
@@ -229,9 +337,25 @@ Commit [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191
 * [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
   * [ ] contract RocketPoolReserveFund is SalesAgent
 
-### ./
+<br />
+
+### Not Reviewed
+
+The following contracts have not been reviewed as they are part of the Truffles testing framework:
 
 * [ ] [code-review/Migrations.md](code-review/Migrations.md)
   * [ ] contract Migrations
-* [ ] [code-review/RocketPoolToken.md](code-review/RocketPoolToken.md)
-  * [ ] contract RocketPoolToken is StandardToken, Owned
+
+<br />
+
+<hr />
+
+## References
+
+* [Ethereum Contract Security Techniques and Tips](https://github.com/ConsenSys/smart-contract-best-practices)
+
+<br />
+
+<br />
+
+Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd for RocketPool Aug 19 2017. The MIT Licence.
