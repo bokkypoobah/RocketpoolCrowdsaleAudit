@@ -11,8 +11,9 @@ This audit has been conducted on the RocketPool source code in commits
 [5af99719](https://github.com/darcius/rocketpool-crowdsale/tree/5af997191a939a5a3f9ea38a696da155e53455f6),
 [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
 [19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
-[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b) and
-[4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1).
+[270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b),
+[4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1) and
+[aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92).
 
 **TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
 
@@ -256,12 +257,16 @@ by `RocketPoolToken.totalSupplyCap`.
 * **MEDIUM IMPORTANCE** Include `Transfer(0x0, _to, _amount);` after `MintToken(msg.sender, _to, _amount);` in
   `RocketPoolToken.mint(...)` to generate a transfer event and token explorers like
   [https://etherscan.io/tokens](https://etherscan.io/tokens) and [https://ethplorer.io/](https://ethplorer.io/) will
-  automatically recognise the smart contract as a token contract.
+  automatically recognise the smart contract as a token contract
+
+  * [x] Completed in [aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92)
 
 * **LOW IMPORTANCE** Consider whether the `RocketPoolToken.approve(...)` function should have the
   [requirement that a non-zero approval limit be set to 0 before a new non-zero limit can be set](https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729).
   A [sample](https://github.com/bokkypoobah/InvestFeedCrowdsaleAudit/blob/master/contracts/StandardToken.sol#L64-L68) of the code
-  required to implement this feature.
+  required to implement this feature
+  
+  * [x] Decided not to implement.
 
 <br />
 
@@ -345,8 +350,8 @@ audited source code, and that the deployment parameters are correctly set, inclu
   * [x] contract SalesAgentInterface
 * [x] [code-review/base/SalesAgent.md](code-review/base/SalesAgent.md)
   * [x] contract SalesAgent
-* [ ] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
-  * [ ] contract RocketPoolPresale is SalesAgent, Owned
+* [x] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
+  * [x] contract RocketPoolPresale is SalesAgent, Owned
     * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
   * [ ] contract RocketPoolCrowdsale is SalesAgent
