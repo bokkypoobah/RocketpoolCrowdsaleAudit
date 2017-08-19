@@ -62,12 +62,16 @@ contract RocketPoolCrowdsale is SalesAgent  {
 
 
     /// @dev Finalises the funding and sends the ETH to deposit address
+    // BK Ok
     function finaliseFunding() external {
         // Get the token contract
+        // BK Ok
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Set the target ether amount locally
+        // BK Ok
         uint256 targetEth = rocketPoolToken.getSaleContractTargetEtherMin(this);
         // Do some common contribution validation, will throw if an error occurs - address calling this should match the deposit address
+        // BK Ok
         if(rocketPoolToken.setSaleContractFinalised(msg.sender)) {
             // Send to deposit address - revert all state changes if it doesn't make it
             assert(rocketPoolToken.getSaleContractDepositAddress(this).send(targetEth) == true);
@@ -77,32 +81,45 @@ contract RocketPoolCrowdsale is SalesAgent  {
     }
 
     /// @dev Allows contributors to claim their tokens and/or a refund. If funding failed then they get back all their Ether, otherwise they get back any excess Ether
+    // BK Ok
     function claimTokensAndRefund() external {
         // Get the token contract
+        // BK Ok
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Set the target ether amount locally
+        // BK Ok
         uint256 targetEth = rocketPoolToken.getSaleContractTargetEtherMin(this);
         // Do some common contribution validation, will throw if an error occurs
         // Checks to see if this user has actually contributed anything and if the sale end block has passed
+        // BK Ok
         if(rocketPoolToken.validateClaimTokens(msg.sender)) {
             // The users contribution
+            // BK Ok
             uint256 userContributionTotal = contributions[msg.sender];
             // Deduct the contribution now to protect against recursive calls
+            // BK Ok
             contributions[msg.sender] = 0; 
             // Has the contributed total not been reached, but the crowdsale is over?
+            // BK Ok - Refunds
             if (contributedTotal < targetEth) {
                 // Target wasn't met, refund the user
+                // BK Ok
                 assert(msg.sender.send(userContributionTotal) == true);
                 // Fire event
+                // BK Ok - Log event
                 Refund(this, msg.sender, userContributionTotal);
             } else {
                 // Max tokens alloted to this sale agent contract
+                // BK Ok
                 uint256 totalTokens = rocketPoolToken.getSaleContractTokensLimit(this);
                 // Calculate how many tokens the user gets
+                // BK Ok
                 rocketPoolToken.mint(msg.sender, totalTokens.mul(userContributionTotal) / contributedTotal);
                 // Calculate the refund this user will receive
+                // BK Ok - Excess ethers over the target is proportionally refunded to the user
                 assert(msg.sender.send((contributedTotal - targetEth).mul(userContributionTotal) / contributedTotal) == true);
                 // Fire event
+                // BK Ok - Log event
                 ClaimTokens(this, msg.sender, rocketPoolToken.balanceOf(msg.sender));
             }
         }

@@ -32,6 +32,12 @@ This audit has been conducted on the RocketPool source code in commits
 
 ### Crowdsale Contract
 
+* Contributions are recorded per address and ethers accumulated in the crowdsale contract
+* After finalisation, if:
+  * minimum funding goal is not met, call `claimTokensAndRefund()` to receive a refund
+  * minimum funding goal is met and there is an excess in contributed ethers, call `claimTokensAndRefund()` to receive excess ethers proportional to contributions
+* TODO - CHECK - Open ended sale - user can claim refunds or eexcess ethers before finalisation
+
 <br />
 
 ### Token Contract
@@ -46,7 +52,7 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 
 There is no overflow protection in the `transfer(...)` and `transferFrom(...)` functions, but the numeric range of
 the token amounts is restricted to a safe range as these amounts are determined by the amount of ethers contributed and
-is restricted by the maximum funding caps.
+by `RocketPoolToken.totalSupplyCap`.
 
 <br />
 
@@ -247,6 +253,16 @@ is restricted by the maximum funding caps.
 * **MEDIUM IMPORTANCE** Events with the same name are defined with different number of parameters in *SalesAgent* and *SalesAgentInterface* 
   * [x] Completed in [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/commit/4a3d45afaf53229ec62cd5003b843ab63d6dddc1)
 
+* **MEDIUM IMPORTANCE** Include `Transfer(0x0, _to, _amount);` after `MintToken(msg.sender, _to, _amount);` in
+  `RocketPoolToken.mint(...)` to generate a transfer event and token explorers like
+  [https://etherscan.io/tokens](https://etherscan.io/tokens) and [https://ethplorer.io/](https://ethplorer.io/) will
+  automatically recognise the smart contract as a token contract.
+
+* **LOW IMPORTANCE** Consider whether the `RocketPoolToken.approve(...)` function should have the
+  [requirement that a non-zero approval limit be set to 0 before a new non-zero limit can be set](https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729).
+  A [sample](https://github.com/bokkypoobah/InvestFeedCrowdsaleAudit/blob/master/contracts/StandardToken.sol#L64-L68) of the code
+  required to implement this feature.
+
 <br />
 
 <hr />
@@ -319,20 +335,21 @@ audited source code, and that the deployment parameters are correctly set, inclu
 * [x] [code-review/lib/SafeMath.md](code-review/lib/SafeMath.md)
 * [x] [code-review/base/Owned.md](code-review/base/Owned.md)
   * [x] contract Owned
+* [x] [code-review/base/StandardToken.md](code-review/base/StandardToken.md)
+  * [x] contract Token
+  * [x] contract StandardToken is Token
+* [x] [code-review/RocketPoolToken.md](code-review/RocketPoolToken.md)
+  * [x] contract RocketPoolToken is StandardToken, Owned
+    * [x] using SafeMath for uint
 * [x] [code-review/interface/SalesAgentInterface.md](code-review/interface/SalesAgentInterface.md)
   * [x] contract SalesAgentInterface
 * [x] [code-review/base/SalesAgent.md](code-review/base/SalesAgent.md)
   * [x] contract SalesAgent
-* [x] [code-review/base/StandardToken.md](code-review/base/StandardToken.md)
-  * [x] contract Token
-  * [x] contract StandardToken is Token
-* [ ] [code-review/RocketPoolToken.md](code-review/RocketPoolToken.md)
-  * [ ] contract RocketPoolToken is StandardToken, Owned
-* [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
-  * [ ] contract RocketPoolCrowdsale is SalesAgent
-    * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
   * [ ] contract RocketPoolPresale is SalesAgent, Owned
+    * [x] using SafeMath for uint
+* [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
+  * [ ] contract RocketPoolCrowdsale is SalesAgent
     * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
   * [ ] contract RocketPoolReserveFund is SalesAgent
