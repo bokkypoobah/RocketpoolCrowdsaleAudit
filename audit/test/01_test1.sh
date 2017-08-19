@@ -5,7 +5,10 @@
 # Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd 2017. The MIT Licence.
 # ----------------------------------------------------------------------------------------------
 
-MODE=${1:-test}
+# First parameter "presale" (default) or "crowdsale"
+SALETYPE=${1:-presale}
+# Second parameter "success" (default) or "failure"
+FUNDING=${1:-success}
 
 GETHATTACHPOINT=`grep ^IPCFILE= settings.txt | sed "s/^.*=//"`
 PASSWORD=`grep ^PASSWORD= settings.txt | sed "s/^.*=//"`
@@ -51,7 +54,12 @@ STARTTIME_S=`date -r $STARTTIME -u`
 ENDTIME=`echo "$CURRENTTIME+60*2" | bc`
 ENDTIME_S=`date -r $ENDTIME -u`
 
-printf "MODE                       = '$MODE'\n" | tee $TEST1OUTPUT
+TEST1OUTPUT=`basename -s ".txt" ${TEST1OUTPUT}`_${SALETYPE}_${FUNDING}.txt
+TEST1RESULTS=`basename -s ".txt" ${TEST1RESULTS}`_${SALETYPE}_${FUNDING}.txt
+
+printf "SALETYPE                   = '$SALETYPE'. Options 'presale' (default) or 'crowdsale'\n" | tee $TEST1OUTPUT
+printf "FUNDING                    = '$FUNDING'. Options 'success' (default) or 'failure'\n" | tee -a $TEST1OUTPUT
+
 printf "GETHATTACHPOINT            = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
 printf "PASSWORD                   = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
 
@@ -200,15 +208,19 @@ console.log("RESULT: ");
 
 
 // -----------------------------------------------------------------------------
-var configPresaleMessage = "Configurate Presale";
+var configPresaleMessage = "Configure Presale";
+// totalSupply = 36 million RPL
+// cap USD 3.5 million = 11895 ETH @ 294.23 ETH/USD
+// Round to 12k ETH
+// 25% to 30 in presale, so 3k ETH for 9m tokens
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + configPresaleMessage);
 
 var targetEthMin = web3.toWei("100", "ether");
-var targetEthMax = web3.toWei("2000", "ether");
-var tokensLimit = new BigNumber("20000").shift(18);
-var minDeposit = web3.toWei("1", "ether");
-var maxDeposit = web3.toWei("20000", "ether");
+var targetEthMax = web3.toWei("3000", "ether");
+var tokensLimit = new BigNumber("9000000").shift(18);
+var minDeposit = web3.toWei("0.1", "ether");
+var maxDeposit = web3.toWei("20100", "ether");
 var startBlock = eth.blockNumber + 3;
 var endBlock = eth.blockNumber + 20;
 
@@ -244,15 +256,15 @@ console.log("RESULT: ");
 var addPresaleAllocationsMessage = "Add Presale Allocations";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + addPresaleAllocationsMessage);
-var addPresaleAllocations1Tx = presale.addPresaleAllocation(account3, web3.toWei("300.333333333333333333", "ether"), {from: contractOwnerAccount, gas: 4000000});
-var addPresaleAllocations2Tx = presale.addPresaleAllocation(account4, web3.toWei("500.123456789123456789", "ether"), {from: contractOwnerAccount, gas: 4000000});
+var addPresaleAllocations1Tx = presale.addPresaleAllocation(account3, web3.toWei("1000", "ether"), {from: contractOwnerAccount, gas: 4000000});
+var addPresaleAllocations2Tx = presale.addPresaleAllocation(account4, web3.toWei("2000", "ether"), {from: contractOwnerAccount, gas: 4000000});
 while (txpool.status.pending > 0) {
 }
 printTxData("addPresaleAllocations1Tx", addPresaleAllocations1Tx);
 printTxData("addPresaleAllocations2Tx", addPresaleAllocations2Tx);
 printBalances();
-failIfGasEqualsGasUsed(addPresaleAllocations1Tx, addPresaleAllocationsMessage + " ac3 ~ 300 ETH");
-failIfGasEqualsGasUsed(addPresaleAllocations2Tx, addPresaleAllocationsMessage + " ac4 ~ 500 ETH");
+failIfGasEqualsGasUsed(addPresaleAllocations1Tx, addPresaleAllocationsMessage + " ac3 ~ 1000 ETH");
+failIfGasEqualsGasUsed(addPresaleAllocations2Tx, addPresaleAllocationsMessage + " ac4 ~ 2000 ETH");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -272,15 +284,33 @@ console.log("RESULT: ");
 var validContribution1Message = "Send Valid Contribution";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + validContribution1Message);
-var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("300.333333333333333333", "ether")});
-var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("500.123456789123456789", "ether")});
+var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("1000", "ether")});
+var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("2000", "ether")});
 while (txpool.status.pending > 0) {
 }
 printTxData("validContribution1Tx", validContribution1Tx);
 printTxData("validContribution2Tx", validContribution2Tx);
 printBalances();
-failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 300.333333333333333333 ETH ~ 3,000 RPL");
-failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 500.123456789123456789 ETH ~ 10,000 RPL");
+failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 1000 ETH ~ 3,000,000 RPL");
+failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 2000 ETH ~ 6,000,000 RPL");
+printCrowdsaleContractDetails();
+printTokenContractDetails();
+console.log("RESULT: ");
+
+
+// -----------------------------------------------------------------------------
+var validContribution1Message = "Send Valid Contribution";
+// -----------------------------------------------------------------------------
+console.log("RESULT: " + validContribution1Message);
+var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("1", "ether")});
+var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("2", "ether")});
+while (txpool.status.pending > 0) {
+}
+printTxData("validContribution1Tx", validContribution1Tx);
+printTxData("validContribution2Tx", validContribution2Tx);
+printBalances();
+failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 1 ETH ~ 3,000 RPL");
+failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 2 ETH ~ 6,000 RPL");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");

@@ -24,8 +24,8 @@ contract SalesAgent {
     // BK Ok
     address tokenContractAddress;                           // Main contract token address
     // BK Ok
-    mapping (address => uint256) public contributions;      // Contributions per address
-    // BK Ok  
+    mapping (address => uint256) public contributions;      // Contributions per address  
+    // BK Ok
     uint256 public contributedTotal;                        // Total ETH contributed                   
 
     /**** Modifiers ***********/

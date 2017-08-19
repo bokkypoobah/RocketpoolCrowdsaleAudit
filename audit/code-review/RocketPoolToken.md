@@ -37,9 +37,9 @@ contract RocketPoolToken is StandardToken, Owned {
      /**** Properties ***********/
 
     // BK Ok
-    string public name = 'Rocket Pool';
+    string public name = "Rocket Pool";
     // BK Ok
-    string public symbol = 'RPL';
+    string public symbol = "RPL";
     // BK Ok
     string public version = "1.0";
     // Set our token units
@@ -48,9 +48,9 @@ contract RocketPoolToken is StandardToken, Owned {
     // BK Ok
     uint256 public exponent = 10**uint256(decimals);
     // BK Ok
-    uint256 public totalSupply = 0;                             // The total of tokens currently minted by sales agent contracts
+    uint256 public totalSupply = 0;                             // The total of tokens currently minted by sales agent contracts    
     // BK Ok    
-    uint256 public totalSupplyCap = 50 * (10**6) * exponent;    // 50 Million tokens
+    uint256 public totalSupplyCap = 36 * (10**6) * exponent;    // 36 Million tokens
 
 
     /**** Libs *****************/
@@ -62,18 +62,18 @@ contract RocketPoolToken is StandardToken, Owned {
     /*** Sale Addresses *********/
        
     // BK Ok
-    mapping (address => salesAgent) private salesAgents;   // Our contract addresses of our sales contracts
+    mapping (address => SalesAgent) private salesAgents;   // Our contract addresses of our sales contracts 
     // BK Ok - Saved, but never used
     address[] private salesAgentsAddresses;                // Keep an array of all our sales agent addresses for iteration
 
     /*** Structs ***************/
              
     // BK Ok
-    struct salesAgent {                     // These are contract addresses that are authorised to mint tokens
+    struct SalesAgent {                     // These are contract addresses that are authorised to mint tokens
         // BK Ok
         address saleContractAddress;        // Address of the contract
         // BK Ok - Saved as `sha3(string)`
-        bytes32 saleContractType;           // Type of the contract ie. presale, crowdsale
+        bytes32 saleContractType;           // Type of the contract ie. presale, crowdsale 
         // BK Next 7 Ok 
         uint256 targetEthMax;               // The max amount of ether the agent is allowed raise
         uint256 targetEthMin;               // The min amount of ether to raise to consider this contracts sales a success
@@ -222,8 +222,9 @@ contract RocketPoolToken is StandardToken, Owned {
         // Fire the event
         // BK Ok
         MintToken(msg.sender, _to, _amount);
-        // BK NOTE - Should also have a Transfer(0x0, _to, _amount) even so token explorers will pick up the transfer events
-        // BK NOTE - and recognise this smart contract as a token contract during the crowdsale period
+        // Fire the transfer event
+        // BK Ok
+        Transfer(0x0, _to, _amount); 
         // Completed
         // BK Ok
         return true; 
@@ -231,7 +232,7 @@ contract RocketPoolToken is StandardToken, Owned {
 
     /// @dev Returns the amount of tokens that can still be minted
     // BK Ok - Constant function
-    function getRemainingTokens() public constant returns(uint256)  {
+    function getRemainingTokens() public constant returns(uint256) {
         // BK Ok
         return totalSupplyCap.sub(totalSupply);
     }
@@ -274,20 +275,20 @@ contract RocketPoolToken is StandardToken, Owned {
         assert(_minDeposit <= _maxDeposit);
         // Add the new sales contract
         // BK Next block Ok
-        salesAgents[_saleAddress] = salesAgent({
-            saleContractAddress: _saleAddress,       
-            saleContractType: sha3(_saleContractType), 
-            targetEthMin: _targetEthMin,           
+        salesAgents[_saleAddress] = SalesAgent({
+            saleContractAddress: _saleAddress,
+            saleContractType: sha3(_saleContractType),
+            targetEthMin: _targetEthMin,
             targetEthMax: _targetEthMax,
-            tokensLimit: _tokensLimit,  
+            tokensLimit: _tokensLimit,
             tokensMinted: 0,
             minDeposit: _minDeposit,
-            maxDeposit: _maxDeposit,            
-            startBlock: _startBlock,                 
-            endBlock: _endBlock,              
-            depositAddress: _depositAddress, 
-            depositAddressCheckedIn: false,  
-            finalised: false,     
+            maxDeposit: _maxDeposit,
+            startBlock: _startBlock,
+            endBlock: _endBlock,
+            depositAddress: _depositAddress,
+            depositAddressCheckedIn: false,
+            finalised: false,
             exists: true                      
         });
         // Store our agent address so we can iterate over it if needed
@@ -298,7 +299,7 @@ contract RocketPoolToken is StandardToken, Owned {
 
     /// @dev Sets the contract sale agent process as completed, that sales agent is now retired
     // BK Ok
-    function setSaleContractFinalised(address _sender) isSalesContract(msg.sender) public returns(bool)  {
+    function setSaleContractFinalised(address _sender) isSalesContract(msg.sender) public returns(bool) {
         // Get an instance of the sale agent contract
         // BK Ok
         SalesAgentInterface saleAgent = SalesAgentInterface(msg.sender);
@@ -310,7 +311,7 @@ contract RocketPoolToken is StandardToken, Owned {
         assert(salesAgents[msg.sender].depositAddress == _sender);            
         // If the end block is 0, it means an open ended crowdsale, once it's finalised, the end block is set to the current one
         // BK Ok
-        if(salesAgents[msg.sender].endBlock == 0) {
+        if (salesAgents[msg.sender].endBlock == 0) {
             // BK Ok
             salesAgents[msg.sender].endBlock = block.number;
         }
@@ -335,7 +336,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Verifies if the current address matches the depositAddress
     /// @param _verifyAddress The address to verify it matches the depositAddress given for the sales agent
     // BK Ok
-    function setSaleContractDepositAddressVerified(address _verifyAddress) isSalesContract(msg.sender) public  {
+    function setSaleContractDepositAddressVerified(address _verifyAddress) isSalesContract(msg.sender) public {
         // Check its verified
         // BK Ok
         assert(salesAgents[msg.sender].depositAddress == _verifyAddress && _verifyAddress != 0x0);
@@ -346,7 +347,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns true if this sales contract has finalised
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractIsFinalised(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(bool)  {
+    function getSaleContractIsFinalised(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(bool) {
         // BK Ok
         return salesAgents[_salesAgentAddress].finalised;
     }
@@ -354,7 +355,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the min target amount of ether the contract wants to raise
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractTargetEtherMin(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractTargetEtherMin(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].targetEthMin;
     }
@@ -362,7 +363,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the max target amount of ether the contract can raise
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractTargetEtherMax(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractTargetEtherMax(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].targetEthMax;
     }
@@ -370,7 +371,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the min deposit amount of ether
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractDepositEtherMin(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractDepositEtherMin(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].minDeposit;
     }
@@ -378,7 +379,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the max deposit amount of ether
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractDepositEtherMax(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractDepositEtherMax(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].maxDeposit;
     }
@@ -386,7 +387,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the address where the sale contracts ether will be deposited
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractDepositAddress(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(address)  {
+    function getSaleContractDepositAddress(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(address) {
         // BK Ok
         return salesAgents[_salesAgentAddress].depositAddress;
     }
@@ -394,7 +395,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the true if the sale agents deposit address has been verified
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractDepositAddressVerified(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(bool)  {
+    function getSaleContractDepositAddressVerified(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(bool) {
         // BK Ok
         return salesAgents[_salesAgentAddress].depositAddressCheckedIn;
     }
@@ -402,7 +403,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the start block for the sale agent
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractStartBlock(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractStartBlock(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].startBlock;
     }
@@ -410,7 +411,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the start block for the sale agent
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractEndBlock(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractEndBlock(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].endBlock;
     }
@@ -418,7 +419,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the max tokens for the sale agent
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractTokensLimit(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractTokensLimit(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].tokensLimit;
     }
@@ -426,7 +427,7 @@ contract RocketPoolToken is StandardToken, Owned {
     /// @dev Returns the token total currently minted by the sale agent
     /// @param _salesAgentAddress The address of the token sale agent contract
     // BK Ok - Constant function
-    function getSaleContractTokensMinted(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256)  {
+    function getSaleContractTokensMinted(address _salesAgentAddress) constant isSalesContract(_salesAgentAddress) public returns(uint256) {
         // BK Ok
         return salesAgents[_salesAgentAddress].tokensMinted;
     }
