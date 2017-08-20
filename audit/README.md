@@ -267,11 +267,14 @@ by `RocketPoolToken.totalSupplyCap`.
   required to implement this feature
   
   * [x] Decided not to implement.
+<<<<<<< HEAD
 
 * **MEDIUM IMPORTANCE** If possible, direct ethers contributed by participants into a multisig or hardware wallet immediately after
   being transferred to the *RocketPoolPresale* contract, and the *RocketPoolCrowdsale* contract. For the *RocketPoolCrowdsale* 
   contract that provides for refunds if the minimum funding goal is not met, transfer `this.balance` to the multisig or hardware
   wallet after the minimum funding goal is reached.
+=======
+>>>>>>> a42019442e0eda3574a3f99f43ef42db1f74003e
 
 <br />
 
