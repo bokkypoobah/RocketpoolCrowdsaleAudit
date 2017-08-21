@@ -194,6 +194,10 @@ contract RocketPoolPresale is SalesAgent, Owned  {
         // Mint the tokens and give them to the user now
         // BK Ok
         rocketPoolToken.mint(msg.sender, tokenAmountToMint);         
+        // Send the current balance to the deposit address
+        assert(rocketPoolToken.getSaleContractDepositAddress(this).send(allocations[msg.sender].amount) == true); 
+        // Fire the event     
+        TransferToDepositAddress(this, msg.sender, allocations[msg.sender].amount);
     }
 
 

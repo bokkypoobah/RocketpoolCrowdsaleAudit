@@ -12,8 +12,9 @@ This audit has been conducted on the RocketPool source code in commits
 [8147b2f2](https://github.com/darcius/rocketpool-crowdsale/tree/8147b2f2f4c535777ab5750240709748dfee0377),
 [19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
 [270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b),
-[4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1) and
-[aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92).
+[4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1),
+[aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92) and
+[6672f7d2](https://github.com/darcius/rocketpool-crowdsale/commit/6672f7d2d552f59b2d35cca16021c21015450917).
 
 **TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
 
@@ -272,6 +273,8 @@ by `RocketPoolToken.totalSupplyCap`.
   being transferred to the *RocketPoolPresale* contract, and the *RocketPoolCrowdsale* contract. For the *RocketPoolCrowdsale* 
   contract that provides for refunds if the minimum funding goal is not met, transfer `this.balance` to the multisig or hardware
   wallet after the minimum funding goal is reached.
+
+  * [x] Completed in [6672f7d2](https://github.com/darcius/rocketpool-crowdsale/commit/6672f7d2d552f59b2d35cca16021c21015450917)
 
 <br />
 

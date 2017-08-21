@@ -41,11 +41,12 @@ contract SalesAgent {
 
     /*** Events ****************/
 
-    // BK Next 4 Ok
+    // BK Next 5 Ok
     event Contribute(address _agent, address _sender, uint256 _value);
     event FinaliseSale(address _agent, address _sender, uint256 _value);
     event Refund(address _agent, address _sender, uint256 _value);
     event ClaimTokens(address _agent, address _sender, uint256 _value); 
+    event TransferToDepositAddress(address _agent, address _sender, uint256 _value);
 
     /*** Tests *****************/
 
