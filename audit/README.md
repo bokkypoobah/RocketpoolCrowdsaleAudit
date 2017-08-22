@@ -16,7 +16,9 @@ This audit has been conducted on the RocketPool source code in commits
 [aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92) and
 [6672f7d2](https://github.com/darcius/rocketpool-crowdsale/commit/6672f7d2d552f59b2d35cca16021c21015450917).
 
-**TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
+No potential vulnerabilities have been identified in the **RocketPoolPresale** and **RocketPoolToken** contract.
+
+**TODO**: Confirm that no potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
 
 <br />
 
@@ -282,7 +284,9 @@ by `RocketPoolToken.totalSupplyCap`.
 
 ## Potential Vulnerabilities
 
-**TODO**: No potential vulnerabilities have been identified in the crowdsale and token contract.
+No potential vulnerabilities have been identified in the **RocketPoolPresale** and **RocketPoolToken** contract.
+
+**TODO**: Confirm that no potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
 
 <br />
 
