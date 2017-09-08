@@ -50,7 +50,7 @@ contract RocketPoolToken is StandardToken, Owned {
     // BK Ok
     uint256 public totalSupply = 0;                             // The total of tokens currently minted by sales agent contracts    
     // BK Ok    
-    uint256 public totalSupplyCap = 36 * (10**6) * exponent;    // 36 Million tokens
+    uint256 public totalSupplyCap = 18 * (10**6) * exponent;    // 18 Million tokens
 
 
     /**** Libs *****************/

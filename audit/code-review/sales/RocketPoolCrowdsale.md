@@ -30,7 +30,7 @@ import "../lib/SafeMath.sol";
  // credit for original distribution idea goes to hiddentao - https://github.com/hiddentao/ethereum-token-sales
 
 
-contract RocketPoolCrowdsale is SalesAgent  {
+contract RocketPoolCrowdsale is SalesAgent {
 
     /**** Libs *****************/
     
@@ -57,7 +57,7 @@ contract RocketPoolCrowdsale is SalesAgent  {
         // The target ether amount
         uint256 targetEth = rocketPoolToken.getSaleContractTargetEtherMin(this);
         // Do some common contribution validation, will throw if an error occurs
-        if(rocketPoolToken.validateContribution(msg.value)) {
+        if (rocketPoolToken.validateContribution(msg.value)) {
             // Add to contributions, automatically checks for overflow with safeMath
             contributions[msg.sender] = contributions[msg.sender].add(msg.value);
             contributedTotal = contributedTotal.add(msg.value);
@@ -84,7 +84,7 @@ contract RocketPoolCrowdsale is SalesAgent  {
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Do some common contribution validation, will throw if an error occurs - address calling this should match the deposit address
         // BK Ok
-        if(rocketPoolToken.setSaleContractFinalised(msg.sender)) {
+        if (rocketPoolToken.setSaleContractFinalised(msg.sender)) {
             // Fire event
             FinaliseSale(this, msg.sender, 0);
         }
@@ -102,7 +102,7 @@ contract RocketPoolCrowdsale is SalesAgent  {
         // Do some common contribution validation, will throw if an error occurs
         // Checks to see if this user has actually contributed anything and if the sale end block has passed
         // BK Ok
-        if(rocketPoolToken.validateClaimTokens(msg.sender)) {
+        if (rocketPoolToken.validateClaimTokens(msg.sender)) {
             // The users contribution
             // BK Ok
             uint256 userContributionTotal = contributions[msg.sender];

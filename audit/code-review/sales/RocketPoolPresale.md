@@ -30,7 +30,7 @@ import "../lib/SafeMath.sol";
 /****************************************************************/
 
 // BK Ok
-contract RocketPoolPresale is SalesAgent, Owned  {
+contract RocketPoolPresale is SalesAgent, Owned {
 
     /**** Libs *****************/
     
@@ -90,7 +90,7 @@ contract RocketPoolPresale is SalesAgent, Owned  {
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Do some common contribution validation, will throw if an error occurs
         // BK Ok
-        if(rocketPoolToken.validateContribution(msg.value)) {
+        if (rocketPoolToken.validateContribution(msg.value)) {
             // Have they already collected their reserved amount?
             // BK Ok
             assert(contributions[msg.sender] == 0);
@@ -122,10 +122,10 @@ contract RocketPoolPresale is SalesAgent, Owned  {
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Do we have a valid amount and aren't exceeding the total ether allowed for this sale agent and the sale hasn't ended?
         // BK Ok
-        if(_amount > 0 && rocketPoolToken.getSaleContractTargetEtherMax(this) >= _amount.add(totalReservedEther) && !rocketPoolToken.getSaleContractIsFinalised(this)) {
+        if (_amount > 0 && rocketPoolToken.getSaleContractTargetEtherMax(this) >= _amount.add(totalReservedEther) && !rocketPoolToken.getSaleContractIsFinalised(this)) {
             // Does the user exist already?
             // BK Ok
-            if(allocations[_address].exists == false) {
+            if (allocations[_address].exists == false) {
                 // Add the user and their allocation amount in Wei
                 // BK Next block Ok
                 allocations[_address] = Allocations({
@@ -136,7 +136,7 @@ contract RocketPoolPresale is SalesAgent, Owned  {
                 // BK Ok
                 reservedAllocations.push(_address);
             // BK Ok
-            }else{
+            }else {
                 // Add to their reserved amount
                 // BK Ok
                 allocations[_address].amount = allocations[_address].amount.add(_amount);
@@ -193,8 +193,8 @@ contract RocketPoolPresale is SalesAgent, Owned  {
         uint256 tokenAmountToMint = tokenPrice * allocations[msg.sender].amount;
         // Mint the tokens and give them to the user now
         // BK Ok
-        rocketPoolToken.mint(msg.sender, tokenAmountToMint);         
-        // Send the current balance to the deposit address
+        rocketPoolToken.mint(msg.sender, tokenAmountToMint); 
+        // Send the current allocation to the deposit address
         assert(rocketPoolToken.getSaleContractDepositAddress(this).send(allocations[msg.sender].amount) == true); 
         // Fire the event     
         TransferToDepositAddress(this, msg.sender, allocations[msg.sender].amount);
@@ -209,7 +209,7 @@ contract RocketPoolPresale is SalesAgent, Owned  {
         RocketPoolToken rocketPoolToken = RocketPoolToken(tokenContractAddress);
         // Do some common contribution validation, will throw if an error occurs - address calling this should match the deposit address
         // BK Ok
-        if(rocketPoolToken.setSaleContractFinalised(msg.sender)) {
+        if (rocketPoolToken.setSaleContractFinalised(msg.sender)) {
             // Send to deposit address - revert all state changes if it doesn't make it
             // BK Ok
             assert(rocketPoolToken.getSaleContractDepositAddress(this).send(this.balance) == true);
