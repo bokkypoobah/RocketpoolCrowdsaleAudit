@@ -4,6 +4,8 @@ Status: Work in progress
 
 ## Summary
 
+[Rocket Pool](https://www.rocketpool.net/) intends to run a presale commencing on September 2017, and the crowdsale in October 2017.
+
 Bok Consulting Pty Ltd was commissioned to perform an audit on the crowdsale and token Ethereum smart contract for the upcoming
 RocketPool crowdsale.
 
@@ -22,7 +24,68 @@ No potential vulnerabilities have been identified in the **RocketPoolPresale** a
 
 <br />
 
-### Crowdsale Mainnet Addresses
+### Crowdsale And Token Mainnet Addresses
+
+Token address [0xb4efd85c19999d84251304bda99e90b92300bd93](https://etherscan.io/address/0xb4efd85c19999d84251304bda99e90b92300bd93#code) with
+the token explorer [0xb4efd85c19999d84251304bda99e90b92300bd93](https://etherscan.io/token/0xb4efd85c19999d84251304bda99e90b92300bd93) view.
+
+Presale wallet [0x4e3bc0dc25c42ed2745bfc67f1d0daa52103c01a](https://etherscan.io/address/0x4e3bc0dc25c42ed2745bfc67f1d0daa52103c01a#internaltx).
+
+<br />
+
+#### Presale Agent
+
+Presale sale agent [0xB0dEfE01153DFc7fE58c1ad49925B64Fc67fde9e](https://etherscan.io/address/0xB0dEfE01153DFc7fE58c1ad49925B64Fc67fde9e#internaltx).
+
+The tx [0xc50a3778](https://etherscan.io/tx/0xc50a3778b05b919b7559da5803763d5cfe247994796b6c4959eedc48571b5337) links this contract with the token
+contract and has the following instruction:
+
+    setSaleAgentContract(address _saleAddress, string _saleContractType,
+      uint256 _targetEthMin, uint256 _targetEthMax,
+      uint256 _tokensLimit, uint256 _minDeposit, uint256 _maxDeposit,
+      uint256 _startBlock, uint256 _endBlock, address _depositAddress)
+
+    MethodID: 0xa7a8add2
+    [0]:000000000000000000000000b0defe01153dfc7fe58c1ad49925b64fc67fde9e   _saleAddress: 0xb0defe01153dfc7fe58c1ad49925b64fc67fde9e (Presale Agent)
+    [1]:0000000000000000000000000000000000000000000000000000000000000140   offset to _saleContractType
+    [2]:0000000000000000000000000000000000000000000000000000000000000000   _targetEthMin: 0 ETH
+    [3]:00000000000000000000000000000000000000000000015d38b584d23a680000   _targetEthMax: new BigNumber("15d38b584d23a680000",16).shift(-18) => 6,442 ETH
+    [4]:0000000000000000000000000000000000000000000771d2fa45345aa9000000   _tokensLimit: new BigNumber("771d2fa45345aa9000000", 16).shift(-18) => 9,000,000 RPL
+    [5]:0000000000000000000000000000000000000000000000000000000000000000   _minDeposit: 0 ETH
+    [6]:00000000000000000000000000000000000000000000015d38b584d23a680000   _maxDeposit: new BigNumber("15d38b584d23a680000",16).shift(-18) => 6,442 ETH
+    [7]:0000000000000000000000000000000000000000000000000000000000000000   _startBlock: 0
+    [8]:0000000000000000000000000000000000000000000000000000000000000000   _endBlock: 0
+    [9]:0000000000000000000000004e3bc0dc25c42ed2745bfc67f1d0daa52103c01a   _depositAddress: 0x4e3bc0dc25c42ed2745bfc67f1d0daa52103c01a
+    [10]:0000000000000000000000000000000000000000000000000000000000000007  length of _saleContractType 7 characters
+    [11]:70726573616c6500000000000000000000000000000000000000000000000000  _saleContractType: web3.toUtf8("70726573616c65") => "presale"
+
+<br />
+
+#### Reserve Sale Agent
+
+Reserve sale agent [0xa5b58f30ae0df88e24d16d7f1c61b7e4a9f4572b](https://etherscan.io/address/0xa5b58f30ae0df88e24d16d7f1c61b7e4a9f4572b).
+
+The tx [0x057e28f2](https://etherscan.io/tx/0x057e28f205900a8f8ce6bc510bb278768b2bea2506af4a004ac08ae520faba36) links this contract with the token
+contract and has the following instruction:
+
+    setSaleAgentContract(address _saleAddress, string _saleContractType,
+      uint256 _targetEthMin, uint256 _targetEthMax,
+      uint256 _tokensLimit, uint256 _minDeposit, uint256 _maxDeposit,
+      uint256 _startBlock, uint256 _endBlock, address _depositAddress)
+    
+    MethodID: 0xa7a8add2
+    [0]:000000000000000000000000a5b58f30ae0df88e24d16d7f1c61b7e4a9f4572b   _saleAddress: 0xa5b58f30ae0df88e24d16d7f1c61b7e4a9f4572b (Reserve Sale Agent)
+    [1]:0000000000000000000000000000000000000000000000000000000000000140   offset to _saleContractType
+    [2]:0000000000000000000000000000000000000000000000000000000000000000   _targetEthMin: 0 ETH
+    [3]:0000000000000000000000000000000000000000000000000000000000000000   _targetEthMax: > new BigNumber("23bbf4b14c2e7ff800000", 16).shift(-18) => 2,700,000 ETH
+    [4]:000000000000000000000000000000000000000000023bbf4b14c2e7ff800000   _tokensLimit: new BigNumber("23bbf4b14c2e7ff800000", 16).shift(-18) => 2,700,000 RPL
+    [5]:0000000000000000000000000000000000000000000000000000000000000000   _minDeposit: 0 ETH
+    [6]:0000000000000000000000000000000000000000000000000000000000000000   _maxDeposit: 0 ETH
+    [7]:0000000000000000000000000000000000000000000000000000000000000000   _startBlock: 0
+    [8]:0000000000000000000000000000000000000000000000000000000000000000   _endBlock: 0
+    [9]:0000000000000000000000004e3bc0dc25c42ed2745bfc67f1d0daa52103c01a   _depositAddress: 0x4e3bc0dc25c42ed2745bfc67f1d0daa52103c01a
+    [10]:000000000000000000000000000000000000000000000000000000000000000b  length of _saleContractType 11 characters
+    [11]:7265736572766546756e64000000000000000000000000000000000000000000  _saleContractType: web3.toUtf8("7265736572766546756e64") => "reserveFund"
 
 <br />
 
@@ -40,7 +103,7 @@ No potential vulnerabilities have been identified in the **RocketPoolPresale** a
 * After finalisation, if:
   * minimum funding goal is not met, call `claimTokensAndRefund()` to receive a refund
   * minimum funding goal is met and there is an excess in contributed ethers, call `claimTokensAndRefund()` to receive excess ethers proportional to contributions
-* TODO - CHECK - Open ended sale - user can claim refunds or eexcess ethers before finalisation
+* TODO - CHECK - Open ended sale - user can claim refunds or excess ethers before finalisation
 
 <br />
 
@@ -65,7 +128,7 @@ by `RocketPoolToken.totalSupplyCap`.
 ## Table Of Contents
 
 * [Summary](#summary)
-  * [Crowdsale Mainnet Addresses](#crowdsale-mainnet-addresses)
+  * [Crowdsale And Token Mainnet Addresses](#crowdsale-and-token-mainnet-addresses)
   * [Crowdsale Statistics](#crowdsale-statistics)
   * [Presale Contract](#presale-contract)
   * [Crowdsale Contract](#crowdsale-contract)
@@ -80,10 +143,6 @@ by `RocketPoolToken.totalSupplyCap`.
 * [Testing](#testing)
 * [Code Review](#code-review)
 * [References](#references)
-
-<br />
-
-<hr />
 
 <br />
 
