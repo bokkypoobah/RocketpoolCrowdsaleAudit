@@ -400,6 +400,9 @@ audited source code, and that the deployment parameters are correctly set, inclu
 
 ## Testing
 
+The original tests were conducted on the presale sequence. Now that the presale has been completed, the test have been updated to the main
+crowdsale.
+
 * Testing script [test/01_test1.sh](test/01_test1.sh)
 * Testing results [test/test1results.txt](test/test1results.txt)
 
@@ -428,8 +431,8 @@ audited source code, and that the deployment parameters are correctly set, inclu
 * [x] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
   * [x] contract RocketPoolCrowdsale is SalesAgent
     * [x] using SafeMath for uint
-* [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
-  * [ ] contract RocketPoolReserveFund is SalesAgent
+* [x] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
+  * [x] contract RocketPoolReserveFund is SalesAgent
 
 <br />
 

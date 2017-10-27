@@ -112,9 +112,12 @@ function printTxData(name, txId) {
   var gasPrice = tx.gasPrice;
   var gasCostETH = tx.gasPrice.mul(txReceipt.gasUsed).div(1e18);
   var gasCostUSD = gasCostETH.mul(ethPriceUSD);
-  console.log("RESULT: " + name + " gas=" + tx.gas + " gasUsed=" + txReceipt.gasUsed + " costETH=" + gasCostETH +
-    " costUSD=" + gasCostUSD + " @ ETH/USD=" + ethPriceUSD + " gasPrice=" + gasPrice + " block=" + 
-    txReceipt.blockNumber + " txId=" + txId);
+  var block = eth.getBlock(txReceipt.blockNumber);
+  console.log("RESULT: " + name + " status=" + txReceipt.status + " gas=" + tx.gas +
+    " gasUsed=" + txReceipt.gasUsed + " costETH=" + gasCostETH + " costUSD=" + gasCostUSD +
+    " @ ETH/USD=" + ethPriceUSD + " gasPrice=" + gasPrice + " block=" + 
+    txReceipt.blockNumber + " txIx=" + tx.transactionIndex + " txId=" + txId +
+    " @ " + block.timestamp + " " + new Date(block.timestamp * 1000).toUTCString());
 }
 
 function assertEtherBalance(account, expectedBalance) {
@@ -123,6 +126,28 @@ function assertEtherBalance(account, expectedBalance) {
     console.log("RESULT: OK " + account + " has expected balance " + expectedBalance);
   } else {
     console.log("RESULT: FAILURE " + account + " has balance " + etherBalance + " <> expected " + expectedBalance);
+  }
+}
+
+function failIfTxStatusError(tx, msg) {
+  var status = eth.getTransactionReceipt(tx).status;
+  if (status == 0) {
+    console.log("RESULT: FAIL " + msg);
+    return 0;
+  } else {
+    console.log("RESULT: PASS " + msg);
+    return 1;
+  }
+}
+
+function passIfTxStatusError(tx, msg) {
+  var status = eth.getTransactionReceipt(tx).status;
+  if (status == 1) {
+    console.log("RESULT: FAIL " + msg);
+    return 0;
+  } else {
+    console.log("RESULT: PASS " + msg);
+    return 1;
   }
 }
 
@@ -171,6 +196,33 @@ function failIfGasEqualsGasUsedOrContractAddressNull(contractAddress, tx, msg) {
       return 1;
     }
   }
+}
+
+
+//-----------------------------------------------------------------------------
+//Wait until some unixTime + additional seconds
+//-----------------------------------------------------------------------------
+function waitUntil(message, unixTime, addSeconds) {
+var t = parseInt(unixTime) + parseInt(addSeconds) + parseInt(1);
+var time = new Date(t * 1000);
+console.log("RESULT: Waiting until '" + message + "' at " + unixTime + "+" + addSeconds + "s =" + time + " now=" + new Date());
+while ((new Date()).getTime() <= time.getTime()) {
+}
+console.log("RESULT: Waited until '" + message + "' at at " + unixTime + "+" + addSeconds + "s =" + time + " now=" + new Date());
+console.log("RESULT: ");
+}
+
+
+//-----------------------------------------------------------------------------
+// Wait until some block
+//-----------------------------------------------------------------------------
+function waitUntilBlock(message, block, addBlocks) {
+var b = parseInt(block) + parseInt(addBlocks);
+console.log("RESULT: Waiting until '" + message + "' #" + block + "+" + addBlocks + " = #" + b + " currentBlock=" + eth.blockNumber);
+while (eth.blockNumber <= b) {
+}
+console.log("RESULT: Waited until '" + message + "' #" + block + "+" + addBlocks + " = #" + b + " currentBlock=" + eth.blockNumber);
+console.log("RESULT: ");
 }
 
 

@@ -117,9 +117,10 @@ DIFFS1=`diff $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
 echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-echo "var tokenOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
-echo "var presaleOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
-echo "var crowdsaleOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
+solc_0.4.16 --version | tee -a $TEST1OUTPUT
+echo "var tokenOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
+echo "var presaleOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
+echo "var crowdsaleOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$ROCKETPOOLTOKENJS");
@@ -172,7 +173,7 @@ var token = tokenContract.new({from: contractOwnerAccount, data: tokenBin, gas: 
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfGasEqualsGasUsed(tokenTx, tokenMessage);
+failIfTxStatusError(tokenTx, tokenMessage);
 printTokenContractDetails();
 console.log("RESULT: ");
 
@@ -201,7 +202,7 @@ var presale = presaleContract.new(tokenAddress, {from: contractOwnerAccount, dat
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfGasEqualsGasUsed(presaleTx, presaleMessage);
+failIfTxStatusError(presaleTx, presaleMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -221,7 +222,7 @@ var targetEthMax = web3.toWei("3000", "ether");
 var tokensLimit = new BigNumber("9000000").shift(18);
 var minDeposit = web3.toWei("0.1", "ether");
 var maxDeposit = web3.toWei("20100", "ether");
-var startBlock = eth.blockNumber + 3;
+var startBlock = eth.blockNumber + 5;
 var endBlock = eth.blockNumber + 20;
 
 var configPresaleTx = token.setSaleAgentContract(presaleAddress, "Presale", targetEthMin, targetEthMax, tokensLimit,
@@ -230,7 +231,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("configPresaleTx", configPresaleTx);
 printBalances();
-failIfGasEqualsGasUsed(configPresaleTx, configPresaleMessage);
+failIfTxStatusError(configPresaleTx, configPresaleMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -245,7 +246,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("verifyPresaleDepositAddressTx", verifyPresaleDepositAddressTx);
 printBalances();
-failIfGasEqualsGasUsed(verifyPresaleDepositAddressTx, verifyPresaleDepositAddressMessage);
+failIfTxStatusError(verifyPresaleDepositAddressTx, verifyPresaleDepositAddressMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -263,36 +264,34 @@ while (txpool.status.pending > 0) {
 printTxData("addPresaleAllocations1Tx", addPresaleAllocations1Tx);
 printTxData("addPresaleAllocations2Tx", addPresaleAllocations2Tx);
 printBalances();
-failIfGasEqualsGasUsed(addPresaleAllocations1Tx, addPresaleAllocationsMessage + " ac3 ~ 1000 ETH");
-failIfGasEqualsGasUsed(addPresaleAllocations2Tx, addPresaleAllocationsMessage + " ac4 ~ 2000 ETH");
+failIfTxStatusError(addPresaleAllocations1Tx, addPresaleAllocationsMessage + " ac3 ~ 1000 ETH");
+failIfTxStatusError(addPresaleAllocations2Tx, addPresaleAllocationsMessage + " ac4 ~ 2000 ETH");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
 
 
-// -----------------------------------------------------------------------------
-// Wait until startBlock 
-// -----------------------------------------------------------------------------
-console.log("RESULT: Waiting until startBlock #" + startBlock + " currentBlock=" + eth.blockNumber);
-while (eth.blockNumber <= startBlock) {
-}
-console.log("RESULT: Waited until startBlock #" + startBlock + " currentBlock=" + eth.blockNumber);
-console.log("RESULT: ");
+exit;
+
+
+waitUntilBlock("startBlock", startBlock, 0);
 
 
 // -----------------------------------------------------------------------------
 var validContribution1Message = "Send Valid Contribution";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + validContribution1Message);
-var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("1000.0001", "ether")});
-var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("2000", "ether")});
+var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("100.01", "ether")});
+while (txpool.status.pending > 0) {
+}
+var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("200", "ether")});
 while (txpool.status.pending > 0) {
 }
 printTxData("validContribution1Tx", validContribution1Tx);
 printTxData("validContribution2Tx", validContribution2Tx);
 printBalances();
-failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 1000 ETH ~ 3,000,000 RPL");
-failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 2000 ETH ~ 6,000,000 RPL");
+failIfTxStatusError(validContribution1Tx, validContribution1Message + " ac3 1000 ETH ~ 3,000,000 RPL");
+failIfTxStatusError(validContribution2Tx, validContribution1Message + " ac4 2000 ETH ~ 6,000,000 RPL");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -309,21 +308,14 @@ while (txpool.status.pending > 0) {
 printTxData("validContribution1Tx", validContribution1Tx);
 printTxData("validContribution2Tx", validContribution2Tx);
 printBalances();
-failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 1 ETH ~ 3,000 RPL");
-failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 2 ETH ~ 6,000 RPL");
+failIfTxStatusError(validContribution1Tx, validContribution1Message + " ac3 1 ETH ~ 3,000 RPL");
+failIfTxStatusError(validContribution2Tx, validContribution1Message + " ac4 2 ETH ~ 6,000 RPL");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
 
 
-// -----------------------------------------------------------------------------
-// Wait until endBlock 
-// -----------------------------------------------------------------------------
-console.log("RESULT: Waiting until endBlock #" + endBlock + " currentBlock=" + eth.blockNumber);
-while (eth.blockNumber <= endBlock) {
-}
-console.log("RESULT: Waited until startBlock #" + endBlock + " currentBlock=" + eth.blockNumber);
-console.log("RESULT: ");
+waitUntilBlock("endBlock", endBlock, 0);
 
 
 // -----------------------------------------------------------------------------
@@ -335,7 +327,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("finalisePresaleTx", finalisePresaleTx);
 printBalances();
-failIfGasEqualsGasUsed(finalisePresaleTx, finalisePresaleMessage);
+failIfTxStatusError(finalisePresaleTx, finalisePresaleMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -370,7 +362,7 @@ var crowdsale = crowdsaleContract.new(tokenAddress, {from: contractOwnerAccount,
 while (txpool.status.pending > 0) {
 }
 printBalances();
-failIfGasEqualsGasUsed(crowdsaleTx, crowdsaleMessage);
+failIfTxStatusError(crowdsaleTx, crowdsaleMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -387,7 +379,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("transferOwnershipTx", transferOwnershipTx);
 printBalances();
-failIfGasEqualsGasUsed(transferOwnershipTx, transferOwnershipMessage);
+failIfTxStatusError(transferOwnershipTx, transferOwnershipMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -402,7 +394,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("acceptTransferOwnershipTx", acceptTransferOwnershipTx);
 printBalances();
-failIfGasEqualsGasUsed(acceptTransferOwnershipTx, acceptTransferOwnershipMessage);
+failIfTxStatusError(acceptTransferOwnershipTx, acceptTransferOwnershipMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -417,7 +409,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("distributeTx", distributeTx);
 printBalances();
-failIfGasEqualsGasUsed(distributeTx, distributeMessage);
+failIfTxStatusError(distributeTx, distributeMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -447,8 +439,8 @@ while (txpool.status.pending > 0) {
 printTxData("validContribution1Tx", validContribution1Tx);
 printTxData("validContribution2Tx", validContribution2Tx);
 printBalances();
-failIfGasEqualsGasUsed(validContribution1Tx, validContribution1Message + " ac3 30,000.333333333333333333 ETH ~ 6,000,000 STX");
-failIfGasEqualsGasUsed(validContribution2Tx, validContribution1Message + " ac4 50,000.123456789123456789 ETH ~ 10,000,000 STX");
+failIfTxStatusError(validContribution1Tx, validContribution1Message + " ac3 30,000.333333333333333333 ETH ~ 6,000,000 STX");
+failIfTxStatusError(validContribution2Tx, validContribution1Message + " ac4 50,000.123456789123456789 ETH ~ 10,000,000 STX");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -479,7 +471,7 @@ var trustee = eth.contract(trusteeAbi).at(sale.trustee());
 addTrusteeContractAddressAndAbi(sale.trustee(), trusteeAbi);
 printTxData("finaliseTx", finaliseTx);
 printBalances();
-failIfGasEqualsGasUsed(finaliseTx, finaliseMessage);
+failIfTxStatusError(finaliseTx, finaliseMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -501,9 +493,9 @@ printTxData("canTransfer1Tx", canTransfer1Tx);
 printTxData("canTransfer2Tx", canTransfer2Tx);
 printTxData("canTransfer3Tx", canTransfer3Tx);
 printBalances();
-failIfGasEqualsGasUsed(canTransfer1Tx, canTransferMessage + " - transfer 1 STX ac3 -> ac5. CHECK for movement");
-failIfGasEqualsGasUsed(canTransfer2Tx, canTransferMessage + " - ac4 approve 3 STX ac6");
-failIfGasEqualsGasUsed(canTransfer3Tx, canTransferMessage + " - ac6 transferFrom 3 STX ac4 -> ac7. CHECK for movement");
+failIfTxStatusError(canTransfer1Tx, canTransferMessage + " - transfer 1 STX ac3 -> ac5. CHECK for movement");
+failIfTxStatusError(canTransfer2Tx, canTransferMessage + " - ac4 approve 3 STX ac6");
+failIfTxStatusError(canTransfer3Tx, canTransferMessage + " - ac6 transferFrom 3 STX ac4 -> ac7. CHECK for movement");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -519,7 +511,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("transferOwnership2Tx", transferOwnershipTx);
 printBalances();
-failIfGasEqualsGasUsed(transferOwnership2Tx, transferOwnership2Message);
+failIfTxStatusError(transferOwnership2Tx, transferOwnership2Message);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -535,7 +527,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("acceptTransferOwnership2Tx", acceptTransferOwnership2Tx);
 printBalances();
-failIfGasEqualsGasUsed(acceptTransferOwnership2Tx, acceptTransferOwnership2Message);
+failIfTxStatusError(acceptTransferOwnership2Tx, acceptTransferOwnership2Message);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -551,7 +543,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("disableTransferTx", disableTransferTx);
 printBalances();
-failIfGasEqualsGasUsed(acceptTransferOwnership2Tx, disableTransferMessage);
+failIfTxStatusError(acceptTransferOwnership2Tx, disableTransferMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -573,9 +565,9 @@ printTxData("cannotTransfer1Tx", cannotTransfer1Tx);
 printTxData("cannotTransfer2Tx", cannotTransfer2Tx);
 printTxData("cannotTransfer3Tx", cannotTransfer3Tx);
 printBalances();
-passIfGasEqualsGasUsed(cannotTransfer1Tx, cannotTransferMessage + " - transfer 10 STX ac3 -> ac5. CHECK for NO movement");
-failIfGasEqualsGasUsed(cannotTransfer2Tx, cannotTransferMessage + " - ac4 approve 30 STX ac6");
-passIfGasEqualsGasUsed(cannotTransfer3Tx, cannotTransferMessage + " - ac6 transferFrom 30 STX ac4 -> ac7. CHECK for NO movement");
+passIfTxStatusError(cannotTransfer1Tx, cannotTransferMessage + " - transfer 10 STX ac3 -> ac5. CHECK for NO movement");
+failIfTxStatusError(cannotTransfer2Tx, cannotTransferMessage + " - ac4 approve 30 STX ac6");
+passIfTxStatusError(cannotTransfer3Tx, cannotTransferMessage + " - ac6 transferFrom 30 STX ac4 -> ac7. CHECK for NO movement");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -591,7 +583,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("mintTokensTx", mintTokensTx);
 printBalances();
-failIfGasEqualsGasUsed(mintTokensTx, mintTokensMessage);
+failIfTxStatusError(mintTokensTx, mintTokensMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -607,7 +599,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("burnAnyonesTokensTx", burnAnyonesTokensTx);
 printBalances();
-failIfGasEqualsGasUsed(burnAnyonesTokensTx, burnAnyonesTokensMessage);
+failIfTxStatusError(burnAnyonesTokensTx, burnAnyonesTokensMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -623,7 +615,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("transferOwnership3Tx", transferOwnership3Tx);
 printBalances();
-failIfGasEqualsGasUsed(transferOwnership3Tx, transferOwnership3Message);
+failIfTxStatusError(transferOwnership3Tx, transferOwnership3Message);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -640,7 +632,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("acceptTransferOwnership3Tx", acceptTransferOwnership3Tx);
 printBalances();
-failIfGasEqualsGasUsed(acceptTransferOwnership3Tx, acceptTransferOwnership3Message);
+failIfTxStatusError(acceptTransferOwnership3Tx, acceptTransferOwnership3Message);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -656,7 +648,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("enableTransferTx", enableTransferTx);
 printBalances();
-failIfGasEqualsGasUsed(enableTransferTx, enableTransferMessage);
+failIfTxStatusError(enableTransferTx, enableTransferMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -672,7 +664,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("unlockTrusteeGrantTx", unlockTrusteeGrantTx);
 printBalances();
-failIfGasEqualsGasUsed(unlockTrusteeGrantTx, unlockTrusteeGrantMessage);
+failIfTxStatusError(unlockTrusteeGrantTx, unlockTrusteeGrantMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
@@ -688,7 +680,7 @@ while (txpool.status.pending > 0) {
 }
 printTxData("revokeTrusteeGrantTx", revokeTrusteeGrantTx);
 printBalances();
-failIfGasEqualsGasUsed(revokeTrusteeGrantTx, revokeTrusteeGrantMessage);
+failIfTxStatusError(revokeTrusteeGrantTx, revokeTrusteeGrantMessage);
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 printTrusteeContractDetails();
