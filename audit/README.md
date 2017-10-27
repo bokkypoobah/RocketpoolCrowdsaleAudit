@@ -15,8 +15,9 @@ This audit has been conducted on the RocketPool source code in commits
 [19372b87](https://github.com/darcius/rocketpool-crowdsale/tree/19372b8736371810ed0e5268281dc7563127a269),
 [270c5a09](https://github.com/darcius/rocketpool-crowdsale/tree/270c5a091444ed449d6dcf7cfffb85fabaaae64b),
 [4a3d45af](https://github.com/darcius/rocketpool-crowdsale/tree/4a3d45afaf53229ec62cd5003b843ab63d6dddc1),
-[aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92) and
-[6672f7d2](https://github.com/darcius/rocketpool-crowdsale/commit/6672f7d2d552f59b2d35cca16021c21015450917).
+[aa76189b](https://github.com/darcius/rocketpool-crowdsale/commit/aa76189bf00d8552dd302dba37743717f75eee92),
+[6672f7d2](https://github.com/darcius/rocketpool-crowdsale/commit/6672f7d2d552f59b2d35cca16021c21015450917) and
+[ddaba0e9](https://github.com/darcius/rocketpool-crowdsale/commit/ddaba0e9f6b02bb150ab6aa2ca8d12af246adb17).
 
 No potential vulnerabilities have been identified in the **RocketPoolPresale** and **RocketPoolToken** contract.
 
@@ -424,8 +425,8 @@ audited source code, and that the deployment parameters are correctly set, inclu
 * [x] [code-review/sales/RocketPoolPresale.md](code-review/sales/RocketPoolPresale.md)
   * [x] contract RocketPoolPresale is SalesAgent, Owned
     * [x] using SafeMath for uint
-* [ ] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
-  * [ ] contract RocketPoolCrowdsale is SalesAgent
+* [x] [code-review/sales/RocketPoolCrowdsale.md](code-review/sales/RocketPoolCrowdsale.md)
+  * [x] contract RocketPoolCrowdsale is SalesAgent
     * [x] using SafeMath for uint
 * [ ] [code-review/sales/RocketPoolReserveFund.md](code-review/sales/RocketPoolReserveFund.md)
   * [ ] contract RocketPoolReserveFund is SalesAgent
