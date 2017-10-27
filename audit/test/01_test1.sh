@@ -6,9 +6,9 @@
 # ----------------------------------------------------------------------------------------------
 
 # First parameter "presale" (default) or "crowdsale"
-SALETYPE=${1:-presale}
+# SALETYPE=${1:-presale}
 # Second parameter "success" (default) or "failure"
-FUNDING=${1:-success}
+# FUNDING=${1:-success}
 
 GETHATTACHPOINT=`grep ^IPCFILE= settings.txt | sed "s/^.*=//"`
 PASSWORD=`grep ^PASSWORD= settings.txt | sed "s/^.*=//"`
@@ -54,11 +54,11 @@ STARTTIME_S=`date -r $STARTTIME -u`
 ENDTIME=`echo "$CURRENTTIME+60*2" | bc`
 ENDTIME_S=`date -r $ENDTIME -u`
 
-TEST1OUTPUT=`basename -s ".txt" ${TEST1OUTPUT}`_${SALETYPE}_${FUNDING}.txt
-TEST1RESULTS=`basename -s ".txt" ${TEST1RESULTS}`_${SALETYPE}_${FUNDING}.txt
+# TEST1OUTPUT=`basename -s ".txt" ${TEST1OUTPUT}`_${SALETYPE}_${FUNDING}.txt
+# TEST1RESULTS=`basename -s ".txt" ${TEST1RESULTS}`_${SALETYPE}_${FUNDING}.txt
 
-printf "SALETYPE                   = '$SALETYPE'. Options 'presale' (default) or 'crowdsale'\n" | tee $TEST1OUTPUT
-printf "FUNDING                    = '$FUNDING'. Options 'success' (default) or 'failure'\n" | tee -a $TEST1OUTPUT
+# printf "SALETYPE                   = '$SALETYPE'. Options 'presale' (default) or 'crowdsale'\n" | tee $TEST1OUTPUT
+# printf "FUNDING                    = '$FUNDING'. Options 'success' (default) or 'failure'\n" | tee -a $TEST1OUTPUT
 
 printf "GETHATTACHPOINT            = '$GETHATTACHPOINT'\n" | tee -a $TEST1OUTPUT
 printf "PASSWORD                   = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
@@ -117,9 +117,9 @@ DIFFS1=`diff $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
 echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
 echo "$DIFFS1" | tee -a $TEST1OUTPUT
 
-echo "var tokenOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
-echo "var presaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
-echo "var crowdsaleOutput=`solc_4.1.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
+echo "var tokenOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
+echo "var presaleOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
+echo "var crowdsaleOutput=`solc_0.4.11 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
 
 geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
 loadScript("$ROCKETPOOLTOKENJS");
@@ -284,7 +284,7 @@ console.log("RESULT: ");
 var validContribution1Message = "Send Valid Contribution";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + validContribution1Message);
-var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("1000", "ether")});
+var validContribution1Tx = eth.sendTransaction({from: account3, to: presaleAddress, gas: 400000, value: web3.toWei("1000.0001", "ether")});
 var validContribution2Tx = eth.sendTransaction({from: account4, to: presaleAddress, gas: 400000, value: web3.toWei("2000", "ether")});
 while (txpool.status.pending > 0) {
 }
