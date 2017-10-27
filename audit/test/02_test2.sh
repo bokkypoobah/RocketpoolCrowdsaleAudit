@@ -34,8 +34,8 @@ ROCKETPOOLPRESALEJS=`grep ^ROCKETPOOLPRESALEJS= settings.txt | sed "s/^.*=//"`
 DEPLOYMENTDATA=`grep ^DEPLOYMENTDATA= settings.txt | sed "s/^.*=//"`
 
 INCLUDEJS=`grep ^INCLUDEJS= settings.txt | sed "s/^.*=//"`
-TEST1OUTPUT=`grep ^TEST1OUTPUT= settings.txt | sed "s/^.*=//"`
-TEST1RESULTS=`grep ^TEST1RESULTS= settings.txt | sed "s/^.*=//"`
+TEST2OUTPUT=`grep ^TEST2OUTPUT= settings.txt | sed "s/^.*=//"`
+TEST2RESULTS=`grep ^TEST2RESULTS= settings.txt | sed "s/^.*=//"`
 
 CURRENTTIME=`date +%s`
 CURRENTTIMES=`date -r $CURRENTTIME -u`
@@ -54,40 +54,40 @@ STARTTIME_S=`date -r $STARTTIME -u`
 ENDTIME=`echo "$CURRENTTIME+60*2" | bc`
 ENDTIME_S=`date -r $ENDTIME -u`
 
-# TEST1OUTPUT=`basename -s ".txt" ${TEST1OUTPUT}`_${SALETYPE}_${FUNDING}.txt
-# TEST1RESULTS=`basename -s ".txt" ${TEST1RESULTS}`_${SALETYPE}_${FUNDING}.txt
+# TEST2OUTPUT=`basename -s ".txt" ${TEST2OUTPUT}`_${SALETYPE}_${FUNDING}.txt
+# TEST2RESULTS=`basename -s ".txt" ${TEST2RESULTS}`_${SALETYPE}_${FUNDING}.txt
 
-# printf "SALETYPE                   = '$SALETYPE'. Options 'presale' (default) or 'crowdsale'\n" | tee $TEST1OUTPUT
-# printf "FUNDING                    = '$FUNDING'. Options 'success' (default) or 'failure'\n" | tee -a $TEST1OUTPUT
+# printf "SALETYPE                   = '$SALETYPE'. Options 'presale' (default) or 'crowdsale'\n" | tee $TEST2OUTPUT
+# printf "FUNDING                    = '$FUNDING'. Options 'success' (default) or 'failure'\n" | tee -a $TEST2OUTPUT
 
-printf "GETHATTACHPOINT            = '$GETHATTACHPOINT'\n" | tee $TEST1OUTPUT
-printf "PASSWORD                   = '$PASSWORD'\n" | tee -a $TEST1OUTPUT
+printf "GETHATTACHPOINT            = '$GETHATTACHPOINT'\n" | tee $TEST2OUTPUT
+printf "PASSWORD                   = '$PASSWORD'\n" | tee -a $TEST2OUTPUT
 
-printf "CONTRACTSDIR               = '$CONTRACTSDIR'\n" | tee -a $TEST1OUTPUT
-printf "CONTRACTSBASEDIR           = '$CONTRACTSBASEDIR'\n" | tee -a $TEST1OUTPUT
-printf "CONTRACTSINTERFACEDIR      = '$CONTRACTSINTERFACEDIR'\n" | tee -a $TEST1OUTPUT
-printf "CONTRACTSLIBDIR            = '$CONTRACTSLIBDIR'\n" | tee -a $TEST1OUTPUT
-printf "CONTRACTSSALESDIR          = '$CONTRACTSSALESDIR'\n" | tee -a $TEST1OUTPUT
+printf "CONTRACTSDIR               = '$CONTRACTSDIR'\n" | tee -a $TEST2OUTPUT
+printf "CONTRACTSBASEDIR           = '$CONTRACTSBASEDIR'\n" | tee -a $TEST2OUTPUT
+printf "CONTRACTSINTERFACEDIR      = '$CONTRACTSINTERFACEDIR'\n" | tee -a $TEST2OUTPUT
+printf "CONTRACTSLIBDIR            = '$CONTRACTSLIBDIR'\n" | tee -a $TEST2OUTPUT
+printf "CONTRACTSSALESDIR          = '$CONTRACTSSALESDIR'\n" | tee -a $TEST2OUTPUT
 
-printf "ROCKETPOOLTOKENSOL         = '$ROCKETPOOLTOKENSOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLTOKENTEMPSOL     = '$ROCKETPOOLTOKENTEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLTOKENJS          = '$ROCKETPOOLTOKENJS'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLTOKENSOL         = '$ROCKETPOOLTOKENSOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLTOKENTEMPSOL     = '$ROCKETPOOLTOKENTEMPSOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLTOKENJS          = '$ROCKETPOOLTOKENJS'\n" | tee -a $TEST2OUTPUT
 
-printf "ROCKETPOOLCROWDSALESOL     = '$ROCKETPOOLCROWDSALESOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLCROWDSALETEMPSOL = '$ROCKETPOOLCROWDSALETEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLCROWDSALEJS      = '$ROCKETPOOLCROWDSALEJS'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLCROWDSALESOL     = '$ROCKETPOOLCROWDSALESOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLCROWDSALETEMPSOL = '$ROCKETPOOLCROWDSALETEMPSOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLCROWDSALEJS      = '$ROCKETPOOLCROWDSALEJS'\n" | tee -a $TEST2OUTPUT
 
-printf "ROCKETPOOLPRESALESOL       = '$ROCKETPOOLPRESALESOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLPRESALETEMPSOL   = '$ROCKETPOOLPRESALETEMPSOL'\n" | tee -a $TEST1OUTPUT
-printf "ROCKETPOOLPRESALEJS        = '$ROCKETPOOLPRESALEJS'\n" | tee -a $TEST1OUTPUT
+printf "ROCKETPOOLPRESALESOL       = '$ROCKETPOOLPRESALESOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLPRESALETEMPSOL   = '$ROCKETPOOLPRESALETEMPSOL'\n" | tee -a $TEST2OUTPUT
+printf "ROCKETPOOLPRESALEJS        = '$ROCKETPOOLPRESALEJS'\n" | tee -a $TEST2OUTPUT
 
-printf "DEPLOYMENTDATA            = '$DEPLOYMENTDATA'\n" | tee -a $TEST1OUTPUT
-printf "INCLUDEJS                 = '$INCLUDEJS'\n" | tee -a $TEST1OUTPUT
-printf "TEST1OUTPUT               = '$TEST1OUTPUT'\n" | tee -a $TEST1OUTPUT
-printf "TEST1RESULTS              = '$TEST1RESULTS'\n" | tee -a $TEST1OUTPUT
-printf "CURRENTTIME               = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST1OUTPUT
-printf "STARTTIME                 = '$STARTTIME' '$STARTTIME_S'\n" | tee -a $TEST1OUTPUT
-printf "ENDTIME                   = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OUTPUT
+printf "DEPLOYMENTDATA            = '$DEPLOYMENTDATA'\n" | tee -a $TEST2OUTPUT
+printf "INCLUDEJS                 = '$INCLUDEJS'\n" | tee -a $TEST2OUTPUT
+printf "TEST2OUTPUT               = '$TEST2OUTPUT'\n" | tee -a $TEST2OUTPUT
+printf "TEST2RESULTS              = '$TEST2RESULTS'\n" | tee -a $TEST2OUTPUT
+printf "CURRENTTIME               = '$CURRENTTIME' '$CURRENTTIMES'\n" | tee -a $TEST2OUTPUT
+printf "STARTTIME                 = '$STARTTIME' '$STARTTIME_S'\n" | tee -a $TEST2OUTPUT
+printf "ENDTIME                   = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST2OUTPUT
 
 # Make copy of SOL file and modify start and end times ---
 `cp -rp $CONTRACTSBASEDIR/* .`
@@ -114,15 +114,15 @@ printf "ENDTIME                   = '$ENDTIME' '$ENDTIME_S'\n" | tee -a $TEST1OU
 #`perl -pi -e "s/BLOCKS_IN_DAY \= 5256;*$/BLOCKS_IN_DAY \= $BLOCKSINDAY;/" $DAOCASINOICOTEMPSOL`
 
 DIFFS1=`diff $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL`
-echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST1OUTPUT
-echo "$DIFFS1" | tee -a $TEST1OUTPUT
+echo "--- Differences $CONTRACTSDIR/$ROCKETPOOLTOKENSOL $ROCKETPOOLTOKENTEMPSOL ---" | tee -a $TEST2OUTPUT
+echo "$DIFFS1" | tee -a $TEST2OUTPUT
 
-solc_0.4.16 --version | tee -a $TEST1OUTPUT
+solc_0.4.16 --version | tee -a $TEST2OUTPUT
 echo "var tokenOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLTOKENTEMPSOL`;" > $ROCKETPOOLTOKENJS
 echo "var presaleOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLPRESALETEMPSOL`;" > $ROCKETPOOLPRESALEJS
 echo "var crowdsaleOutput=`solc_0.4.16 --optimize --combined-json abi,bin,interface $ROCKETPOOLCROWDSALETEMPSOL`;" > $ROCKETPOOLCROWDSALEJS
 
-geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST1OUTPUT
+geth --verbosity 3 attach $GETHATTACHPOINT << EOF | tee -a $TEST2OUTPUT
 loadScript("$ROCKETPOOLTOKENJS");
 loadScript("$ROCKETPOOLPRESALEJS");
 loadScript("$ROCKETPOOLCROWDSALEJS");
@@ -259,40 +259,20 @@ waitUntilBlock("startBlock", startBlock, 0);
 
 
 // -----------------------------------------------------------------------------
-var validContribution1Message = "Send Valid Contribution 1";
+var validContribution1Message = "Send Valid Contribution";
 // -----------------------------------------------------------------------------
 console.log("RESULT: " + validContribution1Message);
-var validContribution1_1Tx = eth.sendTransaction({from: account3, to: crowdsaleAddress, gas: 400000, value: web3.toWei("100.1", "ether")});
+var validContribution1Tx = eth.sendTransaction({from: account3, to: crowdsaleAddress, gas: 400000, value: web3.toWei("10.1", "ether")});
 while (txpool.status.pending > 0) {
 }
-var validContribution1_2Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("200.2", "ether")});
+var validContribution2Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("20.2", "ether")});
 while (txpool.status.pending > 0) {
 }
-printTxData("validContribution1_1Tx", validContribution1_1Tx);
-printTxData("validContribution1_2Tx", validContribution1_2Tx);
+printTxData("validContribution1Tx", validContribution1Tx);
+printTxData("validContribution2Tx", validContribution2Tx);
 printBalances();
-failIfTxStatusError(validContribution1_1Tx, validContribution1Message + " ac3 100.1 ETH");
-failIfTxStatusError(validContribution1_2Tx, validContribution1Message + " ac4 200.2 ETH");
-printCrowdsaleContractDetails();
-printTokenContractDetails();
-console.log("RESULT: ");
-
-
-// -----------------------------------------------------------------------------
-var validContribution2Message = "Send Valid Contribution 2";
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + validContribution2Message);
-var validContribution2_1Tx = eth.sendTransaction({from: account3, to: crowdsaleAddress, gas: 400000, value: web3.toWei("1.1", "ether")});
-while (txpool.status.pending > 0) {
-}
-var validContribution2_2Tx = eth.sendTransaction({from: account4, to: crowdsaleAddress, gas: 400000, value: web3.toWei("2.2", "ether")});
-while (txpool.status.pending > 0) {
-}
-printTxData("validContribution2_1Tx", validContribution2_1Tx);
-printTxData("validContribution2_2Tx", validContribution2_2Tx);
-printBalances();
-failIfTxStatusError(validContribution2_1Tx, validContribution2Message + " ac3 1.1 ETH");
-failIfTxStatusError(validContribution2_2Tx, validContribution2Message + " ac4 2.2 ETH");
+failIfTxStatusError(validContribution1Tx, validContribution1Message + " ac3 10.1 ETH");
+failIfTxStatusError(validContribution2Tx, validContribution1Message + " ac4 20.2 ETH");
 printCrowdsaleContractDetails();
 printTokenContractDetails();
 console.log("RESULT: ");
@@ -334,32 +314,8 @@ printTokenContractDetails();
 console.log("RESULT: ");
 
 
-// -----------------------------------------------------------------------------
-var canTransferMessage = "Can Move Tokens";
-// -----------------------------------------------------------------------------
-console.log("RESULT: " + canTransferMessage);
-var canTransfer1Tx = token.transfer(account5, "1000000000000000000", {from: account3, gas: 100000});
-var canTransfer2Tx = token.approve(account6,  "3000000000000000000", {from: account4, gas: 100000});
-while (txpool.status.pending > 0) {
-}
-var canTransfer3Tx = token.transferFrom(account4, account7, "3000000000000000000", {from: account6, gas: 100000});
-while (txpool.status.pending > 0) {
-}
-printTxData("canTransfer1Tx", canTransfer1Tx);
-printTxData("canTransfer2Tx", canTransfer2Tx);
-printTxData("canTransfer3Tx", canTransfer3Tx);
-printBalances();
-failIfTxStatusError(canTransfer1Tx, canTransferMessage + " - transfer 1 RPL ac3 -> ac5. CHECK for movement");
-failIfTxStatusError(canTransfer2Tx, canTransferMessage + " - ac4 approve 3 RPL ac6");
-failIfTxStatusError(canTransfer3Tx, canTransferMessage + " - ac6 transferFrom 3 RPL ac4 -> ac7. CHECK for movement");
-printCrowdsaleContractDetails();
-printTokenContractDetails();
-printTrusteeContractDetails();
-console.log("RESULT: ");
-
-
 EOF
-grep "DATA: " $TEST1OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
+grep "DATA: " $TEST2OUTPUT | sed "s/DATA: //" > $DEPLOYMENTDATA
 cat $DEPLOYMENTDATA
-grep "RESULT: " $TEST1OUTPUT | sed "s/RESULT: //" > $TEST1RESULTS
-cat $TEST1RESULTS
+grep "RESULT: " $TEST2OUTPUT | sed "s/RESULT: //" > $TEST2RESULTS
+cat $TEST2RESULTS

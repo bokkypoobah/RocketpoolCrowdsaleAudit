@@ -245,18 +245,35 @@ function printCrowdsaleContractDetails() {
     var contract = eth.contract(crowdsaleContractAbi).at(crowdsaleContractAddress);
     console.log("RESULT: crowdsale.owner=" + contract.owner());
     console.log("RESULT: crowdsale.newOwner=" + contract.newOwner());
-    // console.log("RESULT: crowdsale.tokenContractAddress=" + contract.tokenContractAddress());
     console.log("RESULT: crowdsale.contributedTotal=" + contract.contributedTotal().shift(-18));
-//    console.log("RESULT: crowdsale.startTime=" + contract.startTime() + " " + new Date(contract.startTime() * 1000).toUTCString());
-//    console.log("RESULT: crowdsale.endTime=" + contract.endTime() + " " + new Date(contract.endTime() * 1000).toUTCString());
-//    console.log("RESULT: crowdsale.fundingRecipient=" + contract.fundingRecipient());
-//    console.log("RESULT: crowdsale.tokensSold=" + contract.tokensSold().shift(-18));
-//    console.log("RESULT: crowdsale.ETH_CAP=" + contract.ETH_CAP());
-//    console.log("RESULT: crowdsale.EXCHANGE_RATE=" + contract.EXCHANGE_RATE());
-//    console.log("RESULT: crowdsale.TOKEN_SALE_CAP=" + contract.TOKEN_SALE_CAP().shift(-18));
+    console.log("RESULT: crowdsale.targetEthSent=" + contract.targetEthSent());
+    console.log("RESULT: crowdsale.saleDepositsAllowed=" + contract.saleDepositsAllowed());
+    console.log("RESULT: crowdsale.deployedTime=" + contract.deployedTime() + " " + new Date(contract.deployedTime() * 1000).toUTCString());
+
     var latestBlock = eth.blockNumber;
     var i;
 
+    var flagIntEvents = contract.FlagInt({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    flagIntEvents.watch(function (error, result) {
+      console.log("RESULT: FlagInt " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    flagIntEvents.stopWatching();
+
+    var flagUintEvents = contract.FlagUint({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    flagUintEvents.watch(function (error, result) {
+      console.log("RESULT: FlagUint " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    flagUintEvents.stopWatching();
+
+    var flagAddressEvents = contract.FlagAddress({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    flagAddressEvents.watch(function (error, result) {
+      console.log("RESULT: FlagAddress " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    flagAddressEvents.stopWatching();
+    
     var contributeEvents = contract.Contribute({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
     i = 0;
     contributeEvents.watch(function (error, result) {
@@ -284,6 +301,13 @@ function printCrowdsaleContractDetails() {
       console.log("RESULT: ClaimTokens " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
     });
     claimTokensEvents.stopWatching();
+
+    var transferToDepositAddressEvents = contract.TransferToDepositAddress({}, { fromBlock: crowdsaleFromBlock, toBlock: latestBlock });
+    i = 0;
+    transferToDepositAddressEvents.watch(function (error, result) {
+      console.log("RESULT: TransferToDepositAddress " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
+    });
+    transferToDepositAddressEvents.stopWatching();
 
     crowdsaleFromBlock = parseInt(latestBlock) + 1;
   }
@@ -355,55 +379,5 @@ function printTokenContractDetails() {
     transferEvents.stopWatching();
 
     tokenFromBlock = parseInt(latestBlock) + 1;
-  }
-}
-
-
-//-----------------------------------------------------------------------------
-// Trustee Contract
-//-----------------------------------------------------------------------------
-var trusteeContractAddress = null;
-var trusteeContractAbi = null;
-
-function addTrusteeContractAddressAndAbi(address, abi) {
-  trusteeContractAddress = address;
-  trusteeContractAbi = abi;
-}
-
-var trusteeFromBlock = 0;
-function printTrusteeContractDetails() {
-  console.log("RESULT: trusteeContractAddress=" + trusteeContractAddress);
-  // console.log("RESULT: crowdsaleContractAbi=" + JSON.stringify(crowdsaleContractAbi));
-  if (trusteeContractAddress != null && trusteeContractAbi != null) {
-    var contract = eth.contract(trusteeContractAbi).at(trusteeContractAddress);
-    console.log("RESULT: trustee.stox=" + contract.stox());
-    console.log("RESULT: trustee.owner=" + contract.owner());
-    console.log("RESULT: trustee.newOwnerCandidate=" + contract.newOwnerCandidate());
-    console.log("RESULT: trustee.totalVesting=" + contract.totalVesting().shift(-18));
-    var latestBlock = eth.blockNumber;
-    var i;
-
-    var newGrantEvents = contract.NewGrant({}, { fromBlock: trusteeFromBlock, toBlock: latestBlock });
-    i = 0;
-    newGrantEvents.watch(function (error, result) {
-      console.log("RESULT: NewGrant " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-    });
-    newGrantEvents.stopWatching();
-
-    var unlockGrantEvents = contract.UnlockGrant({}, { fromBlock: trusteeFromBlock, toBlock: latestBlock });
-    i = 0;
-    unlockGrantEvents.watch(function (error, result) {
-      console.log("RESULT: UnlockGrant " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-    });
-    unlockGrantEvents.stopWatching();
-
-    var revokeGrantEvents = contract.RevokeGrant({}, { fromBlock: trusteeFromBlock, toBlock: latestBlock });
-    i = 0;
-    revokeGrantEvents.watch(function (error, result) {
-      console.log("RESULT: RevokeGrant " + i++ + " #" + result.blockNumber + ": " + JSON.stringify(result.args));
-    });
-    revokeGrantEvents.stopWatching();
-
-    trusteeFromBlock = parseInt(latestBlock) + 1;
   }
 }

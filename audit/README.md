@@ -1,7 +1,5 @@
 # RocketPool Presale And Crowdsale Contracts Audit
 
-Status: Work in progress
-
 ## Summary
 
 [Rocket Pool](https://www.rocketpool.net/) intends to run a presale commencing on September 2017, and the crowdsale in October 2017.
@@ -21,7 +19,7 @@ This audit has been conducted on the RocketPool source code in commits
 
 No potential vulnerabilities have been identified in the **RocketPoolPresale** and **RocketPoolToken** contract.
 
-**TODO**: Confirm that no potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
+No potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
 
 <br />
 
@@ -94,26 +92,24 @@ contract and has the following instruction:
 
 <br />
 
-### Presale Contract
-
-<br />
-
 ### Crowdsale Contract
 
-* Contributions are recorded per address and ethers accumulated in the crowdsale contract
+* Contributions are recorded per address and ethers (ETH) accumulated in the crowdsale contract
 * After finalisation, if:
   * minimum funding goal is not met, call `claimTokensAndRefund()` to receive a refund
   * minimum funding goal is met and there is an excess in contributed ethers, call `claimTokensAndRefund()` to receive excess ethers proportional to contributions
-* TODO - CHECK - Open ended sale - user can claim refunds or excess ethers before finalisation
 
 <br />
 
 ### Token Contract
 
-The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compliant with the following features:
+Note that the token contract was deployed before the recently finalised [ERC20 Token Standard](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20-token-standard.md)
+compliant and has the following notable features:
 
-* `decimals` is correctly defined as `uint8` instead of `uint256`
-* `transfer(...)` and `transferFrom(...)` will return true/false instead of throwing an error
+* `transfer(...)` and `transferFrom(...)` will return false instead of throwing an error. The recent changes to the standard recommends
+  the throwing of an error instead of returning false
+* `transfer(...)` and `transferFrom(...)` will return false when transferring 0 tokens. The recent changes to the standard recommends that 0 value
+  transfers be treated as valid transfers
 * `transfer(...)` and `transferFrom(...)` have not been built with a check on the size of the data being passed. This check is
   [no longer a recommended feature](https://blog.coinfabrik.com/smart-contract-short-address-attack-mitigation-failure/)
 * `approve(...)` does not have the [requirement that a non-zero approval limit be set to 0 before a new non-zero limit can be set](https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729)
@@ -121,6 +117,7 @@ The token contract is [ERC20](https://github.com/ethereum/eips/issues/20) compli
 There is no overflow protection in the `transfer(...)` and `transferFrom(...)` functions, but the numeric range of
 the token amounts is restricted to a safe range as these amounts are determined by the amount of ethers contributed and
 by `RocketPoolToken.totalSupplyCap`.
+
 
 <br />
 
@@ -142,6 +139,8 @@ by `RocketPoolToken.totalSupplyCap`.
 * [Due Diligence](#due-diligence)
 * [Risks](#risks)
 * [Testing](#testing)
+  * [Test 1 Funding Goal Reached](#test-1-funding-goal-reached)
+  * [Test 2 Funding Goal Not Reached](#test-2-funding-goal-not-reached)
 * [Code Review](#code-review)
 * [References](#references)
 
@@ -346,7 +345,7 @@ by `RocketPoolToken.totalSupplyCap`.
 
 No potential vulnerabilities have been identified in the **RocketPoolPresale** and **RocketPoolToken** contract.
 
-**TODO**: Confirm that no potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
+No potential vulnerabilities have been identified in the **RocketPoolCrowdsale** contract.
 
 <br />
 
@@ -392,7 +391,9 @@ audited source code, and that the deployment parameters are correctly set, inclu
 
 ## Risks
 
-**TODO**
+* The crowdsale contract will hold contributed ETH until the crowdsale is finalised, and could be a target for hackers. Once the target ETH
+  is reached, these funds fill be moved into the crowdsale wallet, but any excess contributions over the target ETH will accumulated in the
+  crowdsale contract
 
 <br />
 
@@ -400,11 +401,35 @@ audited source code, and that the deployment parameters are correctly set, inclu
 
 ## Testing
 
-The original tests were conducted on the presale sequence. Now that the presale has been completed, the test have been updated to the main
-crowdsale.
+The original tests were conducted on the presale sequence of contracts. Now that the presale phase is complete, the test have been updated
+to the main crowdsale.
 
-* Testing script [test/01_test1.sh](test/01_test1.sh)
-* Testing results [test/test1results.txt](test/test1results.txt)
+### Test 1 Funding Goal Reached
+
+The following functions were tested using the script [test/01_test1.sh](test/01_test1.sh) with the summary results saved
+in [test/test1results.txt](test/test1results.txt) and the detailed output saved in [test/test1output.txt](test/test1output.txt):
+
+* [x] Deploy the token and sale contracts
+* [x] Configure sale
+* [x] Verify deposit address
+* [x] Contribute to the crowdsale contract
+* [x] Finalise crowdsale
+* [x] Claim tokens and refunds
+* [x] Transfer tokens
+
+<br />
+
+### Test 2 Funding Goal Not Reached
+
+The following functions were tested using the script [test/02_test2.sh](test/02_test2.sh) with the summary results saved
+in [test/test2results.txt](test/test2results.txt) and the detailed output saved in [test/test2output.txt](test/test2output.txt):
+
+* [x] Deploy the token and sale contracts
+* [x] Configure sale
+* [x] Verify deposit address
+* [x] Contribute to the crowdsale contract
+* [x] Finalise crowdsale
+* [x] Claim tokens and refunds
 
 <br />
 
@@ -455,4 +480,4 @@ The following contracts have not been reviewed as they are part of the Truffles 
 
 <br />
 
-Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd for RocketPool Aug 19 2017. The MIT Licence.
+Enjoy. (c) BokkyPooBah / Bok Consulting Pty Ltd for RocketPool Oct 28 2017. The MIT Licence.

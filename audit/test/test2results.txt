@@ -1,0 +1,355 @@
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       12.000000000000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433        0.000000000000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+
+Deploy RocketPoolToken
+tokenAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4 status=0x1 gas=4000000 gasUsed=2274691 costETH=0.040944438 costUSD=10.831564461834 @ ETH/USD=264.543 gasPrice=18000000000 block=474 txIx=0 txId=0xb576ed29d5005497c8ed9518aa13fa64fc61e2f6bfbaf6f73bf94507ec5fd42d @ 1509134901 Fri, 27 Oct 2017 20:08:21 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       18.040944438000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.040944438000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Deploy RocketPoolToken
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=0
+token.getSaleContractTargetEtherMax['sale']=0
+token.getSaleContractDepositEtherMin['sale']=0
+token.getSaleContractDepositEtherMax['sale']=0
+token.getSaleContractDepositAddress['sale']=0x
+token.getSaleContractDepositAddressVerified['sale']=false
+token.getSaleContractStartBlock['sale']=0
+token.getSaleContractEndBlock['sale']=0
+token.getSaleContractTokensLimit['sale']=0
+token.getSaleContractTokensMinted['sale']=0
+
+Deploy RocketPoolCrowdsale
+crowdsaleAddress=0x9f1406f34716517d86b8ba237501a97c19699c39 status=0x1 gas=4000000 gasUsed=999734 costETH=0.017995212 costUSD=4.760507368116 @ ETH/USD=264.543 gasPrice=18000000000 block=476 txIx=0 txId=0xef534955e6fc9bb4b7c803952f73cd0b99b5735233a04a74d167e471378f63dd @ 1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       24.058939650000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.058939650000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Deploy RocketPoolCrowdsale
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=0
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=false
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=0
+token.getSaleContractTargetEtherMax['sale']=0
+token.getSaleContractDepositEtherMin['sale']=0
+token.getSaleContractDepositEtherMax['sale']=0
+token.getSaleContractDepositAddress['sale']=0x
+token.getSaleContractDepositAddressVerified['sale']=false
+token.getSaleContractStartBlock['sale']=0
+token.getSaleContractEndBlock['sale']=0
+token.getSaleContractTokensLimit['sale']=0
+token.getSaleContractTokensMinted['sale']=0
+
+Configure Crowdsale
+configCrowdsaleTx status=0x1 gas=4000000 gasUsed=292255 costETH=0.00526059 costUSD=1.39165226037 @ ETH/USD=264.543 gasPrice=18000000000 block=478 txIx=0 txId=0x92f00ade118f2723081109640a362365bfa6b8476c04ea33a9052d1d5e6c8db8 @ 1509134932 Fri, 27 Oct 2017 20:08:52 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       30.064200240000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.064200240000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976        0.000000000000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Configure Crowdsale
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=0
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=false
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=100
+token.getSaleContractTargetEtherMax['sale']=3000
+token.getSaleContractDepositEtherMin['sale']=0.1
+token.getSaleContractDepositEtherMax['sale']=20100
+token.getSaleContractDepositAddress['sale']=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
+token.getSaleContractDepositAddressVerified['sale']=false
+token.getSaleContractStartBlock['sale']=481
+token.getSaleContractEndBlock['sale']=496
+token.getSaleContractTokensLimit['sale']=9000000
+token.getSaleContractTokensMinted['sale']=0
+
+Verify Crowdsale Deposit Address
+verifyCrowdsaleDepositAddressTx status=0x1 gas=4000000 gasUsed=27851 costETH=0.000501318 costUSD=0.132620167674 @ ETH/USD=264.543 gasPrice=18000000000 block=480 txIx=1 txId=0xf369876aab0d97801629f96531cba9addae1f7aa58a768522fd1d65c8739edfb @ 1509134939 Fri, 27 Oct 2017 20:08:59 UTC
+satSaleDepositAllowedTx status=0x1 gas=4000000 gasUsed=42097 costETH=0.000757746 costUSD=0.200456400078 @ ETH/USD=264.543 gasPrice=18000000000 block=480 txIx=0 txId=0xdf6b0248fcef9c841e228c07d741013631341b47fc720225e931f44c50001f9b @ 1509134939 Fri, 27 Oct 2017 20:08:59 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       36.065459304000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.064957986000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.000501318000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0        0.000000000000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844        0.000000000000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Verify Crowdsale Deposit Address
+PASS Verify Crowdsale Deposit Address - setSaleDepositsAllowed(true)
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=0
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=true
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=100
+token.getSaleContractTargetEtherMax['sale']=3000
+token.getSaleContractDepositEtherMin['sale']=0.1
+token.getSaleContractDepositEtherMax['sale']=20100
+token.getSaleContractDepositAddress['sale']=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
+token.getSaleContractDepositAddressVerified['sale']=true
+token.getSaleContractStartBlock['sale']=481
+token.getSaleContractEndBlock['sale']=496
+token.getSaleContractTokensLimit['sale']=9000000
+token.getSaleContractTokensMinted['sale']=0
+
+Waiting until 'startBlock' #481+0 = #481 currentBlock=480
+Waited until 'startBlock' #481+0 = #481 currentBlock=482
+
+Send Valid Contribution
+validContribution1Tx status=0x1 gas=400000 gasUsed=69204 costETH=0.001245672 costUSD=0.329533807896 @ ETH/USD=264.543 gasPrice=18000000000 block=484 txIx=0 txId=0x5025c404b0d8730d653369cf9ec7b5c140e6de251e11af9b39987e1fc8b650f5 @ 1509134955 Fri, 27 Oct 2017 20:09:15 UTC
+validContribution2Tx status=0x1 gas=400000 gasUsed=54204 costETH=0.000975672 costUSD=0.258107197896 @ ETH/USD=264.543 gasPrice=18000000000 block=486 txIx=0 txId=0x011899cad310f1aabc5a0357ea72fc29eaeb8a7b993c26005a6e8f5f179ebdcb @ 1509134959 Fri, 27 Oct 2017 20:09:19 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       54.067680648000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.064957986000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.000501318000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0      -10.101245672000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844      -20.200975672000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39       30.300000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Send Valid Contribution ac3 10.1 ETH
+PASS Send Valid Contribution ac4 20.2 ETH
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=30.3
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=true
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+FlagUint 0 #484: {"flag":"10100000000000000000"}
+FlagUint 1 #486: {"flag":"30300000000000000000"}
+Contribute 0 #484: {"_agent":"0x9f1406f34716517d86b8ba237501a97c19699c39","_sender":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","_value":"10100000000000000000"}
+Contribute 1 #486: {"_agent":"0x9f1406f34716517d86b8ba237501a97c19699c39","_sender":"0xa44a08d3f6933c69212114bb66e2df1813651844","_value":"20200000000000000000"}
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=100
+token.getSaleContractTargetEtherMax['sale']=3000
+token.getSaleContractDepositEtherMin['sale']=0.1
+token.getSaleContractDepositEtherMax['sale']=20100
+token.getSaleContractDepositAddress['sale']=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
+token.getSaleContractDepositAddressVerified['sale']=true
+token.getSaleContractStartBlock['sale']=481
+token.getSaleContractEndBlock['sale']=496
+token.getSaleContractTokensLimit['sale']=9000000
+token.getSaleContractTokensMinted['sale']=0
+
+Waiting until 'endBlock' #496+0 = #496 currentBlock=486
+Waited until 'endBlock' #496+0 = #496 currentBlock=497
+
+Set Sale Deposit Allowed
+setSaleDepositAllowedTx status=0x1 gas=4000000 gasUsed=13517 costETH=0.000243306 costUSD=0.064364899158 @ ETH/USD=264.543 gasPrice=18000000000 block=499 txIx=0 txId=0xa0bcf402a938129d03d17ab3ef40277ddaae227859de437511b124c3c88373b6 @ 1509134996 Fri, 27 Oct 2017 20:09:56 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       93.067923954000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.065201292000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.000501318000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0      -10.101245672000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844      -20.200975672000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39       30.300000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Set Sale Deposit Allowed
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=30.3
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=false
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=100
+token.getSaleContractTargetEtherMax['sale']=3000
+token.getSaleContractDepositEtherMin['sale']=0.1
+token.getSaleContractDepositEtherMax['sale']=20100
+token.getSaleContractDepositAddress['sale']=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
+token.getSaleContractDepositAddressVerified['sale']=true
+token.getSaleContractStartBlock['sale']=481
+token.getSaleContractEndBlock['sale']=496
+token.getSaleContractTokensLimit['sale']=9000000
+token.getSaleContractTokensMinted['sale']=0
+
+Claim Tokens And Refunds
+claimTokens1Tx status=0x1 gas=400000 gasUsed=22056 costETH=0.000397008 costUSD=0.105025687344 @ ETH/USD=264.543 gasPrice=18000000000 block=501 txIx=0 txId=0x9a030be37223e2430ab60f9cd75a93c35c337cabb028c96e84a60983cc70e841 @ 1509135001 Fri, 27 Oct 2017 20:10:01 UTC
+claimTokens2Tx status=0x1 gas=400000 gasUsed=22056 costETH=0.000397008 costUSD=0.105025687344 @ ETH/USD=264.543 gasPrice=18000000000 block=501 txIx=1 txId=0x7f9eedf4943595b0ce0afb73c7a6f8dc5332713dd04d1eadc8465b8f35032c23 @ 1509135001 Fri, 27 Oct 2017 20:10:01 UTC
+ # Account                                             EtherBalanceChange                          Token Name
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+ 0 0xa00af22d07c87d96eeeb0ed583f8f6ac7812827e       99.068717970000000000           0.000000000000000000 Account #0 - Miner
+ 1 0xa11aae29840fbb5c86e6fd4cf809eba183aef433       -0.065201292000000000           0.000000000000000000 Account #1 - Contract Owner
+ 2 0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976       -0.000501318000000000           0.000000000000000000 Account #2 - Multisig
+ 3 0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0       -0.001642680000000000           0.000000000000000000 Account #3
+ 4 0xa44a08d3f6933c69212114bb66e2df1813651844       -0.001372680000000000           0.000000000000000000 Account #4
+ 5 0xa55a151eb00fded1634d27d1127b4be4627079ea        0.000000000000000000           0.000000000000000000 Account #5
+ 6 0xa66a85ede0cbe03694aa9d9de0bb19c99ff55bd9        0.000000000000000000           0.000000000000000000 Account #6
+ 7 0xa77a2b9d4b1c010a22a7c565dc418cef683dbcec        0.000000000000000000           0.000000000000000000 Account #7
+ 8 0xa88a05d2b88283ce84c8325760b72a64591279a2        0.000000000000000000           0.000000000000000000 Account #8
+ 9 0xcc8461036413b0fb03a632e408781b40dcd630b4        0.000000000000000000           0.000000000000000000 Token 'RPL' 'Rocket Pool'
+10 0x9f1406f34716517d86b8ba237501a97c19699c39        0.000000000000000000           0.000000000000000000 RocketPoolCrowdsale
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+                                                                                    0.000000000000000000 Total Token Balances
+-- ------------------------------------------ --------------------------- ------------------------------ ---------------------------
+
+PASS Claim Tokens And Refunds ac3
+PASS Claim Tokens And Refunds ac4
+crowdsaleContractAddress=0x9f1406f34716517d86b8ba237501a97c19699c39
+crowdsale.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+crowdsale.newOwner=0x0000000000000000000000000000000000000000
+crowdsale.contributedTotal=30.3
+crowdsale.targetEthSent=false
+crowdsale.saleDepositsAllowed=false
+crowdsale.deployedTime=1509134908 Fri, 27 Oct 2017 20:08:28 UTC
+Refund 0 #501: {"_agent":"0x9f1406f34716517d86b8ba237501a97c19699c39","_sender":"0xa33a6c312d9ad0e0f2e95541beed0cc081621fd0","_value":"10100000000000000000"}
+Refund 1 #501: {"_agent":"0x9f1406f34716517d86b8ba237501a97c19699c39","_sender":"0xa44a08d3f6933c69212114bb66e2df1813651844","_value":"20200000000000000000"}
+tokenContractAddress=0xcc8461036413b0fb03a632e408781b40dcd630b4
+token.owner=0xa11aae29840fbb5c86e6fd4cf809eba183aef433
+token.newOwner=0x0000000000000000000000000000000000000000
+token.symbol=RPL
+token.name=Rocket Pool
+token.decimals=18
+token.totalSupply=0
+token.totalSupplyCap=18000000
+token.getSaleContractIsFinalised['sale']=false
+token.getSaleContractTargetEtherMin['sale']=100
+token.getSaleContractTargetEtherMax['sale']=3000
+token.getSaleContractDepositEtherMin['sale']=0.1
+token.getSaleContractDepositEtherMax['sale']=20100
+token.getSaleContractDepositAddress['sale']=0xa22ab8a9d641ce77e06d98b7d7065d324d3d6976
+token.getSaleContractDepositAddressVerified['sale']=true
+token.getSaleContractStartBlock['sale']=481
+token.getSaleContractEndBlock['sale']=496
+token.getSaleContractTokensLimit['sale']=9000000
+token.getSaleContractTokensMinted['sale']=0
+
